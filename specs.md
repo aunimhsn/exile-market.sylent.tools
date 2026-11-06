@@ -35,14 +35,16 @@ Download the application. The buttons link straight to the file (`releases/lates
 
 | Visitor | Download area |
 |---|---|
-| Before the tag `v0.1.0` | « Coming soon » / « Bientôt disponible » as text, in place of the buttons: never a link to `#` |
-| Windows detected | Main button for Windows, a link for Linux below it |
-| Linux detected | Main button for Linux, a link for Windows below it |
-| System not detected, or no JavaScript | Main button for Windows, a link for Linux below it: both work without JavaScript |
-| macOS | No button. « Exile Market isn't available on macOS. » / « Exile Market n’est pas disponible sur macOS. » |
-| Phone or tablet | No button. « Exile Market runs on a computer. Open exile-market.sylent.tools on yours. » / « Exile Market s’installe sur un ordinateur. Ouvrez exile-market.sylent.tools sur le vôtre. » |
+| Before the tag `v0.1.0` | « Coming soon » / « Bientôt disponible » as text, in place of the buttons: never a link to `#` |
+| Windows detected | Two buttons of the same size, side by side, Windows then Linux. The Windows button is filled, the Linux one outlined |
+| Linux detected | The same two buttons in the same order. The Linux button is filled, the Windows one outlined |
+| System not detected, or no JavaScript | The same two buttons, identical: this is the HTML of the page, which works alone; the script only changes it when it recognizes a system |
+| macOS | No button. « Exile Market isn't available on macOS. » / « Exile Market n’est pas disponible sur macOS. » |
+| Phone or tablet | No button. « Exile Market runs on a computer. Open exile-market.sylent.tools on yours. » / « Exile Market s’installe sur un ordinateur. Ouvrez exile-market.sylent.tools sur le vôtre. » The address never breaks on two lines. |
 
-Under the buttons, a short line sends to the risk before the download: « Before installing, read the risk for your account. » / « Avant d’installer, lisez le risque pour votre compte. », linked to [that passage](#home-page); then a link to all the versions and their checksums (the release page). The page shows no version number nor file size, which it couldn't keep up to date without a change at each release.
+The buttons read « Download for Windows », « Download for Linux » / « Télécharger pour Windows », « Télécharger pour Linux ». The detection must test Android before Linux, since Android also calls itself Linux, and tell an iPad from a Mac by its touch screen.
+
+Under the buttons, a short line sends to the risk before the download: « Before installing, read the risk for your account. » / « Avant d’installer, lisez le risque pour votre compte. », linked to [that passage](#home-page); then a link to all the versions and their checksums (the release page): « All versions and checksums » / « Toutes les versions et leurs sommes de contrôle ». On a computer, the two links share one line. They stay on a phone or a tablet, and are absent on macOS and before the tag. The page shows no version number nor file size, which it couldn't keep up to date without a change at each release.
 
 The wording about macOS says what the tool does, not what the game does: Steam lists the game for Windows only (checked on 2026-11-06), but a third-party source speaks of a Mac client, and the standalone client wasn't checked.
 
@@ -58,28 +60,32 @@ One page and its legal notice, in both languages. There is no navigation beyond 
 
 ## Pages
 
-The layout comes from the wireframe (`docs/wireframes/`, step 2), then the mock-up is the reference. The blocks below are in their order of reading; the wireframe may still move them.
+The layout comes from the wireframe (`docs/wireframes/home-page.excalidraw`, approved by the owner on 2026-11-06), then the mock-up is the reference. The blocks below are in their order of reading, the same on every width.
 
 ### Home page
 
 1. **Header**: the logo and the name, the link to the other language.
 2. **First screen**: the headline, the subtitle, the download area, and a short silent video of the tool at work, the first thing seen.
+   - Everything is centered on a computer, in one column: the headline, the subtitle, the buttons and their links, then the video.
+   - The size of the video follows the height of the screen, about 600 × 338 px on a screen of 1280 × 720, with a ceiling on tall screens, so that it stays whole and the title of the next block shows under it. That title invites the visitor to scroll and shows that the steps after the download exist. No video is ever cut by the end of the screen. The mock-up checks it on a laptop of 1366 × 768; if the title doesn't show there, a link to these steps joins those under the buttons.
    - The mock-up compares A, the tool alone on a neutral background, and B, the game behind it, blurred or dark, without logos: clause 8 of the terms of Grinding Gear Games covers streams and video sharing sites, not clearly a video hosted on this page.
    - The video has no sound, loops, and plays only when the visitor hasn't asked to reduce motion; otherwise it shows a still image, with a way to play it. It weighs about 3 MB at most (`docs/external-services.md`, GitHub Pages).
    - Until the video and the screenshots are made, just before the launch, grey frames with their caption stand in for them.
-3. **What it does**: in a few short items, with screenshots: copy an item (Ctrl + D, or Ctrl + C), see its price (from poe2scout for currencies and uniques, from the trade site for the rest), its stats and filters, the offers, in a small window over the game.
-4. **What it needs**: three facts to read before downloading.
-   - The display mode: windowed fullscreen or a window. In exclusive fullscreen, the game lets no application copy the item or show its price over it.
-   - A game client in English or in French: the tool reads no other language.
-   - Windows or Linux, 64 bits; on Linux, the game through Proton, and X11 or XWayland.
-5. **What it does on your computer** / **Ce qu’il fait sur votre ordinateur** (not « Safety »: the word would promise what the page can't), five points:
-   - Its code is open, and each release is built in public by GitHub Actions, with the checksums of each file.
-   - It isn't signed for now, hence the Windows alert, and how to go through it.
-   - It watches the clipboard while it runs and keeps only what looks like a Path of Exile 2 item. Ctrl + D sends the game the Ctrl + C of one copy, once per press. It doesn't modify the game nor read its memory.
-   - It connects only to poe2scout, the trade site and GitHub, and asks for no account. A search on the trade site runs only when the player clicks.
-   - The risk for the account of the player, in its own passage below.
+3. **After the download** / **Après le téléchargement**: the steps of [Main action](#main-action), right under the first screen, since the visitor who has just clicked must find them before the Windows alert. Three columns on a computer (Windows, Linux, then), one under the other on a phone.
+4. **What it does**: three items with a screenshot each, in three columns on a computer, one under the other on a phone: copy an item (Ctrl + D, or Ctrl + C), see its price (from poe2scout for currencies and uniques, from the trade site for the rest), its stats and filters, the offers, in a small window over the game.
+5. **What it does on your computer** / **Ce qu’il fait sur votre ordinateur** (not « Safety »: the word would promise what the page can't), a short list, to the left of the questions on a computer and above them on a phone:
+   - It watches the clipboard while it runs and keeps only what looks like a Path of Exile 2 item.
+   - Ctrl + D sends the game the Ctrl + C of one copy, once per press. It doesn't modify the game nor read its memory.
+   - It connects only to poe2scout, the trade site and GitHub. A search on the trade site runs only when the player clicks.
+6. **Questions** / **Questions** (owner, 2026-11-06): six questions, every answer open: nothing folds, no JavaScript. They replace the former blocks « What it needs » and part of « What it does on your computer », so that no text exists twice. Real questions from the streams and GitHub Issues may be added after the launch.
+   1. « Is it free? » / « Est-il gratuit ? »: yes, and it asks for no account. Its code is open, and each release is built in public by GitHub Actions, with the checksums of each file.
+   2. « Why does Windows show an alert? » / « Pourquoi Windows affiche-t-il une alerte ? »: it isn't signed for now. How to go through the alert is written after the owner's Windows test (Main action, After the download).
+   3. « Can my account be at risk? » / « Mon compte risque-t-il quelque chose ? »: the passage below, which the line under the download buttons links to.
+   4. « Why must the game run in windowed fullscreen? » / « Pourquoi le jeu doit-il être en plein écran fenêtré ? »: windowed fullscreen or a window both work. In exclusive fullscreen, the game lets no application copy the item or show its price over it.
+   5. « Which languages of the game are supported? » / « Quelles langues du jeu sont prises en charge ? »: a game client in English or in French: the tool reads no other language.
+   6. « Does it work on macOS or on a console? » / « Fonctionne-t-il sur macOS ou sur console ? »: no. It needs Windows or Linux, 64 bits; on Linux, the game through Proton, and X11 or XWayland.
 
-   The technical claims are checked by the audit of the application (its step 17e) before the page goes live with its buttons.
+   The technical claims of these two blocks are checked by the audit of the application (its step 17e) before the page goes live with its buttons.
 
    **The risk for your account** / **Le risque pour votre compte** (owner, 2026-11-06). No word of « tolerated » or of a legal gap: see [why](docs/external-services.md#grinding-gear-games-terms-and-position).
 
@@ -101,8 +107,8 @@ The layout comes from the wireframe (`docs/wireframes/`, step 2), then the mock-
 
    The words « developer documentation » link to the official page. The forum reply is cited without a link: its thread names another application in its title.
 
-6. **Help**: a problem goes to GitHub Issues, or to the bug report button of the application.
-7. **Footer**: the legal notice, the source code and its license (`GPL-3.0-or-later` from v0.1), the disclaimer.
+7. **Help**: a problem goes to GitHub Issues, or to the bug report button of the application.
+8. **Footer**: the legal notice, the source code and its license (`GPL-3.0-or-later` from v0.1), the disclaimer.
 
 ### Legal notice
 
@@ -152,4 +158,4 @@ From the application (`docs/branding.md`, Brand assets): the bronze emblem and t
 - The site is static, hosted on GitHub Pages: no server, no server-side redirects.
 - Every page has a title, a meta description, the language of its address (`lang`), and is usable at phone width.
 - Accessibility: semantic HTML, contrast WCAG AA, keyboard access, reduced motion respected.
-- The download works without JavaScript; JavaScript only chooses which system comes first.
+- The download works without JavaScript; JavaScript only fills the button of the detected system, or replaces the buttons with the sentence for macOS or for a phone.

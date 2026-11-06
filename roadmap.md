@@ -26,9 +26,9 @@ Read only by the steps that need them:
 
 - [x] **0a. Project setup** ([#4](https://github.com/aunimhsn/exile-market.sylent.tools/pull/4)).
 - [x] **0b. Languages** ([#5](https://github.com/aunimhsn/exile-market.sylent.tools/pull/5)).
-- [x] **1. Specifications**: `specs.md` from what the owner decided on 2026-11-06, the terms of GoatCounter (chosen by the owner on 2026-11-06) and the French legal notice (LCEN article 1-1, read on Légifrance) checked and written in `docs/external-services.md`. Tool: specifications.
-- [ ] **2. Wireframe**: one Excalidraw wireframe of the page, phone first, with grey frames for the video and the screenshots. Tool: wireframes.
-- [ ] **3. Mock-up**: 2 styles, one following the application, the other exploring; the two treatments of the video (the tool alone, the game behind it); the language link with and without a flag; checked on the owner's phone; decisions in `docs/branding.md`, tokens in `src/styles/tokens.css`. Tools: mock-up, design system.
+- [x] **1. Specifications** ([#6](https://github.com/aunimhsn/exile-market.sylent.tools/pull/6)).
+- [x] **2. Wireframe**: one Excalidraw wireframe of the page, phone first, with grey frames for the video and the screenshots. Tool: wireframes.
+- [ ] **3. Mock-up**: 2 styles, one following the application, the other exploring; the two treatments of the video (the tool alone, the game behind it); the language link with and without a flag; the video readable at its size, and the next title showing under it on a laptop of 1366 × 768; checked on the owner's phone; decisions in `docs/branding.md`, tokens in `src/styles/tokens.css`. Tools: mock-up, design system.
 - [ ] **4a. Skeleton and deployment**: the tokens and fonts of the mock-up in `src/styles/`, the brand assets (`npm run brand:images`), the header and footer, the deployment to the `github.io` preview. Tools: build, code review.
 - [ ] **4b. The page**: the home page and the legal notice in both languages, the download buttons by system. Tools: build, code review.
 - [ ] **5. Launch**: the video and the screenshots asked of the owner with their exact list, the site checked on the preview, the DNS switched by the owner, the custom domain and HTTPS, the placeholder deleted at Cloudflare; once the tag is out, the download buttons turned on. Tool: launch.
@@ -40,6 +40,9 @@ The steps may be split into sub-steps when a pull request grows too large. When 
 
 Done in the application's repository, before its tag, and not by a pull request here:
 
+- **A blocker of the tag**: nothing written with `ctx.copy_text` reaches the system clipboard (Copy whisper, Copy the log of the bug report), while the pill reads « Copied ». Found in the owner's Windows test on 2026-11-06, on every system since the cause is in `Cargo.toml`: `eframe` has `default-features = false` without its `clipboard` feature, so the text stays inside the application. Likely fix, not run yet: add `"clipboard"` to the features of `eframe`, with a check that catches it and a line for Copy whisper in the guides of `docs/tests/`. The owner then repeats the paste check.
+- The Windows alert test, on a fresh download of the release archive, reading the state of Smart App Control: on 2026-11-06, the first launch showed a dialog with only an OK button (blocked because the publisher couldn't be verified, Microsoft will review the application), and the second launch ran normally. The cause is unknown; the page says only what is observed (`specs.md`, Why does Windows show an alert?).
+- Two improvements decided by the owner on 2026-11-06, not blockers, to write in its roadmap: the name of the orb under the pointer in the price block (step 21, with a wireframe and a mock-up first); a setting to close Exile Market when Path of Exile 2 closes (step 19, off by default, acting only once the game has been seen running, written to the log, the case of a crash or of a restart for a patch decided then).
 - Archives with a stable name in `release.yml` (for example `exile-market-windows-x64.zip`, `exile-market-linux-x64.tar.gz`), so that the buttons of the page link to `releases/latest/download/<name>`, an address that never changes.
 - Step 17b of its roadmap still says a VPS with Coolify: the page is on GitHub Pages.
 - Its specifications say the owner has no Windows: the owner now tests on a Windows laptop.

@@ -57,9 +57,11 @@ Rejected: **Fluent** (the format of the application's translations; owner, 2026-
 
 ## Download buttons
 
-Confirmed in the specifications on 2026-11-06. The HTML holds both links, Windows first, so that the download works without JavaScript; a small script only reads the system and puts it first, or shows the sentence for macOS and for a phone. The addresses are `https://github.com/aunimhsn/rust-exile-market/releases/latest/download/<stable name>`, which never change from one version to the next, so that a release needs no change here.
+Confirmed in the specifications on 2026-11-06. Changed by the owner on the wireframe, the same day. The HTML holds both links as two identical buttons, Windows first, so that the download works without JavaScript, and that is the fallback: a browser without JavaScript runs no `else`, so the page must be right before any script. A small script reads the system with `navigator.userAgent`, the only way on a static site, and either fills the button of that system without moving anything, or shows the sentence for macOS and for a phone. Android is tested before Linux and an iPad is told from a Mac by `navigator.maxTouchPoints`. The addresses are `https://github.com/aunimhsn/rust-exile-market/releases/latest/download/<stable name>`, which never change from one version to the next, so that a release needs no change here.
 
-Rejected: linking to the release page, where a new player has to pick among several archives; a version number or a size on the page, which would go out of date, or read from the GitHub API at each visit, for little.
+Read on 2026-11-06 with the identity of each system, on four download pages: the home page of VS Code, Discord and Obsidian show one button for the detected system, and the download page of VS Code shows every system with the detected one highlighted. The last pattern is the one kept: with two systems and one page, the other button costs little and survives a wrong detection. The home page of VS Code offered Linux to an Android phone, hence the order of the tests. These pages show what is done, not what converts: no figure was found.
+
+Rejected: one button for the detected system, whose other systems must then live elsewhere; a page after the click, as in `backlog.md`; linking to the release page, where a new player has to pick among several archives; a version number or a size on the page, which would go out of date, or read from the GitHub API at each visit, for little.
 
 The stack above is confirmed for this site. The JavaScript libraries, if any, and the format of the video wait for the mock-up.
 
