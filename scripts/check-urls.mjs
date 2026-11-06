@@ -2,7 +2,8 @@
 // - every former address of src/data/urls.json still resolves: a page for those of `pages`, a
 //   redirect to the page given in `redirects`, which exists (and its anchor, if any), and the
 //   not-found page for those of `dropped`;
-// - the not-found page is built;
+// - the not-found page is built, and holds both languages with a link to each home page, since
+//   GitHub Pages serves a single one and no link leads to it;
 // - the sitemap lists only pages that exist, no redirect;
 // - every page has the Open Graph tags of its own title and canonical link, and an image built
 //   in the site;
@@ -11,6 +12,8 @@
 // Run after `npm run build`, or on a build under a base: `node scripts/check-urls.mjs <folder> <base>`.
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import notFoundEn from "../src/content/en/not-found.json" with { type: "json" };
+import notFoundFr from "../src/content/fr/not-found.json" with { type: "json" };
 import urls from "../src/data/urls.json" with { type: "json" };
 
 const [dist = "dist", base = ""] = process.argv.slice(2);
@@ -130,6 +133,24 @@ const languageErrors = (file, html, canonical) => {
   }
 };
 
+/** Checks that the not-found page holds both languages, with a link to each home page. */
+const notFoundErrors = (file, html) => {
+  if (!html.includes(`<html lang="en"`)) {
+    errors.push(`${file}: not in English first`);
+  }
+  if (!html.includes(notFoundEn.heading)) {
+    errors.push(`${file}: no English text`);
+  }
+  if (!html.includes(`lang="fr"`) || !html.includes(notFoundFr.heading)) {
+    errors.push(`${file}: no French text marked lang="fr"`);
+  }
+  for (const home of ["/", "/fr/"]) {
+    if (!html.includes(`href="${base}${home}"`)) {
+      errors.push(`${file}: no link to ${base}${home}`);
+    }
+  }
+};
+
 const redirectPages = new Set();
 const htmlFiles = readdirSync(dist, { recursive: true }).filter((file) =>
   file.endsWith(".html"),
@@ -156,7 +177,8 @@ for (const file of htmlFiles) {
   ) {
     errors.push(`${file}: og:image ${image} is not built`);
   }
-  if (file !== "404.html") languageErrors(file, html, canonical);
+  if (file === "404.html") notFoundErrors(file, html);
+  else languageErrors(file, html, canonical);
 }
 
 // The sitemap lists pages that exist, and no redirect or not-found page.

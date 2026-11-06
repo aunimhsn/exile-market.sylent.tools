@@ -79,7 +79,7 @@ Rejected: **Astro's i18n routing** (`i18n` in `astro.config.mjs`): its helpers a
 ## Addresses check
 
 - **linkinator** serves the built site (`dist/`) as a static host would and follows every internal link of every page, CSS and anchors included (`linkinator.config.json`). External links are skipped, so that a slow third-party site doesn't break the CI.
-- **`scripts/check-urls.mjs`** checks what no link shows: every former address of `src/data/urls.json` resolves (a page, or a redirect to the given page, which exists), the dropped ones are not built, the not-found page is built, the sitemap lists only pages, every page has the Open Graph tags of its own title and canonical link and a built image, and every page has the `lang` of its address, the `hreflang` links of both languages, each pointing back to the other, and a link to the other language.
+- **`scripts/check-urls.mjs`** checks what no link shows: every former address of `src/data/urls.json` resolves (a page, or a redirect to the given page, which exists), the dropped ones are not built, the not-found page is built and holds both languages, the sitemap lists only pages, every page has the Open Graph tags of its own title and canonical link and a built image, and every page has the `lang` of its address, the `hreflang` links of both languages, each pointing back to the other, and a link to the other language.
 - A build under a base is checked with `node scripts/check-urls.mjs dist /<base>`; linkinator needs the build served under the base (copy `dist/` into a `<base>` folder of a temporary directory and run it there).
 - Rejected: **lychee**, faster, but a Rust binary installed apart from npm.
 

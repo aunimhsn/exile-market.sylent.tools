@@ -6,7 +6,7 @@ import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
-/** The path a built file is served at, under the base: `a-propos/index.html` → `/a-propos/`. */
+/** The path a built file is served at, under the base: `legal/index.html` → `/legal/`. */
 const pathOf = (file, base) =>
   `${base.replace(/\/$/, "")}/${file
     .split(sep)

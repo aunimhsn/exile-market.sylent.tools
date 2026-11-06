@@ -2,14 +2,23 @@
 // The not-found page, written as 404.html, which GitHub Pages serves for every path without a
 // page, whatever its language: it holds both, without JavaScript. No canonical link and noindex.
 // Its texts are in src/content/<lang>/not-found.json.
-import en from "../content/en/not-found.json";
-import fr from "../content/fr/not-found.json";
+import english from "../content/en/not-found.json";
+import french from "../content/fr/not-found.json";
 import SiteLayout from "../layouts/site-layout.astro";
-import { routes } from "../lib/i18n";
+import { type Lang, routes } from "../lib/i18n";
 import { href } from "../lib/url";
+
+// Typed from the English file: a key missing in French fails `astro check`.
+const texts: Record<Lang, typeof english> = { en: english, fr: french };
+const { en, fr } = texts;
 ---
 
-<SiteLayout lang="en" title={en.title} description={en.description} noindex>
+<SiteLayout
+  lang="en"
+  title={`${en.title} · ${fr.title}`}
+  description={`${en.description} ${fr.description}`}
+  noindex
+>
   <div class="wrap">
     <h1>{en.heading}</h1>
     <p>{en.lead}</p>
