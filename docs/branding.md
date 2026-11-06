@@ -44,13 +44,13 @@ What the owner provides (process.md, Specifications), where it is kept, and what
 
 <!-- Content width, gutters, corner radius, the breakpoints (written as numbers in the media queries). -->
 
-First screen on a computer (owner, 2026-11-06): centered, the headline, the subtitle, the download buttons, then the video under them, which puts the tool forward. The video keeps within the first screen, about 700 × 394 px on a screen of 1280 × 720, so that the page keeps its promise of showing it first.
+First screen on a computer (owner, 2026-11-06): centered, the headline, the subtitle, the download buttons, then the video under them, which puts the tool forward. The video follows the height of the screen, about 600 × 338 px on a screen of 1280 × 720, so that it stays whole and the title of the next block shows under it, which invites the visitor to scroll.
 
 ## Components
 
 <!-- Buttons, cards, form fields, navigation: their states (hover, focus, active, disabled). -->
 
-Download buttons (owner, 2026-11-06): Windows and Linux side by side, with the same weight.
+Download buttons (owner, 2026-11-06): Windows and Linux side by side, with the same size and always in this order. The button of the detected system is filled and the other outlined; both are identical when no system is detected.
 
 ## Motion
 
@@ -73,4 +73,7 @@ French addresses the visitor with « vous », like the application. Short, factu
 <!-- The options compared and not kept, with the reason, so that they are not proposed again. -->
 
 - The first screen with the text on the left and the video on the right (wireframe v1, lead A): the centered layout puts the tool forward better.
-- A main button for the system of the visitor, with the other system as a small link: the owner wants both systems on an equal footing.
+- A main button for the system of the visitor, with the other system as a small link: the owner wants both systems plainly visible.
+- Two buttons identical in every case: a filled button leads the eye straight to the right one, at the cost of two lines of script.
+- A video cut by the end of the first screen, to make the visitor scroll: it would hide the proof, and that end moves with each screen. The title of the next block does this job.
+- A link « How to start it » under the buttons: the title of the next block shows that the steps exist, unless the mock-up finds otherwise on a laptop.
