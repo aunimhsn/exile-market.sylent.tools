@@ -24,9 +24,9 @@ Read only by the steps that need them:
 
 ### Cycle 1: the site online
 
-- [x] **0a. Project setup**: the size of the project, the Project section of `CLAUDE.md`, the name of the site, the port of the mock-up server, the README, the backlog.
-- [ ] **0b. Languages**: English at the root and French under `/fr/`: the texts in `src/i18n/` and `src/content/` for each language, `lang` per page, the link between the languages and `hreflang` (the tag that tells search engines the page exists in the other language), the French Language rule of `CLAUDE.md` adapted. Tools: build, code review.
-- [ ] **1. Specifications**: `specs.md` from what the owner decided on 2026-11-06, the terms of GoatCounter and the French legal notice (LCEN article 1-1, read on Légifrance) checked and written in `docs/external-services.md`. Tool: specifications.
+- [x] **0a. Project setup**: the size of the project, the Project section of `CLAUDE.md`, the name of the site, the port of the mock-up server, the README, the backlog, the repository settings checked.
+- [ ] **0b. Languages**: English at the root and French under `/fr/`: the texts in `src/i18n/` and `src/content/` for each language, `lang` per page, the link between the languages and `hreflang` (the tag that tells search engines the page exists in the other language), the rules and descriptions that assume one French site adapted (the Language and Development sections of `CLAUDE.md`, `.claude/agents/code-reviewer.md`, the Content section of `docs/technical-choices.md`, the `$comment` of `src/i18n/fr.json`). Tools: build, code review.
+- [ ] **1. Specifications**: `specs.md` from what the owner decided on 2026-11-06, the terms of GoatCounter (chosen by the owner on 2026-11-06) and the French legal notice (LCEN article 1-1, read on Légifrance) checked and written in `docs/external-services.md`. Tool: specifications.
 - [ ] **2. Wireframe**: one Excalidraw wireframe of the page, phone first, with grey frames for the video and the screenshots. Tool: wireframes.
 - [ ] **3. Mock-up**: 2 styles, one following the application, the other exploring; the two treatments of the video (the tool alone, the game behind it); checked on the owner's phone; decisions in `docs/branding.md`, tokens in `src/styles/tokens.css`. Tools: mock-up, design system.
 - [ ] **4a. Skeleton and deployment**: the tokens and fonts of the mock-up in `src/styles/`, the brand assets (`npm run brand:images`), the header and footer, the deployment to the `github.io` preview. Tools: build, code review.

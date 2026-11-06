@@ -24,7 +24,7 @@ Every command is described in [docs/technical-choices.md](docs/technical-choices
 
 ## Deployment
 
-Every merge into `main` deploys the site to GitHub Pages (`.github/workflows/deploy.yml`). Until the launch, the site is built for its `github.io` address from the `SITE_URL` and `BASE_PATH` variables; at the launch, the custom domain is set in the Pages settings and the two variables are deleted (see [process.md](process.md#7-launch)).
+Every merge into `main` deploys the site to GitHub Pages (`.github/workflows/deploy.yml`). Until the launch, the site is built for its `github.io` address from the `SITE_URL` and `BASE_PATH` variables; at the launch, the custom domain is set in the Pages settings and the two variables are deleted (see [process.md](process.md#launch)).
 
 ## License
 

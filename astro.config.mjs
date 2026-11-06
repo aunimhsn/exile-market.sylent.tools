@@ -4,9 +4,9 @@ import { defineConfig } from "astro/config";
 import sitemap from "./scripts/sitemap.mjs";
 import urls from "./src/data/urls.json" with { type: "json" };
 
-// The address of the site once its domain points to GitHub Pages. Until the launch, the deployment workflow builds the github.io preview under a base
-// path, from the SITE_URL and BASE_PATH variables of the repository (docs/technical-choices.md,
-// Deployment).
+// The address of the site once its domain points to GitHub Pages. Until the launch, the deployment
+// workflow builds the github.io preview under a base path, from the SITE_URL and BASE_PATH
+// variables of the repository (docs/technical-choices.md, Deployment).
 const site = process.env.SITE_URL || "https://exile-market.sylent.tools";
 const base = process.env.BASE_PATH || "/";
 
