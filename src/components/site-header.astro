@@ -1,20 +1,30 @@
 ---
-// The header of every page: the logo, which leads to the home page, and the main navigation, whose
-// links are listed in src/i18n/fr.json. The link of the current page is marked with aria-current.
+// The header of every page: the logo, which leads to the home page, the main navigation, whose
+// links are listed in src/i18n/<lang>.json, and the link to the same page in the other language,
+// without any automatic redirect. The not-found page holds both languages and has no such link.
+// The link of the current page is marked with aria-current.
 import logo from "../assets/brand/logo.svg?raw";
-import fr from "../i18n/fr.json";
+import { type Lang, otherLang, type PageId, routes, ui } from "../lib/i18n";
 import { currentOf, href } from "../lib/url";
 
-const links = [{ path: "/", label: fr.nav.home }];
+interface Props {
+  lang: Lang;
+  page?: PageId | undefined;
+}
+
+const { lang, page } = Astro.props;
+const texts = ui(lang);
+const other = otherLang(lang);
+const links = [{ path: routes.home[lang], label: texts.nav.home }];
 const current = Astro.url.pathname;
 ---
 
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href={href("/")} aria-label={fr.site.name}>
+    <a class="logo" href={href(routes.home[lang])} aria-label={texts.site.name}>
       <Fragment set:html={logo} />
     </a>
-    <nav aria-label={fr.nav.label}>
+    <nav aria-label={texts.nav.label}>
       <ul>
         {links.map(({ path, label }) => (
           <li>
@@ -23,6 +33,13 @@ const current = Astro.url.pathname;
             </a>
           </li>
         ))}
+        {page && (
+          <li>
+            <a href={href(routes[page][other])} hreflang={other} lang={other}>
+              {ui(other).languageName}
+            </a>
+          </li>
+        )}
       </ul>
     </nav>
   </div>

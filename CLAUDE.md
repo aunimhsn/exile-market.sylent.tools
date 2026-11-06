@@ -20,14 +20,14 @@
 
 ## Naming conventions
 
-- Files and directories use kebab-case (e.g. `docs/getting-started.md`, `src/pages/a-propos.astro`), unless Astro or a tool imposes another name: then follow it, and write the exception in `docs/technical-choices.md`.
+- Files and directories use kebab-case (e.g. `docs/getting-started.md`, `src/pages/fr/mentions-legales.astro`), unless Astro or a tool imposes another name: then follow it, and write the exception in `docs/technical-choices.md`.
 - Standard names keep their conventional form (e.g. `README.md`, `CLAUDE.md`, `CNAME`, `package.json`).
-- File and directory names must be in English, except the paths of the pages, which are the URLs the visitors see, in the language of the site (`src/pages/mentions-legales.astro`).
+- File and directory names must be in English, except the paths of the pages, which are the URLs the visitors see, in the language of the page (`src/pages/legal.astro`, `src/pages/fr/mentions-legales.astro`).
 
 ## Language
 
 - Everything in the project (code, identifiers, comments, documentation, commit messages) must be written in English.
-- Exception: the content of the site (pages, metadata shown to visitors) is written in French. It lives in content or translation files (`src/content/`, `src/i18n/fr.json`), never hard-coded in the layouts or components, so that a translation can be added later.
+- Exception: the content of the site (pages, metadata shown to visitors) is written in English and in French, every page in both. It lives in content or translation files, one per language (`src/content/<lang>/`, `src/i18n/<lang>.json`), never hard-coded in the layouts or components.
 - Exception: the code review notes in `outputs/` are written in French.
 - French content follows French typography: a non-breaking space before `?`, `!`, `:`, `;` and inside « », the typographic apostrophe (’), and correct accents and capitals (e.g. « À propos »), even on capitals.
 
@@ -130,7 +130,7 @@ Follow [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.
   - `scripts/check-overflow.mjs`: no page is wider than a phone or computer screen, and no element marked `data-one-line` breaks on two lines.
 - The same checks run in CI (`.github/workflows/ci.yml`) on every pull request.
 - When a bug reaches the owner that a check could have caught, add the check in the same pull request as the fix.
-- Every page has a title, a meta description, a language (`lang="fr"`) and is usable at phone width. Images have an `alt` text and are served in a light format (WebP, or JPEG for the preview card) at the size they are shown.
+- Every page has a title, a meta description, a language (`lang="en"` at the root, `lang="fr"` under `/fr/`), the `hreflang` links and the link to the other language (except the not-found page, which holds both), and is usable at phone width. Images have an `alt` text and are served in a light format (WebP, or JPEG for the preview card) at the size they are shown.
 - Accessibility: semantic HTML, sufficient contrast (WCAG AA), every action reachable with the keyboard with a visible focus, and nothing that moves when the visitor asked their system to reduce motion.
 - A headless browser renders without the GPU: a color or WebGL bug the owner reports is checked with a small test page of variants, the owner naming the wrong ones.
 

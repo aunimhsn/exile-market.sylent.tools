@@ -32,13 +32,17 @@ Remove or add sections as needed.
 
 ## URLs and redirects
 
-<!-- The path of every page, in the language of the site, ending with a slash (/mentions-legales/).
+<!-- The path of every page, in the language of the page, ending with a slash (/fr/mentions-legales/).
 The former URLs: kept as pages, redirected (to which page), or dropped; written in src/data/urls.json. -->
 
 | URL | Page or redirect |
 |---|---|
-| `/` | Home page |
-| `/mentions-legales/` | Legal notice |
+| `/` | Home page, in English |
+| `/fr/` | Home page, in French |
+| `/legal/` | Legal notice, in English |
+| `/fr/mentions-legales/` | Legal notice, in French |
+
+Each page links to the same page in the other language, without any automatic redirect. A path without a page shows the not-found page, in both languages.
 
 ## Content
 
@@ -55,5 +59,5 @@ The former URLs: kept as pages, redirected (to which page), or dropped; written 
 ## Constraints
 
 - The site is static, hosted on GitHub Pages: no server, no server-side redirects.
-- Every page has a title, a meta description, `lang="fr"`, and is usable at phone width.
+- Every page has a title, a meta description, the language of its address (`lang`), and is usable at phone width.
 - Accessibility: semantic HTML, contrast WCAG AA, keyboard access, reduced motion respected.

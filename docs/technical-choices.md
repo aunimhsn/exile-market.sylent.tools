@@ -10,7 +10,7 @@ The technical choices of the [roadmap](../roadmap.md), with their reasons and th
 | Static site generator | [Astro](https://astro.build/) 7, static output | Built-in redirects, validated content collections, image optimization and zero JavaScript by default. Its syntax (HTML, CSS, a little JavaScript) is easy to read and edit. |
 | Runtime and packages | Node.js 24 LTS, npm (`package-lock.json`) | The version is pinned in `.nvmrc` and in `engines` of `package.json`, and CI uses the same one. |
 | Styles | Native CSS, design tokens as CSS custom properties | See [Styles](#styles). |
-| Content | JSON and Markdown files in `src/content/`, interface texts in `src/i18n/fr.json` | The content stays out of the layouts and components, so that a translation can be added later (see [Content](#content)). |
+| Content | JSON and Markdown files in `src/content/<lang>/`, interface texts in `src/i18n/<lang>.json` | The content stays out of the layouts and components, one file per language (see [Languages](#languages) and [Content](#content)). |
 | Formatter | Prettier, with `prettier-plugin-astro` | One tool for Astro, CSS, JavaScript, JSON and the content. The documentation (`*.md` at the root, `docs/`, `.claude/`) is left out (`.prettierignore`): Prettier would pad every table to its widest cell. |
 | Linters | ESLint with `typescript-eslint`, `eslint-plugin-astro` and its strict accessibility rules (`jsx-a11y-strict`, with `eslint-plugin-jsx-a11y-x`); Stylelint with `stylelint-config-standard` and `stylelint-config-html`; `astro check` | Errors and missing accessibility attributes in the templates, invalid or duplicate CSS (the `<style>` blocks included), type errors and wrong component props. `eslint-plugin-jsx-a11y-x` is the maintained fork that `eslint-plugin-astro` supports. |
 | Link check | linkinator on the built site, plus `scripts/check-urls.mjs` | See [Addresses check](#addresses-check). |
@@ -29,15 +29,28 @@ Rejected:
 
 ## Astro
 
-- **URLs with a final slash**: Astro writes each page as a folder with an `index.html` (`build.format: "directory"`), and GitHub Pages serves `a-propos/index.html` at `/a-propos/` and redirects `/a-propos` to it: the links and canonical URLs end with a slash, and `trailingSlash: "always"` makes the development server behave the same way.
+- **URLs with a final slash**: Astro writes each page as a folder with an `index.html` (`build.format: "directory"`), and GitHub Pages serves `legal/index.html` at `/legal/` and redirects `/legal` to it: the links and canonical URLs end with a slash, and `trailingSlash: "always"` makes the development server behave the same way.
 - **Redirects**: `src/data/urls.json` lists the former paths: those kept as pages, those redirected to a new page, and those dropped. `astro.config.mjs` reads its `redirects` and, since GitHub Pages has no server-side redirects, Astro writes for each a page with a canonical link and an immediate `<meta http-equiv="refresh">`. Astro doesn't add the base path to their destination: `astro.config.mjs` adds it. A redirect computed from the content (a former id in a content file) can be written by a dynamic page with `Astro.redirect`: add it to the check.
-- **Redirect pages in French**: `experimental.redirectPage` (Astro 7.4, experimental on 2026-10-30) writes each redirect with `src/pages/3xx.astro` instead of Astro's page in English. Astro also builds the template itself as `/3xx.html`: a hook of `astro.config.mjs` removes it. If the option disappears, Astro falls back to its own page and `scripts/check-urls.mjs` fails.
 - **Sitemap and `robots.txt`**: `scripts/sitemap.mjs`, a small integration, writes `sitemap.xml` once the site is built, from the canonical link of every page that points to itself: the redirect pages and the not-found page are left out by construction, and a new page is listed without changing the script. `src/pages/robots.txt.ts` gives its address. Rejected: `@astrojs/sitemap`, whose filter would have to list every redirect.
 - **Open Graph**: `src/layouts/base-layout.astro` gives every page the tags that LinkedIn, Facebook and the messaging apps read to show a card for a link (`og:title`, `og:description`, `og:url`, `og:site_name`, `og:locale`, `twitter:card`) and one image, `src/assets/brand/social-card.png`, converted to JPEG at 1200 × 630 (the networks read JPEG everywhere, WebP not always); its name carries a hash of its content, so that a new image gets a new URL. The URLs are absolute, built from `site` and the base.
 - **Not-found page**: `src/pages/404.astro`, written as `404.html`, which GitHub Pages serves for every path without a page, with `noindex` and no canonical link.
 - **Images**: the `astro:assets` `<Image>` component converts the images to WebP at the size they are shown and sets their width and height, which avoids layout shifts.
 - **Fonts**: Astro's Fonts API (`fonts` in `astro.config.mjs`, `<Font />` in the layout) downloads the fonts at build time and serves them from the site itself, with a fallback adjusted to their metrics so that the text doesn't move when they load. Only fonts whose license allows self-hosting (SIL Open Font License).
 - **JavaScript**: none by default. The scripts the mock-up needs (animations, 3D) are chosen after it, installed with npm and bundled by Astro, without a CDN; the content never depends on them, and nothing moves when the visitor asked to reduce motion.
+
+## Languages
+
+English at the root and French under `/fr/` (`CLAUDE.md`, Project).
+
+- **Addresses**: each page keeps an address in its own language (`/legal/`, `/fr/mentions-legales/`), which the table `routes` of `src/lib/i18n.ts` lists. The link between the languages and the `hreflang` links read it, since adding `/fr/` to a path isn't enough.
+- **`hreflang`**: a tag in the head of the page that tells search engines the page exists in another language, so that they show each visitor their own: `<link rel="alternate" hreflang="fr" href="https://exile-market.sylent.tools/fr/">`. Each page lists both languages and itself, and `x-default`, the page for a visitor who speaks neither, is the English one.
+- **Pages**: the template of a page is a component (`src/components/home-page.astro`) that takes the language, and each route is a file of a few lines, named after its URL, which calls it.
+- **Same keys**: the texts of each language are typed from the English file, so a key missing in French fails `astro check`.
+- **No automatic redirect**: a visitor is never sent elsewhere according to the language of their browser, and a search engine reads every page.
+- **Not-found page**: GitHub Pages serves one `404.html` for every path, so it holds both languages, without JavaScript.
+- **Redirect pages**: Astro's own page, in English, the language of the root. The French one of the template (`src/pages/3xx.astro`, with the experimental option `redirectPage`) was removed on 2026-11-06: the site has no redirect, and it would have been a page in the wrong language for half of the visitors.
+
+Rejected: **Astro's i18n routing** (`i18n` in `astro.config.mjs`): its helpers assume the same path in each language, which the French and English addresses of the legal notice aren't, and the page already knows its language.
 
 ## Deployment
 
@@ -57,16 +70,16 @@ Rejected:
 
 ## Content
 
-- `src/i18n/fr.json`: the interface texts (name of the site, navigation, footer, skip link), so that no French text is hard-coded in a component.
-- `src/content/<page>.json`: the texts of each page (`home.json`, `legal.json`, `not-found.json`, `redirect.json`), imported as JSON.
+- `src/i18n/<lang>.json`: the interface texts (name of the site, navigation, footer, skip link), so that no text is hard-coded in a component.
+- `src/content/<lang>/<page>.json`: the texts of each page (`home.json`, `legal.json`, `not-found.json`), imported as JSON.
 - A list of similar entries (offers, articles, projects) becomes an Astro content collection, one Markdown file per entry, whose front matter is validated by a schema in `src/content.config.ts`: a missing field fails the build instead of publishing a broken page.
 - `src/data/urls.json`: the former addresses and their redirects.
-- `src/lib/url.ts`: every internal link goes through `href("/mentions-legales/")`, which adds the base path of the preview.
+- `src/lib/url.ts`: every internal link goes through `href(routes.legal.en)`, which adds the base path of the preview.
 
 ## Addresses check
 
 - **linkinator** serves the built site (`dist/`) as a static host would and follows every internal link of every page, CSS and anchors included (`linkinator.config.json`). External links are skipped, so that a slow third-party site doesn't break the CI.
-- **`scripts/check-urls.mjs`** checks what no link shows: every former address of `src/data/urls.json` resolves (a page, or a redirect to the given page, which exists), the dropped ones are not built, the not-found page is built, every redirect page is the one of `3xx.astro`, the sitemap lists only pages, and every page has the Open Graph tags of its own title and canonical link and a built image.
+- **`scripts/check-urls.mjs`** checks what no link shows: every former address of `src/data/urls.json` resolves (a page, or a redirect to the given page, which exists), the dropped ones are not built, the not-found page is built, the sitemap lists only pages, every page has the Open Graph tags of its own title and canonical link and a built image, and every page has the `lang` of its address, the `hreflang` links of both languages, each pointing back to the other, and a link to the other language.
 - A build under a base is checked with `node scripts/check-urls.mjs dist /<base>`; linkinator needs the build served under the base (copy `dist/` into a `<base>` folder of a temporary directory and run it there).
 - Rejected: **lychee**, faster, but a Rust binary installed apart from npm.
 
@@ -103,7 +116,7 @@ Run `npm ci` first, and `npx playwright install --only-shell chromium` once. The
 
 Imposed by Astro or the tools, everything else in kebab-case:
 
-- `src/pages/404.astro` and `src/pages/3xx.astro`: the names Astro gives the not-found page and the redirect page; `src/pages/robots.txt.ts`, named after the file it writes.
-- The pages are named after their URL, in the language of the site (`src/pages/mentions-legales.astro`); dynamic routes use brackets (`src/pages/offres/[offer].astro`).
+- `src/pages/404.astro`: the name Astro gives the not-found page; `src/pages/robots.txt.ts`, named after the file it writes.
+- The pages are named after their URL, in the language of the page (`src/pages/legal.astro`, `src/pages/fr/mentions-legales.astro`); dynamic routes use brackets (`src/pages/offres/[offer].astro`).
 - Configuration files keep the names the tools look for: `astro.config.mjs`, `src/content.config.ts`, `eslint.config.js`, `.prettierrc`, `.prettierignore`, `.stylelintrc.json`, `linkinator.config.json`, `.nvmrc`, `tsconfig.json`, `.vscode/extensions.json` (the VS Code extensions of Astro, Prettier, ESLint and Stylelint, proposed when the folder is opened).
 - Component files stay in kebab-case (`src/components/site-header.astro`), although the Astro documentation names them in PascalCase; they are imported under a PascalCase name (`import SiteHeader from ...`), as Astro requires.

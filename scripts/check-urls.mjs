@@ -2,16 +2,15 @@
 // - every former address of src/data/urls.json still resolves: a page for those of `pages`, a
 //   redirect to the page given in `redirects`, which exists (and its anchor, if any), and the
 //   not-found page for those of `dropped`;
-// - the not-found page is built, every redirect page is the one of src/pages/3xx.astro (Astro
-//   falls back to its own page in English if it fails), and Astro's template /3xx.html is not
-//   published;
+// - the not-found page is built;
 // - the sitemap lists only pages that exist, no redirect;
 // - every page has the Open Graph tags of its own title and canonical link, and an image built
-//   in the site.
+//   in the site;
+// - every page says the language of its address, gives the address of both languages to the search
+//   engines (hreflang), and links to the other language, each page pointing back to the other.
 // Run after `npm run build`, or on a build under a base: `node scripts/check-urls.mjs <folder> <base>`.
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import redirectPage from "../src/content/redirect.json" with { type: "json" };
 import urls from "../src/data/urls.json" with { type: "json" };
 
 const [dist = "dist", base = ""] = process.argv.slice(2);
@@ -85,13 +84,51 @@ for (const url of urls.dropped) {
 }
 
 if (!existsSync(join(dist, "404.html"))) errors.push("404.html: not built");
-if (existsSync(join(dist, "3xx.html"))) {
-  errors.push("3xx.html: the template of the redirect pages is published");
-}
 
 /** The content of an Open Graph tag, as Astro writes it. */
 const meta = (html, property) =>
   html.match(new RegExp(`<meta property="${property}" content="([^"]*)"`))?.[1];
+
+/** The address given for a language by the hreflang links of a page. */
+const hreflang = (html, language) =>
+  html.match(
+    new RegExp(`<link rel="alternate" hreflang="${language}" href="([^"]*)"`),
+  )?.[1];
+
+/** The page built at an absolute address of the site. */
+const pageAt = (url) => {
+  const file = fileOf(new URL(url).pathname.slice(base.length));
+  return existsSync(file) ? readFileSync(file, "utf8") : null;
+};
+
+/** Checks the language of a page, its hreflang links and its link to the other language. */
+const languageErrors = (file, html, canonical) => {
+  const path = new URL(canonical).pathname.slice(base.length);
+  const lang = path.startsWith("/fr/") ? "fr" : "en";
+  const other = lang === "fr" ? "en" : "fr";
+  if (!html.includes(`<html lang="${lang}"`)) {
+    errors.push(`${file}: the address asks for lang="${lang}"`);
+  }
+  if (hreflang(html, lang) !== canonical) {
+    errors.push(`${file}: its hreflang ${lang} isn't its own address`);
+  }
+  if (hreflang(html, "x-default") !== hreflang(html, "en")) {
+    errors.push(`${file}: x-default isn't the English page`);
+  }
+  const twinUrl = hreflang(html, other);
+  const twin = twinUrl && pageAt(twinUrl);
+  if (!twin) {
+    errors.push(`${file}: hreflang ${other} ${twinUrl} is not built`);
+    return;
+  }
+  if (hreflang(twin, lang) !== canonical) {
+    errors.push(`${file}: ${twinUrl} doesn't point back to it`);
+  }
+  const twinPath = new URL(twinUrl).pathname;
+  if (!html.includes(`<a href="${twinPath}" hreflang="${other}"`)) {
+    errors.push(`${file}: no link to ${twinPath}`);
+  }
+};
 
 const redirectPages = new Set();
 const htmlFiles = readdirSync(dist, { recursive: true }).filter((file) =>
@@ -101,9 +138,6 @@ for (const file of htmlFiles) {
   const html = readFileSync(join(dist, file), "utf8");
   if (isRedirect(html)) {
     redirectPages.add(file);
-    if (!html.includes(redirectPage.text)) {
-      errors.push(`${file}: a redirect page that isn't the one of 3xx.astro`);
-    }
     continue;
   }
   const title = html.match(/<title>([^<]*)<\/title>/)?.[1];
@@ -122,6 +156,7 @@ for (const file of htmlFiles) {
   ) {
     errors.push(`${file}: og:image ${image} is not built`);
   }
+  if (file !== "404.html") languageErrors(file, html, canonical);
 }
 
 // The sitemap lists pages that exist, and no redirect or not-found page.

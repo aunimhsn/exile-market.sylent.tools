@@ -1,9 +1,15 @@
 ---
 // The footer of every page: the copyright and the link to the legal notice.
-import fr from "../i18n/fr.json";
+import { type Lang, routes, ui } from "../lib/i18n";
 import { href } from "../lib/url";
 
-const copyright = fr.footer.copyright.replace(
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const texts = ui(lang);
+const copyright = texts.footer.copyright.replace(
   "{year}",
   String(new Date().getFullYear()),
 );
@@ -12,7 +18,7 @@ const copyright = fr.footer.copyright.replace(
 <footer class="site-footer">
   <div class="wrap">
     <p>{copyright}</p>
-    <a href={href("/mentions-legales/")}>{fr.footer.legal}</a>
+    <a href={href(routes.legal[lang])}>{texts.footer.legal}</a>
   </div>
 </footer>
 
