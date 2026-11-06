@@ -20,7 +20,7 @@
     "brand:images": "node scripts/brand-images.mjs"
   },
   "dependencies": {
-    "astro": "^7.4.3"
+    "astro": "^7.4.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
@@ -29,7 +29,7 @@
     "eslint": "^10.13.0",
     "eslint-plugin-astro": "^3.2.1",
     "eslint-plugin-jsx-a11y-x": "^0.2.0",
-    "globals": "^17.13.0",
+    "globals": "^17.14.0",
     "linkinator": "^8.1.0",
     "playwright": "^1.64.1",
     "postcss-html": "^2.0.0",
