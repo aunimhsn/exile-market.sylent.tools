@@ -25,8 +25,8 @@ Read only by the steps that need them:
 ### Cycle 1: the site online
 
 - [x] **0a. Project setup** ([#4](https://github.com/aunimhsn/exile-market.sylent.tools/pull/4)).
-- [x] **0b. Languages**: English at the root and French under `/fr/`: the texts in `src/i18n/` and `src/content/` for each language, `lang` per page, the link between the languages and `hreflang` (the tag that tells search engines the page exists in the other language), the rules and descriptions that assume one French site adapted (the Language and Development sections of `CLAUDE.md`, `.claude/agents/code-reviewer.md`, the Content section of `docs/technical-choices.md`, the `$comment` of `src/i18n/fr.json`). Tools: build, code review.
-- [ ] **1. Specifications**: `specs.md` from what the owner decided on 2026-11-06, the terms of GoatCounter (chosen by the owner on 2026-11-06) and the French legal notice (LCEN article 1-1, read on Légifrance) checked and written in `docs/external-services.md`. Tool: specifications.
+- [x] **0b. Languages** ([#5](https://github.com/aunimhsn/exile-market.sylent.tools/pull/5)).
+- [x] **1. Specifications**: `specs.md` from what the owner decided on 2026-11-06, the terms of GoatCounter (chosen by the owner on 2026-11-06) and the French legal notice (LCEN article 1-1, read on Légifrance) checked and written in `docs/external-services.md`. Tool: specifications.
 - [ ] **2. Wireframe**: one Excalidraw wireframe of the page, phone first, with grey frames for the video and the screenshots. Tool: wireframes.
 - [ ] **3. Mock-up**: 2 styles, one following the application, the other exploring; the two treatments of the video (the tool alone, the game behind it); the language link with and without a flag; checked on the owner's phone; decisions in `docs/branding.md`, tokens in `src/styles/tokens.css`. Tools: mock-up, design system.
 - [ ] **4a. Skeleton and deployment**: the tokens and fonts of the mock-up in `src/styles/`, the brand assets (`npm run brand:images`), the header and footer, the deployment to the `github.io` preview. Tools: build, code review.
@@ -43,4 +43,8 @@ Done in the application's repository, before its tag, and not by a pull request 
 - Archives with a stable name in `release.yml` (for example `exile-market-windows-x64.zip`, `exile-market-linux-x64.tar.gz`), so that the buttons of the page link to `releases/latest/download/<name>`, an address that never changes.
 - Step 17b of its roadmap still says a VPS with Coolify: the page is on GitHub Pages.
 - Its specifications say the owner has no Windows: the owner now tests on a Windows laptop.
+- Its specifications and `release.yml` still count macOS among the systems, while the page offers no macOS download (owner, 2026-11-06): keep the macOS archives on the release page, untested, or remove them.
+- `v0.1.0` published as a normal release, never a pre-release: `releases/latest` skips them.
+- Donations for its step 18 (owner, 2026-11-06): free donations only, nothing paid in the tool, no perks, no image or logo of Grinding Gear Games near the button; email support@grindinggear.com before turning them on; ask the tax office how to declare them (the owner has no accountant); read again the rule of the developer documentation on commercial revenue.
+- Its README (step 17d) states the risk for the account with the same words as the page (`specs.md`, The risk for your account), and the audit (step 17e) reads Ctrl + D against the macro rules of the developer documentation.
 - The launch plan is only in Claude Code's memory: write it as a document there, with the steps and without the names of the streamers.

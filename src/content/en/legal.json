@@ -1,5 +1,5 @@
 {
-  "$comment": "The legal notice (in France, article 6 of the LCEN): the publisher and the host. Fill it from specs.md (Contact details and legal information) and record the accepted risks in docs/external-services.md.",
+  "$comment": "The legal notice (in France, article 1-1 of the LCEN): the publisher and the host. Fill it from specs.md (Contact details and legal information) and record the accepted risks in docs/external-services.md.",
   "title": "Legal notice",
   "description": "The publisher and the host of the site.",
   "sections": [

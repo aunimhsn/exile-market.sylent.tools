@@ -8,17 +8,14 @@ What the owner provides (process.md, Specifications), where it is kept, and what
 
 | Asset | Format | File | Status |
 |---|---|---|---|
-| Logo for a light background | SVG (or PNG at least 512 px) | `src/assets/brand/logo.svg` | Placeholder |
-| Logo for a dark background | SVG (or PNG at least 512 px) | | To ask |
-| Wordmark (the name, if apart from the symbol) | SVG | | To ask |
-| Square icon, readable at 16 px | SVG | `src/assets/brand/icon.svg` | Placeholder |
-| Favicon (SVG, ICO 16/32/48 px) and iPhone icon (180 px) | Made from the icon | `public/` | Made by the script |
-| Preview card of the links (1200 × 630 px) | HTML drawn to PNG, converted to JPEG by the build | `src/assets/brand/social-card.html` | Placeholder |
-| Colors of an existing charter | Hex values | | To ask |
-| Fonts, with their license (self-hosting allowed) | Name, or files | | To ask |
-| Photos of the owner or the team, with their rights | JPEG or PNG, large | | To ask |
-| Logos of the partners or clients, with the permission to show them | SVG | | To ask |
-| Public contact details and legal information | Text | `src/i18n/`, `src/content/<lang>/legal.json` | To ask |
+| Emblem and icon, in bronze | SVG | `../rust-exile-market/assets/logo/emblem.svg`, `icon.svg`, copied to `src/assets/brand/` at step 4a | Given, the placeholders still in place |
+| Full logo | PNG | `../rust-exile-market/assets/logo/exile-market.png` | Given |
+| Favicon (SVG, ICO 16/32/48 px) and iPhone icon (180 px) | Made from the icon | `public/` | Made by the script at step 4a |
+| Preview card of the links (1200 × 630 px) | HTML drawn to PNG, converted to JPEG by the build | `src/assets/brand/social-card.html` | Placeholder until step 4a |
+| Colors | Tokens of the application | `../rust-exile-market/specs.md`, Visual style | Reference for one of the two styles of the mock-up |
+| Font | Manrope, SIL Open Font License, self-hosting allowed | `../rust-exile-market/assets/fonts/` | Given |
+| Video and screenshots | Silent video, images | | Asked of the owner at the launch, with their exact list |
+| Public contact details and legal information | Text | `src/content/<lang>/legal.json`, from sylent.art | At step 4b |
 
 ## Principles
 
@@ -57,7 +54,7 @@ What the owner provides (process.md, Specifications), where it is kept, and what
 
 ## Tone of the texts
 
-<!-- « vous » or « tu », length, how the calls to action and the errors are worded. -->
+French addresses the visitor with « vous », like the application. Short, factual sentences in plain words, for a new player; no superlatives and no exclamation marks. The headline answers the why at once (`specs.md`, Value proposition, chosen by the owner on 2026-11-06).
 
 ## Icons and images
 
