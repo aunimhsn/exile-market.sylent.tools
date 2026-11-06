@@ -4,27 +4,31 @@
 // that may, as a large faded word, goes inside it.
 import SiteFooter from "../components/site-footer.astro";
 import SiteHeader from "../components/site-header.astro";
-import fr from "../i18n/fr.json";
+import { type Lang, type PageId, ui } from "../lib/i18n";
 import BaseLayout from "./base-layout.astro";
 
 interface Props {
+  lang: Lang;
+  /** The page in the table of routes, which has its twin in the other language. */
+  page?: PageId;
   title: string;
   description: string;
   noindex?: boolean;
 }
 
 const props = Astro.props;
+const { lang, page } = props;
 ---
 
 <BaseLayout {...props}>
   <a class="skip-link visually-hidden" href="#content">
-    {fr.skipLink}
+    {ui(lang).skipLink}
   </a>
-  <SiteHeader />
+  <SiteHeader lang={lang} page={page} />
   <main id="content" tabindex="-1">
     <slot />
   </main>
-  <SiteFooter />
+  <SiteFooter lang={lang} />
 </BaseLayout>
 
 <style>

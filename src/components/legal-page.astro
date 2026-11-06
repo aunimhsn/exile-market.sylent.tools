@@ -1,0 +1,50 @@
+---
+// The legal notice, in the language of its route (src/pages/legal.astro,
+// src/pages/fr/mentions-legales.astro). Its texts are in src/content/<lang>/legal.json.
+import en from "../content/en/legal.json";
+import fr from "../content/fr/legal.json";
+import SiteLayout from "../layouts/site-layout.astro";
+import type { Lang } from "../lib/i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const pages: Record<Lang, typeof en> = { en, fr };
+const page = pages[lang];
+---
+
+<SiteLayout
+  lang={lang}
+  page="legal"
+  title={page.title}
+  description={page.description}
+>
+  <div class="wrap">
+    <h1>{page.title}</h1>
+    {page.sections.map(({ heading, lines }) => (
+      <section>
+        <h2>{heading}</h2>
+        {lines.map((line) => (
+          <p>{line}</p>
+        ))}
+      </section>
+    ))}
+  </div>
+</SiteLayout>
+
+<style>
+  .wrap {
+    max-width: var(--width-text);
+    padding-block: var(--space-12);
+  }
+
+  h1 {
+    font-size: var(--size-title);
+  }
+
+  p {
+    margin: 0;
+  }
+</style>

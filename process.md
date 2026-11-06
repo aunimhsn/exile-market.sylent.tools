@@ -87,7 +87,7 @@ An idea that needs trying before deciding (a 3D scene, a video for the launch, a
 2. Apply the pull request settings: squash merging only, branches deleted once merged.
 3. Protect `main` with a ruleset. On a free GitHub account, rulesets only apply to **public** repositories.
 4. Size the project with the owner ([Size the project](#size-the-project)), and write the tools kept at the top of `roadmap.md`, with the steps of the first cycle.
-5. Setup pull request: the **Project** section of `CLAUDE.md`, the name of the site in `package.json`, `astro.config.mjs` and `src/i18n/fr.json`, a port of its own for the mock-up server in `docs/technical-choices.md` (Commands), the size of the project in `roadmap.md`.
+5. Setup pull request: the **Project** section of `CLAUDE.md`, the name of the site in `package.json`, `astro.config.mjs` and `src/i18n/`, a port of its own for the mock-up server in `docs/technical-choices.md` (Commands), the size of the project in `roadmap.md`.
 6. Open Claude Code in the project folder. Its memory is stored per project: a new session doesn't remember a conversation held in another project. To carry context over, paste a summary of it.
 7. Check the connectors: `.claude/settings.json` turns off the claude.ai connectors (`disableClaudeAiConnectors`), whose instructions and tools would be sent with every message. If the project needs one, remove the setting; `/mcp` lists the servers that are on, and `/context` what fills the context. In the same file, `skillOverrides` hides from the model the skills the project doesn't use (still available with `/<name>`): adjust the list, or use `/skills`. The skills of the project are in `.claude/skills/`, copied from the template.
 

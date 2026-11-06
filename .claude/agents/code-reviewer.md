@@ -25,11 +25,11 @@ Only run read-only commands (`git fetch`, `git diff`, `git log`, the build and t
 ## What to look for
 
 - **Correctness**: build errors or warnings, broken internal links, internal links that don't go through `href()` (they break under the base path of the preview), the former addresses of `src/data/urls.json` still resolving.
-- **HTML and accessibility**: semantic elements, heading order, labels of the form fields, `alt` texts, contrast, keyboard access and visible focus, `lang="fr"`.
-- **SEO**: title and meta description on every page, canonical links, redirects of the former URLs.
+- **HTML and accessibility**: semantic elements, heading order, labels of the form fields, `alt` texts, contrast, keyboard access and visible focus, `lang` matching the language of the page (`en` at the root, `fr` under `/fr/`).
+- **SEO**: title and meta description on every page, canonical links, `hreflang` links between the two languages, redirects of the former URLs.
 - **Responsive**: usable at phone width, no horizontal scroll (anything that may run past the screen inside `main`), touch targets, large titles marked `data-one-line` when they must hold on one line.
 - **Performance**: image format (WebP or lighter) and size, unneeded JavaScript, blocking resources, fonts; nothing that moves when the visitor asked to reduce motion.
-- **Content rules**: French content in content or translation files, never hard-coded in layouts or components; French typography (non-breaking space before `?`, `!`, `:`, `;` and inside « »), accents and capitals.
+- **Content rules**: English and French content in content or translation files, one per language, with the same keys, never hard-coded in layouts or components; French typography (non-breaking space before `?`, `!`, `:`, `;` and inside « »), accents and capitals.
 - **Security and privacy**: no secret, no personal data other than the public contact details, third-party scripts and the form service justified in `docs/`.
 - **Design**: reuse of the design tokens of `src/styles/tokens.css` (no raw color or size), consistency with `docs/branding.md` and `docs/technical-choices.md`, separation of concerns, duplication.
 - **Conformity**: behavior matches `specs.md`, conventions match `CLAUDE.md`.

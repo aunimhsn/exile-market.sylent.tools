@@ -1,0 +1,18 @@
+{
+  "$comment": "The interface texts shared by every page, in English, with the same keys in fr.json: no text is written in a layout or a component (CLAUDE.md, Language).",
+  "site": {
+    "name": "Exile Market",
+    "ogLocale": "en_US",
+    "cardAlt": "The logo and the address of the site."
+  },
+  "languageName": "English",
+  "skipLink": "Skip to content",
+  "nav": {
+    "label": "Main navigation",
+    "home": "Home"
+  },
+  "footer": {
+    "legal": "Legal notice",
+    "copyright": "© {year} Exile Market"
+  }
+}

@@ -1,10 +1,11 @@
 {
-  "$comment": "The interface texts shared by every page, in French: no French text is written in a layout or a component (CLAUDE.md, Language). Replace the values at the setup of a project.",
+  "$comment": "The interface texts shared by every page, in French, with the same keys in en.json: no text is written in a layout or a component (CLAUDE.md, Language).",
   "site": {
     "name": "Exile Market",
     "ogLocale": "fr_FR",
     "cardAlt": "Le logo et l’adresse du site."
   },
+  "languageName": "Français",
   "skipLink": "Aller au contenu",
   "nav": {
     "label": "Navigation principale",

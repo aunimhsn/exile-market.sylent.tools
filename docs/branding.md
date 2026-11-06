@@ -18,7 +18,7 @@ What the owner provides (process.md, Specifications), where it is kept, and what
 | Fonts, with their license (self-hosting allowed) | Name, or files | | To ask |
 | Photos of the owner or the team, with their rights | JPEG or PNG, large | | To ask |
 | Logos of the partners or clients, with the permission to show them | SVG | | To ask |
-| Public contact details and legal information | Text | `src/i18n/fr.json`, `src/content/legal.json` | To ask |
+| Public contact details and legal information | Text | `src/i18n/`, `src/content/<lang>/legal.json` | To ask |
 
 ## Principles
 
