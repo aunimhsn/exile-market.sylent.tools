@@ -97,7 +97,7 @@ Run `npm ci` first, and `npx playwright install --only-shell chromium` once. The
 | `npm run check:overflow` | The width of every page on a phone and a computer (after `npm run build`). |
 | `npm run check` | Everything run before a commit and in CI: format, lint, build, links, width. |
 | `npm run brand:images` | The favicon, the iPhone icon and the preview card, from the brand assets. |
-| `python3 docs/mockups/serve.py <port>` | Serves the repository root without cache for the mock-up. The port of this project: `<port>` (choose one between 8700 and 8799 at the setup, unused by the other projects). |
+| `python3 docs/mockups/serve.py <port>` | Serves the repository root without cache for the mock-up. The port of this project: `8770`. |
 
 ## Exceptions to the naming conventions
 

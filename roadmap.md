@@ -4,7 +4,11 @@ The steps chosen for the site described in [specs.md](specs.md), following [proc
 
 ## Size of the project
 
-<!-- Chosen with the owner at the setup (process.md, Size the project): the tools this project uses, and how far. For example: « A brand site of a few page types: every tool, in order, for the first cycle. » -->
+One page (owner's choice on 2026-11-06, process.md, Size the project): short specifications, one wireframe, 2 styles in the mock-up, tokens written straight into `src/styles/tokens.css`, build, launch. The steps are split finely, each with its own pull request: the owner prefers that to larger ones.
+
+## Timeline
+
+The order is: the Windows test of the application, the page on its domain, the tag `v0.1.0`, the first stream with the tool. The tag is planned around 2026-11-11 and may slide to about 2026-11-15, its date set after the Windows test; the first stream comes between 2026-11-11 and 2026-11-15 (owner, 2026-11-06). The placeholder stays online until the page goes live on the day of the tag; if the stream comes before the tag, the page goes live first, with « Coming soon » in place of the download buttons.
 
 ## Reference
 
@@ -18,20 +22,25 @@ Read only by the steps that need them:
 
 ## Steps
 
-<!--
-The usual steps of the first cycle of a site; adapt them at the setup, one line per step done with its pull requests. Each step names the tools it needs (process.md, Size a change). A later cycle adds its steps under a heading of its own (« Cycle 2: testimonials and an English version »), numbered after the last one.
--->
-
 ### Cycle 1: the site online
 
-- [ ] **0. Project setup**: the size of the project, the Project section of `CLAUDE.md`, the name of the site, the port of the mock-up server, the repository settings.
-- [ ] **1. Specifications and structure**: audiences, value proposition, brand assets, external services; the content tree in Excalidraw, the URLs and redirects.
-- [ ] **2. Wireframes**: one Excalidraw wireframe per page type, phone first.
-- [ ] **3. Mock-up**: 3 or 4 styles, then every page of the first release in `docs/mockups/`, checked on the owner's phone; decisions in `docs/branding.md`.
-- [ ] **4. Design system**: the tokens in `docs/branding.md`, the mock-up rewritten to use only them, an entry in `design-journal.md`.
-- [ ] **5. Skeleton and deployment**: the tokens and fonts of the mock-up in `src/styles/`, the brand assets (`npm run brand:images`), the header and footer, the deployment to the `github.io` preview.
-- [ ] **6. Pages**: one step per page type, as specified.
-- [ ] **7. Launch**: the site checked on the preview, the DNS switched by the owner, the custom domain and HTTPS.
-- [ ] **8. Retrospective**: the lessons in `process.md` (and in the template when they apply to every website), the backlog sorted, the memory moved to the files.
+- [x] **0a. Project setup**: the size of the project, the Project section of `CLAUDE.md`, the name of the site, the port of the mock-up server, the README, the backlog.
+- [ ] **0b. Languages**: English at the root and French under `/fr/`: the texts in `src/i18n/` and `src/content/` for each language, `lang` per page, the link between the languages and `hreflang` (the tag that tells search engines the page exists in the other language), the French Language rule of `CLAUDE.md` adapted. Tools: build, code review.
+- [ ] **1. Specifications**: `specs.md` from what the owner decided on 2026-11-06, the terms of GoatCounter and the French legal notice (LCEN article 1-1, read on Légifrance) checked and written in `docs/external-services.md`. Tool: specifications.
+- [ ] **2. Wireframe**: one Excalidraw wireframe of the page, phone first, with grey frames for the video and the screenshots. Tool: wireframes.
+- [ ] **3. Mock-up**: 2 styles, one following the application, the other exploring; the two treatments of the video (the tool alone, the game behind it); checked on the owner's phone; decisions in `docs/branding.md`, tokens in `src/styles/tokens.css`. Tools: mock-up, design system.
+- [ ] **4a. Skeleton and deployment**: the tokens and fonts of the mock-up in `src/styles/`, the brand assets (`npm run brand:images`), the header and footer, the deployment to the `github.io` preview. Tools: build, code review.
+- [ ] **4b. The page**: the home page and the legal notice in both languages, the download buttons by system. Tools: build, code review.
+- [ ] **5. Launch**: the video and the screenshots asked of the owner with their exact list, the site checked on the preview, the DNS switched by the owner, the custom domain and HTTPS, the placeholder deleted at Cloudflare; once the tag is out, the download buttons turned on. Tool: launch.
+- [ ] **6. Retrospective**: the lessons in `process.md` (and in the template when they apply to every website), the backlog sorted, the memory moved to the files. Tool: retrospective.
 
 The steps may be split into sub-steps when a pull request grows too large. When no step is left, Claude Code proposes the next items of the backlog to the owner.
+
+## Needed in rust-exile-market
+
+Done in the application's repository, before its tag, and not by a pull request here:
+
+- Archives with a stable name in `release.yml` (for example `exile-market-windows-x64.zip`, `exile-market-linux-x64.tar.gz`), so that the buttons of the page link to `releases/latest/download/<name>`, an address that never changes.
+- Step 17b of its roadmap still says a VPS with Coolify: the page is on GitHub Pages.
+- Its specifications say the owner has no Windows: the owner now tests on a Windows laptop.
+- The launch plan is only in Claude Code's memory: write it as a document there, with the steps and without the names of the streamers.

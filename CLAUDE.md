@@ -10,14 +10,13 @@
 
 ## Project
 
-<!-- Fill at the setup: what the site is, for whom, its domain, what is out of scope. For example:
-- `example.com` is the website of …, a static site hosted on GitHub Pages at the custom domain `example.com`.
-- Out of scope: user accounts and any back-end. Everything must work without a server.
-- Keep the URLs of the former site, or provide a redirect for each one (`src/data/urls.json`).
--->
-
+- `exile-market.sylent.tools` is the official download page of **Exile Market**, a desktop price checker for Path of Exile 2 items, by Sylent. The application lives in its own repository, `aunimhsn/rust-exile-market` (local: `../rust-exile-market`).
+- Visitors: first of all the players who arrive at Path of Exile 2 1.0 (2026-12-11) without a price tool, French speakers among them. The page shows what the tool does; it never compares it with another tool.
+- Languages: English at the root, French under `/fr/`, with a link between them and no automatic redirect. The French content addresses the visitor with « vous », like the application.
+- Never name another application in any text a visitor sees. Never say or imply that Grinding Gear Games approves the tool or that it follows their terms: the application uses the trade site API, a risk the owner accepted on 2026-10-23 (`../rust-exile-market/docs/trade-site-usage.md`).
+- Out of scope: user accounts and any back-end.
 - The site is static, built with Astro and hosted on GitHub Pages: everything must work without a server.
-- The repository is public: never commit secrets, personal data other than the public contact details, or private files.
+- The repository is public: never commit secrets, personal data other than the public contact details, or private files. The names of the streamers the owner may contact stay out of it (Claude Code's memory holds them).
 
 ## Naming conventions
 

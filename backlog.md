@@ -2,32 +2,24 @@
 
 What is noted and not being done: an evolving list, read when the next work is chosen (process.md, The backlog), not at every session. When the owner picks an item, it leaves this file and becomes a step of [roadmap.md](roadmap.md).
 
-<!--
-One entry per item, in the section of its kind: what it is in one sentence, what it depends on, and the date it was noted. For example:
-- The hover of the cards feels slow on a phone. Noted on 2026-11-02.
-- A testimonials section. Waits on: at least three testimonials, with the consent to publish them. Noted on 2026-11-02.
--->
-
 ## Polish
 
-<!-- Small touches, one small pull request each. -->
+- Real figures on the page (size of the download, start time, memory), once measured on Windows. Noted on 2026-11-06.
 
 ## Edge cases
 
-<!-- Cases at the margin that need thought before a pull request. -->
+- A Windows installer or a bare `.exe` instead of a `.zip`, if players stumble on the archive. Depends on: the feedback on v0.1 and the application's release workflow. Noted on 2026-11-06.
 
 ## Features
 
-<!-- New pages, sections or behaviors for a later cycle. -->
+- An « I'm interested » button with an anonymous counter (no IP stored, at most a daily-salted hash). Depends on: a back-end or a third-party service, checked in `docs/external-services.md`. Noted on 2026-11-05.
+- A « notify me » email form with two separate unchecked consents (the release of the next versions, the news of the owner's next tools), an unsubscribe link in every mail, a service such as Buttondown, MailerLite or Brevo, and a privacy policy. Depends on: the choice of the service. Noted on 2026-11-05.
+- Clips of the streams on the page, if they don't distract from the download. Depends on: the first streams. Noted on 2026-11-06.
 
 ## Large works
 
-<!-- Works of several cycles, or that change the structure. -->
+- Signing the Windows executable, so that SmartScreen warns less: without a signature, each new version starts from zero. The SignPath Foundation offers it for free to open source projects, after an approval. Depends on: the feedback on v0.1 and the license of the application. Noted on 2026-11-06.
 
 ## Waiting on others
 
-<!-- What depends on someone else than the owner and Claude Code; say on whom and on what. -->
-
 ## Explorations kept
-
-<!-- Exploration branches kept unmerged, and why. -->
