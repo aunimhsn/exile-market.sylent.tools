@@ -16,6 +16,7 @@ The technical choices of the [roadmap](../roadmap.md), with their reasons and th
 | Link check | linkinator on the built site, plus `scripts/check-urls.mjs` | See [Addresses check](#addresses-check). |
 | Width check | `scripts/check-overflow.mjs`, in the Chromium of [Playwright](https://playwright.dev/) | See [Width check](#width-check). |
 | Brand images | `scripts/brand-images.mjs`, in the same Chromium | The favicon and the preview card made again in one command when the brand changes. See [Brand images](#brand-images). |
+| Audience measurement | [GoatCounter](https://www.goatcounter.com/), pinned script | No cookie, no banner, as on sylent.art. See [external-services.md](external-services.md#goatcounter-audience-measurement). |
 | Deployment | GitHub Actions (`.github/workflows/deploy.yml`) on every push to `main`, with `withastro/action` and `actions/deploy-pages` | A merged pull request is deployed without a manual step. See [Deployment](#deployment). |
 | Checks in CI | GitHub Actions (`.github/workflows/ci.yml`) on every pull request | Runs `npm run check`, the same command as before a commit. |
 | Updates | Dependabot (`.github/dependabot.yml`), weekly | npm packages (minor and patch grouped) and GitHub Actions. The `dependency-reviewer` subagent reads its pull requests on demand and recommends, for each, to merge or to set aside (kept on 2026-10-31 to see how it works, before deciding between it and manual updates with security alerts only). |
@@ -51,6 +52,14 @@ English at the root and French under `/fr/` (`CLAUDE.md`, Project).
 - **Redirect pages**: Astro's own page, in English, the language of the root. The French one of the template (`src/pages/3xx.astro`, with the experimental option `redirectPage`) was removed on 2026-11-06: the site has no redirect, and it would have been a page in the wrong language for half of the visitors.
 
 Rejected: **Astro's i18n routing** (`i18n` in `astro.config.mjs`): its helpers assume the same path in each language, which the French and English addresses of the legal notice aren't, and the page already knows its language.
+
+## Download buttons
+
+Confirmed in the specifications on 2026-11-06. The HTML holds both links, Windows first, so that the download works without JavaScript; a small script only reads the system and puts it first, or shows the sentence for macOS and for a phone. The addresses are `https://github.com/aunimhsn/rust-exile-market/releases/latest/download/<stable name>`, which never change from one version to the next, so that a release needs no change here.
+
+Rejected: linking to the release page, where a new player has to pick among several archives; a version number or a size on the page, which would go out of date, or read from the GitHub API at each visit, for little.
+
+The stack above is confirmed for this site. The JavaScript libraries, if any, and the format of the video wait for the mock-up.
 
 ## Deployment
 
