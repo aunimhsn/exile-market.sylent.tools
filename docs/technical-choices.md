@@ -53,6 +53,8 @@ English at the root and French under `/fr/` (`CLAUDE.md`, Project).
 
 Rejected: **Astro's i18n routing** (`i18n` in `astro.config.mjs`): its helpers assume the same path in each language, which the French and English addresses of the legal notice aren't, and the page already knows its language.
 
+Rejected: **Fluent** (the format of the application's translations; owner, 2026-11-06): it serves sentences that change with a value at run time, such as plurals, and the page has only fixed sentences. It would add a dependency and a custom link with Astro, for a check that the typed JSON files already give.
+
 ## Download buttons
 
 Confirmed in the specifications on 2026-11-06. The HTML holds both links, Windows first, so that the download works without JavaScript; a small script only reads the system and puts it first, or shows the sentence for macOS and for a phone. The addresses are `https://github.com/aunimhsn/rust-exile-market/releases/latest/download/<stable name>`, which never change from one version to the next, so that a release needs no change here.
