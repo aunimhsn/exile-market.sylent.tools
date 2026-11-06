@@ -68,18 +68,19 @@ The layout comes from the wireframe (`docs/wireframes/`, step 2), then the mock-
    - The video has no sound, loops, and plays only when the visitor hasn't asked to reduce motion; otherwise it shows a still image, with a way to play it. It weighs about 3 MB at most (`docs/external-services.md`, GitHub Pages).
    - Until the video and the screenshots are made, just before the launch, grey frames with their caption stand in for them.
 3. **What it does**: in a few short items, with screenshots: copy an item (Ctrl + D, or Ctrl + C), see its price (from poe2scout for currencies and uniques, from the trade site for the rest), its stats and filters, the offers, in a small window over the game.
-4. **What it needs**: three facts to read before downloading.
-   - The display mode: windowed fullscreen or a window. In exclusive fullscreen, the game lets no application copy the item or show its price over it.
-   - A game client in English or in French: the tool reads no other language.
-   - Windows or Linux, 64 bits; on Linux, the game through Proton, and X11 or XWayland.
-5. **What it does on your computer** / **Ce qu’il fait sur votre ordinateur** (not « Safety »: the word would promise what the page can't), five points:
-   - Its code is open, and each release is built in public by GitHub Actions, with the checksums of each file.
-   - It isn't signed for now, hence the Windows alert, and how to go through it.
-   - It watches the clipboard while it runs and keeps only what looks like a Path of Exile 2 item. Ctrl + D sends the game the Ctrl + C of one copy, once per press. It doesn't modify the game nor read its memory.
-   - It connects only to poe2scout, the trade site and GitHub, and asks for no account. A search on the trade site runs only when the player clicks.
-   - The risk for the account of the player, in its own passage below.
+4. **What it does on your computer** / **Ce qu’il fait sur votre ordinateur** (not « Safety »: the word would promise what the page can't), a short list:
+   - It watches the clipboard while it runs and keeps only what looks like a Path of Exile 2 item.
+   - Ctrl + D sends the game the Ctrl + C of one copy, once per press. It doesn't modify the game nor read its memory.
+   - It connects only to poe2scout, the trade site and GitHub. A search on the trade site runs only when the player clicks.
+5. **Questions** / **Questions** (owner, 2026-11-06): six questions, every answer open: nothing folds, no JavaScript. They replace the former blocks « What it needs » and part of « What it does on your computer », so that no text exists twice. Real questions from the streams and GitHub Issues may be added after the launch.
+   1. « Is it free? » / « Est-il gratuit ? »: yes, and it asks for no account. Its code is open, and each release is built in public by GitHub Actions, with the checksums of each file.
+   2. « Why does Windows show an alert? » / « Pourquoi Windows affiche-t-il une alerte ? »: it isn't signed for now. How to go through the alert is written after the owner's Windows test (Main action, After the download).
+   3. « Can my account be at risk? » / « Mon compte risque-t-il quelque chose ? »: the passage below, which the line under the download buttons links to.
+   4. « Why must the game run in windowed fullscreen? » / « Pourquoi le jeu doit-il être en plein écran fenêtré ? »: windowed fullscreen or a window both work. In exclusive fullscreen, the game lets no application copy the item or show its price over it.
+   5. « Which languages of the game are supported? » / « Quelles langues du jeu sont prises en charge ? »: a game client in English or in French: the tool reads no other language.
+   6. « Does it work on macOS or on a console? » / « Fonctionne-t-il sur macOS ou sur console ? »: no. It needs Windows or Linux, 64 bits; on Linux, the game through Proton, and X11 or XWayland.
 
-   The technical claims are checked by the audit of the application (its step 17e) before the page goes live with its buttons.
+   The technical claims of these two blocks are checked by the audit of the application (its step 17e) before the page goes live with its buttons.
 
    **The risk for your account** / **Le risque pour votre compte** (owner, 2026-11-06). No word of « tolerated » or of a legal gap: see [why](docs/external-services.md#grinding-gear-games-terms-and-position).
 

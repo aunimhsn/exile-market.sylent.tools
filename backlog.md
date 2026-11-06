@@ -23,6 +23,9 @@ What is noted and not being done: an evolving list, read when the next work is c
 
 - Signing the Windows executable, so that SmartScreen warns less: without a signature, each new version starts from zero. The SignPath Foundation offers it for free to open source projects, after an approval. Depends on: the feedback on v0.1 and the license of the application. Noted on 2026-11-06.
 
+- Move the build to Node.js 26 LTS: `.nvmrc`, `engines`, `node-version` in `deploy.yml`, `@types/node` 26 and `docs/technical-choices.md`. Cost: one small pull request, about an hour with the checks. Node.js 24 is supported until 2028-04-30, so nothing urgent. If Dependabot proposes `@types/node` 25, post `@dependabot ignore this major version`: Node.js 25 is no longer maintained. Depends on: the launch of 2026-12-11, not to change the build just before it. Noted on 2026-11-06.
+- Move to TypeScript 7 once the tools accept it, by hand since Dependabot ignores the 7.x line: `typescript` 7.1 or later, `typescript-eslint` with its support, and `tsc` with `@astrojs/ts-content-mapper` in place of `astro check`. Cost: about half a day (dependencies, `npm run lint`, the editor, `docs/technical-choices.md`), for little gain on a site this small. Depends on: a stable TypeScript 7.1, and the support of typescript-eslint and Astro. Noted on 2026-11-06.
+
 ## Waiting on others
 
 ## Explorations kept

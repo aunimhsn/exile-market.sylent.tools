@@ -2,6 +2,12 @@
 
 The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is merged, the most recent first. `roadmap.md` keeps one line per step done.
 
+## 1. Specifications
+
+Pull request: [#6](https://github.com/aunimhsn/exile-market.sylent.tools/pull/6).
+
+`specs.md` from what the owner decided on 2026-11-06, the terms of GoatCounter (chosen by the owner on 2026-11-06) and the French legal notice (LCEN article 1-1, read on Légifrance) checked and written in `docs/external-services.md`. Tool: specifications.
+
 ## 0b. Languages
 
 Pull request: [#5](https://github.com/aunimhsn/exile-market.sylent.tools/pull/5).
