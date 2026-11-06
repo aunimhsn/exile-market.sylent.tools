@@ -125,12 +125,13 @@ Each page links to the same page in the other language, without any automatic re
 
 ## Content
 
+- **Languages**: every text of the site exists in English and in French, the legal notice included, and each page shows only its own language. The pages the site links to and doesn't own stay as they are: the release page, the README and the documentation of Grinding Gear Games, in English.
 - **Tone**: short and factual, like the application. Plain words for a new player. No superlatives and no exclamation marks.
 - **Titles and descriptions**, for the search engines and the link previews:
   - « Exile Market: Path of Exile 2 price checker » / « Exile Market : le prix de vos objets dans Path of Exile 2 »
   - « Copy an item in Path of Exile 2 and see its price in a small window over the game. For Windows and Linux, free and open source. » / « Copiez un objet dans Path of Exile 2 et voyez son prix dans une petite fenêtre par-dessus le jeu. Pour Windows et Linux, gratuit et open source. »
-- **The disclaimer**, which the developer documentation of Grinding Gear Games asks of every public application (« some form of the following statement »), in the footer of every page. English pages: « This product isn't affiliated with or endorsed by Grinding Gear Games in any way. » French pages: the sentence of the application, « Ce produit n’est ni affilié à Grinding Gear Games ni approuvé par ce studio, de quelque manière que ce soit. », followed by the English one, word for word.
-- **To provide**, asked of the owner at the launch, with their exact list (the interface can still change until v0.1): the video and the screenshots, likely a rare item, a unique, and the window over the game. The window shows the currency icons of the game, which belong to Grinding Gear Games (`../rust-exile-market/docs/images.md`): the page shows them only there, inside the tool, and no other image of the game.
+- **The disclaimer**, which the developer documentation of Grinding Gear Games asks of every public application (« some form of the following statement »), in the footer of every page. English pages: « This product isn't affiliated with or endorsed by Grinding Gear Games in any way. » French pages: the sentence of the application, alone, « Ce produit n’est ni affilié à Grinding Gear Games ni approuvé par ce studio, de quelque manière que ce soit. » (owner, 2026-11-06: everything translated).
+- **To provide**, asked of the owner at the launch, with their exact list (the interface can still change until v0.1): the video and the screenshots, likely a rare item, a unique, and the window over the game, each in English and in French, the tool and the item in the language of the page. The window shows the currency icons of the game, which belong to Grinding Gear Games (`../rust-exile-market/docs/images.md`): the page shows them only there, inside the tool, and no other image of the game.
 - **Not on this version**: clips of the streams, an interest counter, an email list (`backlog.md`), and donations (step 18 of the application).
 
 ## Brand assets
