@@ -44,9 +44,13 @@ What the owner provides (process.md, Specifications), where it is kept, and what
 
 <!-- Content width, gutters, corner radius, the breakpoints (written as numbers in the media queries). -->
 
+First screen on a computer (owner, 2026-11-06): centered, the headline, the subtitle, the download buttons, then the video under them, which puts the tool forward. The video keeps within the first screen, about 700 × 394 px on a screen of 1280 × 720, so that the page keeps its promise of showing it first.
+
 ## Components
 
 <!-- Buttons, cards, form fields, navigation: their states (hover, focus, active, disabled). -->
+
+Download buttons (owner, 2026-11-06): Windows and Linux side by side, with the same weight.
 
 ## Motion
 
@@ -67,3 +71,6 @@ French addresses the visitor with « vous », like the application. Short, factu
 ## Set aside
 
 <!-- The options compared and not kept, with the reason, so that they are not proposed again. -->
+
+- The first screen with the text on the left and the video on the right (wireframe v1, lead A): the centered layout puts the tool forward better.
+- A main button for the system of the visitor, with the other system as a small link: the owner wants both systems on an equal footing.
