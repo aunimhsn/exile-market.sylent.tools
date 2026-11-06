@@ -35,10 +35,29 @@ What article 1-1, I asks of « les personnes dont l'activité est d'éditer un s
 | 4° Host | Name, address and phone number | GitHub, Inc., its address, and the phone number below |
 | 5° Storage of the data processed directly by the publisher | Name and address, if any | None |
 
-- Article 1-1, II lets a publisher « à titre non professionnel » stay anonymous and name only the host, having given their identity to the host. This lead isn't taken: the owner is a registered individual entrepreneur who shows their details, and the donations planned later would weaken it. To ask the accountant, with the question of the donations.
+- Article 1-1, II lets a publisher « à titre non professionnel » stay anonymous and name only the host, having given their identity to the host. Not taken: the owner is a registered individual entrepreneur who shows their details, and the donations planned later would weaken it.
 - Article 1-2: failing to comply with I and II is punishable by one year of imprisonment and a fine of 75,000 €.
-- **Risk of the home address**: the owner chose on 2026-11-06 not to show it, as on sylent.art (accepted there on 2026-10-27), before the text above was read. Confirmation asked in the pull request of step 1. A domiciliation address would remove the risk.
-- **Phone number of the host**: GitHub's own pages publish none. The notice uses +1 877 448 4820, the number given for GitHub by third-party records ([datarequests.org](https://www.datarequests.org/db/github.json)), public but without an official source, as on sylent.art (accepted there on 2026-10-30). Confirmation asked with the point above.
+- **Accepted risk (2026-11-06): no home address**, confirmed by the owner once the text above was read. This remains a gap against article 1-1: the address being findable elsewhere, for example from the SIRET, isn't what the article asks, and sylent.art doesn't show it either. A domiciliation address would remove the risk.
+- **Accepted (2026-11-06): the phone number of the host**. GitHub's own pages publish none. The notice uses +1 877 448 4820, the number given for GitHub by third-party records ([datarequests.org](https://www.datarequests.org/db/github.json)), public but without an official source, as on sylent.art.
+
+## Grinding Gear Games: terms and position
+
+Read on 2026-11-06. The application's own record of this risk is `../rust-exile-market/docs/trade-site-usage.md`.
+
+- [Developer documentation](https://www.pathofexile.com/developer/docs): « It is against our Terms of Use (section 7i) to reverse-engineer endpoints outside of this documentation. » Executable applications apart from the game: « While not encouraged, these are permitted. » Macros: invoked manually, one action per invocation. « Introducing features against these guidelines or our Terms of Use can result in account termination for you as well as your users. » The disclaimer: « some form of the following statement », so its wording isn't imposed word for word. « We cannot allow our Intellectual Property to be used to generate commercial revenue », to read again before the donations.
+- [Terms of use](https://www.pathofexile.com/legal/terms-of-use-and-privacy-policy): clause 17 lets them cancel a membership « if it believes you have breached these Terms of Use », without notice or explanation; clause 9 has the player indemnify them for a breach. The letters of clause 7 are numbered on the page; 7i is the ninth item, inferred from the documentation's reference.
+- Their replies on the forum, labelled Grinding Gear Games: [February 2024](https://www.pathofexile.com/forum/view-thread/3491960) (« we cannot comment on the legality of third-party tools »; « we do not encourage the creation or use of third-party tools »; « we're unable to guarantee if a tool is allowed or would remain allowed in the future »), and the same answer in [2021](https://pathofexile.com/forum/view-thread/3116826) and [2022](https://www.pathofexile.com/forum/view-thread/3303981). No reply read says that an account was or would be closed for a price tool. These threads name other applications, so the page cites the forum without linking to them.
+
+**Why the page doesn't say « tolerated » nor « legal gap »** (owner's request of 2026-11-06, the text in `specs.md`):
+
+- There is no legal gap: the documentation is explicit, and a use that goes unpunished creates no right. Writing « gap » would be a wrong statement on the owner's own page.
+- « Tolerated » states the intent of Grinding Gear Games, which they refuse to state themselves, and comes close to saying they approve (`CLAUDE.md`, Project). The page keeps what can be observed: many players have used such tools for years, which is not a permission.
+
+**What the text does and doesn't do**, written by Claude Code, not by a lawyer, and not reviewed by one:
+
+- It informs the player before the download, which is the main thing it can do, hence the line under the buttons.
+- It limits the owner's liability to the player only « to the extent the law allows », along with the license: such a clause doesn't cover everything.
+- It protects from nothing on the side of Grinding Gear Games, who can close the owner's own account: the risk accepted on 2026-10-23 stays. It also states publicly that the owner knows the rule.
 
 ## GoatCounter (audience measurement)
 

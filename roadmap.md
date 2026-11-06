@@ -45,5 +45,6 @@ Done in the application's repository, before its tag, and not by a pull request 
 - Its specifications say the owner has no Windows: the owner now tests on a Windows laptop.
 - Its specifications and `release.yml` still count macOS among the systems, while the page offers no macOS download (owner, 2026-11-06): keep the macOS archives on the release page, untested, or remove them.
 - `v0.1.0` published as a normal release, never a pre-release: `releases/latest` skips them.
-- Donations for its step 18 (owner, 2026-11-06): free donations only, nothing paid in the tool, no perks, no image or logo of Grinding Gear Games near the button; email support@grindinggear.com before turning them on; ask the accountant how to declare them.
+- Donations for its step 18 (owner, 2026-11-06): free donations only, nothing paid in the tool, no perks, no image or logo of Grinding Gear Games near the button; email support@grindinggear.com before turning them on; ask the tax office how to declare them (the owner has no accountant); read again the rule of the developer documentation on commercial revenue.
+- Its README (step 17d) states the risk for the account with the same words as the page (`specs.md`, The risk for your account), and the audit (step 17e) reads Ctrl + D against the macro rules of the developer documentation.
 - The launch plan is only in Claude Code's memory: write it as a document there, with the steps and without the names of the streamers.

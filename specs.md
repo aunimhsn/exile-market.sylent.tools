@@ -42,7 +42,7 @@ Download the application. The buttons link straight to the file (`releases/lates
 | macOS | No button. « Exile Market isn't available on macOS. » / « Exile Market n’est pas disponible sur macOS. » |
 | Phone or tablet | No button. « Exile Market runs on a computer. Open exile-market.sylent.tools on yours. » / « Exile Market s’installe sur un ordinateur. Ouvrez exile-market.sylent.tools sur le vôtre. » |
 
-Under the buttons, a link to all the versions and their checksums (the release page). The page shows no version number nor file size, which it couldn't keep up to date without a change at each release.
+Under the buttons, a short line sends to the risk before the download: « Before installing, read the risk for your account. » / « Avant d’installer, lisez le risque pour votre compte. », linked to [that passage](#home-page); then a link to all the versions and their checksums (the release page). The page shows no version number nor file size, which it couldn't keep up to date without a change at each release.
 
 The wording about macOS says what the tool does, not what the game does: Steam lists the game for Windows only (checked on 2026-11-06), but a third-party source speaks of a Mac client, and the standalone client wasn't checked.
 
@@ -76,15 +76,30 @@ The layout comes from the wireframe (`docs/wireframes/`, step 2), then the mock-
    - Its code is open, and each release is built in public by GitHub Actions, with the checksums of each file.
    - It isn't signed for now, hence the Windows alert, and how to go through it.
    - It watches the clipboard while it runs and keeps only what looks like a Path of Exile 2 item. Ctrl + D sends the game the Ctrl + C of one copy, once per press. It doesn't modify the game nor read its memory.
-   - It connects only to poe2scout, the trade site and GitHub, and asks for no account.
-   - The risk, in plain words, with Grinding Gear Games' position: see below.
+   - It connects only to poe2scout, the trade site and GitHub, and asks for no account. A search on the trade site runs only when the player clicks.
+   - The risk for the account of the player, in its own passage below.
 
    The technical claims are checked by the audit of the application (its step 17e) before the page goes live with its buttons.
 
-   The point about the risk, in both languages:
+   **The risk for your account** / **Le risque pour votre compte** (owner, 2026-11-06). No word of « tolerated » or of a legal gap: see [why](docs/external-services.md#grinding-gear-games-terms-and-position).
 
-   - « The offers come from the trade site, through an interface Grinding Gear Games doesn't document. Their terms of use forbid it and allow them to close the accounts concerned. Grinding Gear Games doesn't endorse or guarantee any third-party tool: using it is at your own risk. »
-   - « Les offres viennent du site d’échange, par une interface que Grinding Gear Games ne documente pas. Leurs conditions d’utilisation l’interdisent et leur permettent de fermer les comptes concernés. Grinding Gear Games n’encourage ni ne garantit aucun outil tiers : l’utiliser reste à vos risques. »
+   > Exile Market looks up offers on the official trade site through an interface Grinding Gear Games doesn't document. Their developer documentation says that working out such an interface goes against their terms of use (section 7i), and those terms allow them to close an account without notice.
+   >
+   > Asked about tools like this one, Grinding Gear Games answers that it can't comment on their legality, doesn't encourage creating or using them, and can't guarantee that a tool is allowed or will remain allowed (its forum, February 2024).
+   >
+   > In practice, many players have used tools of this kind for years. That is an observation, not a permission: it can change at any time.
+   >
+   > Grinding Gear Games doesn't endorse or guarantee any third-party tool: using it is at your own risk. Exile Market is free and comes with no warranty, as its license states. To the extent the law allows, Sylent isn't liable for what may happen to your account.
+
+   > Exile Market cherche les offres sur le site d’échange officiel, par une interface que Grinding Gear Games ne documente pas. Sa documentation pour les développeurs indique que reconstituer une telle interface est contraire à ses conditions d’utilisation (section 7i), et ces conditions lui permettent de fermer un compte sans préavis.
+   >
+   > Interrogé sur ce type d’outil, Grinding Gear Games répond qu’il ne peut pas se prononcer sur leur légalité, qu’il n’encourage ni leur création ni leur usage, et qu’il ne peut pas garantir qu’un outil est autorisé ou le restera (son forum, février 2024).
+   >
+   > Dans les faits, de nombreux joueurs utilisent des outils de ce type depuis des années. C’est un constat, pas une autorisation : cela peut changer à tout moment.
+   >
+   > Grinding Gear Games n’encourage ni ne garantit aucun outil tiers : l’utiliser reste à vos risques. Exile Market est gratuit et fourni sans garantie, comme le prévoit sa licence. Dans les limites permises par la loi, Sylent n’est pas responsable de ce qui pourrait arriver à votre compte.
+
+   The words « developer documentation » link to the official page. The forum reply is cited without a link: its thread names another application in its title.
 
 6. **Help**: a problem goes to GitHub Issues, or to the bug report button of the application.
 7. **Footer**: the legal notice, the source code and its license (`GPL-3.0-or-later` from v0.1), the disclaimer.
@@ -114,7 +129,7 @@ Each page links to the same page in the other language, without any automatic re
 - **Titles and descriptions**, for the search engines and the link previews:
   - « Exile Market: Path of Exile 2 price checker » / « Exile Market : le prix de vos objets dans Path of Exile 2 »
   - « Copy an item in Path of Exile 2 and see its price in a small window over the game. For Windows and Linux, free and open source. » / « Copiez un objet dans Path of Exile 2 et voyez son prix dans une petite fenêtre par-dessus le jeu. Pour Windows et Linux, gratuit et open source. »
-- **The disclaimer**, required of every public tool by the developer guidelines of Grinding Gear Games, in the footer of every page. English pages: « This product isn't affiliated with or endorsed by Grinding Gear Games in any way. » French pages: the sentence of the application, « Ce produit n’est ni affilié à Grinding Gear Games ni approuvé par ce studio, de quelque manière que ce soit. », followed by the English one, word for word.
+- **The disclaimer**, which the developer documentation of Grinding Gear Games asks of every public application (« some form of the following statement »), in the footer of every page. English pages: « This product isn't affiliated with or endorsed by Grinding Gear Games in any way. » French pages: the sentence of the application, « Ce produit n’est ni affilié à Grinding Gear Games ni approuvé par ce studio, de quelque manière que ce soit. », followed by the English one, word for word.
 - **To provide**, asked of the owner at the launch, with their exact list (the interface can still change until v0.1): the video and the screenshots, likely a rare item, a unique, and the window over the game. The window shows the currency icons of the game, which belong to Grinding Gear Games (`../rust-exile-market/docs/images.md`): the page shows them only there, inside the tool, and no other image of the game.
 - **Not on this version**: clips of the streams, an interest counter, an email list (`backlog.md`), and donations (step 18 of the application).
 
