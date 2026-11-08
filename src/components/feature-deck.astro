@@ -1,0 +1,204 @@
+---
+// What the tool does: three real screens of the application, overlapping. The card under the
+// mouse, tapped or focused comes in front, and its text shows. Without JavaScript, the three texts
+// are all shown, so that nothing is lost.
+import { Image } from "astro:assets";
+import copyEn from "../assets/screens/en/copy.png";
+import filtersEn from "../assets/screens/en/filters.png";
+import priceEn from "../assets/screens/en/price.png";
+import copyFr from "../assets/screens/fr/copy.png";
+import filtersFr from "../assets/screens/fr/filters.png";
+import priceFr from "../assets/screens/fr/price.png";
+import type en from "../content/en/home.json";
+import type { Lang } from "../lib/i18n";
+
+interface Props {
+  lang: Lang;
+  cards: (typeof en)["features"]["cards"];
+}
+
+const { lang, cards } = Astro.props;
+const screens = {
+  en: [copyEn, priceEn, filtersEn],
+  fr: [copyFr, priceFr, filtersFr],
+}[lang];
+
+// The price is in front until the visitor picks another card.
+const inFront = 1;
+---
+
+<div class="deck">
+  <div class="deck-stage">
+    <div class="deck-cards">
+      {cards.map(({ alt }, index) => (
+        <button
+          class:list={["deck-card", { "is-active": index === inFront }]}
+          type="button"
+          style={{ "--i": index }}
+          aria-pressed={index === inFront ? "true" : "false"}
+          data-deck-card
+        >
+          <Image
+            src={screens[index]!}
+            alt={alt}
+            widths={[260, 520]}
+            sizes="(width <= 720px) 46vw, 263px"
+          />
+        </button>
+      ))}
+    </div>
+  </div>
+  <div class="deck-texts" aria-live="polite">
+    {cards.map(({ title, body }, index) => (
+      <div class="deck-text" hidden={index !== inFront} data-deck-text>
+        <h3>{title}</h3>
+        <p set:html={body} />
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  const cards = [
+    ...document.querySelectorAll<HTMLButtonElement>("[data-deck-card]"),
+  ];
+  const texts = [...document.querySelectorAll<HTMLElement>("[data-deck-text]")];
+
+  const bringToFront = (chosen: HTMLButtonElement) => {
+    const position = cards.indexOf(chosen);
+    cards.forEach((card, index) => {
+      card.classList.toggle("is-active", index === position);
+      card.setAttribute("aria-pressed", String(index === position));
+    });
+    texts.forEach((text, index) => {
+      text.hidden = index !== position;
+    });
+  };
+
+  for (const card of cards) {
+    card.addEventListener("pointerover", (event) => {
+      if (event.pointerType === "mouse") bringToFront(card);
+    });
+    card.addEventListener("click", () => {
+      bringToFront(card);
+    });
+    card.addEventListener("focus", () => {
+      bringToFront(card);
+    });
+  }
+</script>
+
+<style>
+  .deck {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-12);
+    align-items: center;
+  }
+
+  /* The cards follow the width of their column, so that they never reach the text. */
+  .deck-stage {
+    display: grid;
+    justify-items: center;
+    container-type: inline-size;
+  }
+
+  .deck-cards {
+    --card: clamp(130px, 44cqi, 250px);
+
+    position: relative;
+    width: calc(var(--card) * 2.1);
+    height: calc(var(--card) * 12 / 7 * 1.05);
+  }
+
+  /* The middle card lies over the two others, as in a hand, so that each keeps a side to point
+     at; the chosen card comes in front of all. */
+  .deck-card {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: calc(50% - var(--card) / 2);
+    width: var(--card);
+    padding: 0;
+    border: 0;
+    background: #000000;
+    box-shadow: 0 18px 40px #000000cc;
+    cursor: pointer;
+    filter: brightness(0.5);
+    transform: translate(calc((var(--i) - 1) * 52%), -50%);
+    transition:
+      transform 0.35s cubic-bezier(0.215, 0.61, 0.355, 1),
+      filter 0.3s;
+  }
+
+  .deck-card:nth-child(2) {
+    z-index: 2;
+  }
+
+  .deck-card.is-active {
+    z-index: 3;
+    filter: none;
+    transform: translate(calc((var(--i) - 1) * 52%), -50%) scale(1.05);
+  }
+
+  .deck-card :global(img) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 7 / 12;
+  }
+
+  /* On a computer, each title holds on one line: its size follows the width of its column. */
+  .deck-texts {
+    container-type: inline-size;
+  }
+
+  .deck-text h3 {
+    font-size: min(var(--size-title), 7.2cqi);
+    white-space: nowrap;
+  }
+
+  .deck-text p {
+    max-width: 21.25em;
+    margin-top: var(--space-2);
+    color: var(--color-text-weak);
+    font-size: var(--size-subtitle);
+  }
+
+  @media (scripting: none) {
+    .deck-text[hidden] {
+      display: block;
+    }
+
+    .deck-text + .deck-text {
+      margin-top: var(--space-6);
+    }
+  }
+
+  /* On a phone, the text goes under the cards, centered. */
+  @media (width <= 720px) {
+    .deck {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .deck-texts {
+      justify-self: center;
+      container-type: normal;
+    }
+
+    .deck-text {
+      min-height: 6.5em;
+      text-align: center;
+    }
+
+    .deck-text h3 {
+      font-size: inherit;
+      white-space: normal;
+    }
+
+    .deck-text p {
+      margin-top: var(--space-1);
+      font-size: inherit;
+    }
+  }
+</style>

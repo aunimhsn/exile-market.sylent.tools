@@ -66,7 +66,10 @@
 
   /* Layout and shapes. */
   --width-content: 1120px;
-  --width-text: 68ch;
+
+  /* In em, not in ch: ch reads the width of the digit 0, which isn't the same in the self-hosted
+     font as in the mock-up (9 and 10 px at 16 px), while the text itself is as wide. */
+  --width-text: 42.5em;
   --height-header: 56px;
   --size-top-button: 48px;
   --gutter: var(--space-5);

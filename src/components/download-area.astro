@@ -1,0 +1,144 @@
+---
+// The main action of the page. The HTML holds the two buttons, which work alone; a small script
+// only replaces them for macOS or a phone (specs.md, Main action). It runs right after the block,
+// before the first paint, so that a phone never sees the buttons appear then leave.
+import type en from "../content/en/home.json";
+import { downloads, downloadsOpen, releases } from "../lib/application";
+import OutlineButton from "./outline-button.astro";
+
+interface Props {
+  texts: (typeof en)["download"];
+}
+
+const { texts } = Astro.props;
+---
+
+{downloadsOpen ? (
+  <>
+    <div class="download">
+      <div class="download-buttons">
+        <OutlineButton href={downloads.windows} main>
+          {texts.windows}
+        </OutlineButton>
+        <OutlineButton href={downloads.linux}>{texts.linux}</OutlineButton>
+      </div>
+      <ul class="download-links">
+        <li>
+          <a href={releases}>{texts.versions}</a>
+        </li>
+        <li>
+          <a href="#risk">{texts.risk}</a>
+        </li>
+        <li>
+          <a href="#windows-alert">{texts.alert}</a>
+        </li>
+      </ul>
+      <template data-system="macos">
+        <p class="download-message">{texts.macos}</p>
+      </template>
+      <template data-system="phone">
+        <p class="download-message">
+          {texts.phone.before}{" "}
+          <span class="download-address" data-one-line>
+            {texts.phone.address}
+          </span>{" "}
+          {texts.phone.after}
+        </p>
+        <ul class="download-links">
+          <li>
+            <a href="#risk">{texts.risk}</a>
+          </li>
+          <li>
+            <a href={releases}>{texts.versions}</a>
+          </li>
+        </ul>
+      </template>
+    </div>
+    <script is:inline>
+      {
+        // Android also calls itself Linux, and an iPad calls itself a Mac: only its touch screen
+        // tells them apart, so the phones and tablets are tested first.
+        const agent = navigator.userAgent;
+        const isMac = agent.includes("Macintosh");
+        const isPhone =
+          /Android|iPhone|iPad|iPod|Mobi/.test(agent) ||
+          (isMac && navigator.maxTouchPoints > 1);
+        const system = isPhone ? "phone" : isMac ? "macos" : "computer";
+        const area = document.currentScript.previousElementSibling;
+        const template = area.querySelector(`[data-system="${system}"]`);
+        if (template) area.replaceChildren(template.content);
+      }
+    </script>
+  </>
+) : (
+  <div class="download">
+    <p class="download-message">{texts.soon}</p>
+  </div>
+)}
+
+<style>
+  .download {
+    display: flex;
+    flex-direction: column;
+    gap: var(--download-rhythm);
+    align-items: center;
+    margin-top: var(--space-4);
+  }
+
+  .download-buttons {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+  }
+
+  .download-message {
+    max-width: 27.5em;
+    font-weight: 600;
+  }
+
+  .download-address {
+    white-space: nowrap;
+  }
+
+  /* One link per line, red, white under the pointer, without an underline. */
+  .download-links {
+    display: grid;
+    gap: var(--space-1);
+    justify-items: center;
+    font-family: var(--font-title);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+    text-shadow:
+      0 1px 10px #000000,
+      0 0 3px #000000;
+  }
+
+  .download-links a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .download-links a:hover {
+    color: var(--color-text);
+  }
+
+  /* On a phone, the video comes before the download area (home-page.astro). */
+  @media (width <= 720px) {
+    .download {
+      order: 2;
+      gap: var(--space-2);
+      align-items: stretch;
+      margin-top: var(--space-5);
+    }
+
+    .download-buttons {
+      grid-template-columns: 1fr;
+    }
+
+    .download-links {
+      gap: var(--space-2);
+      justify-items: start;
+    }
+  }
+</style>
