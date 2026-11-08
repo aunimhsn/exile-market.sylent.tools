@@ -33,7 +33,7 @@ export default defineConfig({
       cssVariable: "--font-manrope",
       weights: [400, 600, 700, 800],
       styles: ["normal"],
-      display: "block",
+      display: "swap",
       fallbacks: ["system-ui", "sans-serif"],
     },
     {

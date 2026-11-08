@@ -2,8 +2,8 @@
 // drawn by the Chromium of Playwright, so that they are made again in one command when the brand
 // changes:
 // - from src/assets/brand/icon.svg, the square icon: public/favicon.svg (a copy),
-//   public/favicon.ico (16, 32 and 48 px) and public/apple-touch-icon.png (180 px, on the color
-//   of the corners of the icon, since iOS shows no transparency);
+//   public/favicon.ico (16, 32 and 48 px) and public/apple-touch-icon.png (180 px, with a margin
+//   on the black of the page, since iOS shows no transparency);
 // - from src/assets/brand/social-card.html, the card that the networks show for a link:
 //   src/assets/brand/social-card.png (1200 × 630 px), converted to JPEG by the build.
 // The images are committed. Run `npm run brand:images` after changing one of the two sources.
@@ -12,8 +12,10 @@ import { pathToFileURL } from "node:url";
 import { chromium } from "playwright";
 
 // The functions given to page.evaluate run in the page, with the globals of the browser.
-/* global document, Image */
+/* global document */
 
+// The value of --color-background in src/styles/tokens.css.
+const BRAND_BACKGROUND = "#0a0a0a";
 const icon = "src/assets/brand/icon.svg";
 const card = "src/assets/brand/social-card.html";
 const iconUrl = `data:image/svg+xml;base64,${readFileSync(icon).toString("base64")}`;
@@ -41,11 +43,12 @@ const browser = await chromium.launch();
 try {
   const page = await browser.newPage();
 
-  /** The icon drawn at a size, on a transparent background or on a color. */
-  const drawIcon = async (size, background = "transparent") => {
+  /** The icon drawn at a size, on a transparent background or on a color, with a margin if any. */
+  const drawIcon = async (size, background = "transparent", margin = 0) => {
+    const inner = size - 2 * margin;
     await page.setViewportSize({ width: size, height: size });
     await page.setContent(
-      `<style>html,body{margin:0;background:${background}}img{display:block;width:${size}px;height:${size}px}</style><img src="${iconUrl}" alt="">`,
+      `<style>html,body{margin:0;background:${background}}img{display:block;width:${inner}px;height:${inner}px;margin:${margin}px}</style><img src="${iconUrl}" alt="">`,
     );
     await page.locator("img").evaluate((image) => image.decode());
     return page.screenshot({ omitBackground: background === "transparent" });
@@ -57,19 +60,10 @@ try {
   for (const size of sizes) images.push({ size, png: await drawIcon(size) });
   writeFileSync("public/favicon.ico", ico(images));
 
-  // The color of the top left pixel of the icon, under its rounded corners if any.
-  const corner = await page.evaluate(async (url) => {
-    const image = new Image();
-    image.src = url;
-    await image.decode();
-    const canvas = document.createElement("canvas");
-    canvas.width = canvas.height = 64;
-    const context = canvas.getContext("2d");
-    context.drawImage(image, 0, 0, 64, 64);
-    const [r, g, b] = context.getImageData(32, 1, 1, 1).data;
-    return `rgb(${r} ${g} ${b})`;
-  }, iconUrl);
-  writeFileSync("public/apple-touch-icon.png", await drawIcon(180, corner));
+  writeFileSync(
+    "public/apple-touch-icon.png",
+    await drawIcon(180, BRAND_BACKGROUND, 20),
+  );
 
   await page.setViewportSize({ width: 1200, height: 630 });
   await page.goto(pathToFileURL(card).href);

@@ -30,7 +30,7 @@ Read only by the steps that need them:
 - [x] **2. Wireframe** ([#7](https://github.com/aunimhsn/exile-market.sylent.tools/pull/7)).
 - [x] **3. Mock-up** ([#8](https://github.com/aunimhsn/exile-market.sylent.tools/pull/8), [#9](https://github.com/aunimhsn/exile-market.sylent.tools/pull/9)).
 - [x] **4a. Skeleton and deployment**: the tokens and fonts of the mock-up in `src/styles/` (its `:root` becomes `tokens.css`, the components its CSS), the brand assets (`npm run brand:images`), the header and footer, the deployment to the `github.io` preview. Tools: build, code review.
-- [ ] **4b. The page**: the home page, the legal notice and the not-found page in both languages, the download buttons by system. Tools: build, code review.
+- [ ] **4b. The page**: the home page, the legal notice and the not-found page in both languages, the download buttons by system; the GoatCounter script, on the real domain only, with the code of the site that the owner creates on goatcounter.com before this step (`docs/external-services.md`); the address of the application repository in one place, shared by the footer and the buttons. Tools: build, code review.
 - [ ] **5. Launch**: the video and the screenshots asked of the owner with their exact list, the site checked on the preview, the DNS switched by the owner, the custom domain and HTTPS, the placeholder deleted at Cloudflare; once the tag is out, the download buttons turned on. Tool: launch.
 - [ ] **6. Retrospective**: the lessons in `process.md` (and in the template when they apply to every website), the backlog sorted, the memory moved to the files. Tool: retrospective.
 

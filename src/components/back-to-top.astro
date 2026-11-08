@@ -32,8 +32,8 @@ const { lang } = Astro.props;
     bottom: var(--space-5);
     display: none;
     place-items: center;
-    width: 48px;
-    height: 48px;
+    width: var(--size-top-button);
+    height: var(--size-top-button);
     padding: 0;
     border: 1px solid var(--color-button-line);
     background: #0a0a0ab3;
@@ -72,9 +72,9 @@ const { lang } = Astro.props;
   button?.addEventListener("click", () => {
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: 0, behavior: still ? "auto" : "smooth" });
-    // The button disappears at the top: the keyboard focus goes to the first link of the page.
+    // The button disappears at the top: the keyboard focus goes to the name in the header.
     document
-      .querySelector<HTMLElement>(".site-brand")
+      .querySelector<HTMLElement>(".site-header .site-brand")
       ?.focus({ preventScroll: true });
   });
 </script>

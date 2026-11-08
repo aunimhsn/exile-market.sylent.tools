@@ -23,7 +23,9 @@ const flags: Record<Lang, string> = { en: flagEn, fr: flagFr };
 <header class="site-header">
   <div class="wrap">
     <a class="site-brand" href={href(routes.home[lang])}>
-      <Fragment set:html={emblem} />
+      <span aria-hidden="true">
+        <Fragment set:html={emblem} />
+      </span>
       <span class="site-brand-text">{ui(lang).site.name}</span>
     </a>
     {page && (
@@ -51,7 +53,7 @@ const flags: Record<Lang, string> = { en: flagEn, fr: flagFr };
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 56px;
+    height: var(--height-header);
   }
 
   .site-brand :global(svg) {

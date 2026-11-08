@@ -81,8 +81,8 @@ const repository = "https://github.com/aunimhsn/rust-exile-market";
   }
 
   /* The name at the size of the header, alone, at the bottom right, clear of the back-to-top
-     button (48 px, 20 px from the edge) at every width; 100cqw, unlike 100vw, doesn't count the
-     scrollbar. */
+     button (--size-top-button, --space-5 from the edge) at every width; 100cqw, unlike 100vw,
+     doesn't count the scrollbar. */
   .footer-brand {
     flex-direction: column;
     align-items: flex-end;
@@ -91,7 +91,8 @@ const repository = "https://github.com/aunimhsn/rust-exile-market";
       max(
         0px,
         calc(
-          48px + var(--space-5) + var(--space-4) - var(--gutter) -
+          var(--size-top-button) + var(--space-5) + var(--space-4) -
+            var(--gutter) -
             (100cqw - min(100cqw, var(--width-content) + 2 * var(--gutter))) / 2
         )
       )

@@ -67,6 +67,8 @@
   /* Layout and shapes. */
   --width-content: 1120px;
   --width-text: 68ch;
+  --height-header: 56px;
+  --size-top-button: 48px;
   --gutter: var(--space-5);
   --card-padding: var(--space-6);
   --band-padding: var(--space-20);
