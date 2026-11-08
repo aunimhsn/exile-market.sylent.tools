@@ -20,7 +20,7 @@
     "risk": "Connaître le risque pour votre compte",
     "alert": "Pourquoi Windows affiche-t-il une alerte ?"
   },
-  "still": "Une carte retournée sur la fenêtre d’Exile Market, qui affiche le prix de l’objet en trois monnaies, sous les mots « Son prix ».",
+  "still": "La fenêtre d’Exile Market, qui affiche le prix de l’objet en trois monnaies, sous les mots « Son prix ».",
   "afterDownload": [
     "N’oubliez pas de mettre le jeu",
     "en plein écran fenêtré ou en fenêtre."
@@ -107,6 +107,6 @@
     "heading": "Aide",
     "question": "Un problème ?",
     "link": "Ouvrez une issue sur GitHub",
-    "rest": ", ou utilisez le bouton de signalement de bogue de l’application."
+    "rest": ", ou utilisez le bouton « Signaler un bug » de l’application."
   }
 }

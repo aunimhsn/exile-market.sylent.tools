@@ -20,7 +20,7 @@
     "risk": "Know the risk for your account",
     "alert": "Why does Windows show an alert?"
   },
-  "still": "A card turned over on the window of Exile Market, which shows the price of the item in three currencies, under the words “Its price”.",
+  "still": "The window of Exile Market, which shows the price of the item in three currencies, under the words “Its price”.",
   "afterDownload": [
     "Do not forget to set the game in",
     "windowed fullscreen or in a window."
@@ -107,6 +107,6 @@
     "heading": "Help",
     "question": "A problem?",
     "link": "Open a GitHub Issue",
-    "rest": ", or use the bug report button of the application."
+    "rest": ", or use the “Report a bug” button of the application."
   }
 }

@@ -21,6 +21,11 @@ const { lang } = Astro.props;
 const pages: Record<Lang, typeof en> = { en, fr };
 const page = pages[lang];
 const still = { en: stillEn, fr: stillFr }[lang];
+
+// The width the image is shown at: --gutter, --first-screen-rest and --video-ceiling of
+// src/styles/tokens.css, written out since an HTML attribute can't read a variable.
+const stillSizes =
+  "min(100vw - 40px, clamp(400px, (100vh - 380px) * 16 / 9, 960px))";
 ---
 
 <SiteLayout
@@ -45,7 +50,7 @@ const still = { en: stillEn, fr: stillFr }[lang];
               src={still}
               alt={page.still}
               widths={[640, 960, 1280]}
-              sizes="min(100vw - 40px, clamp(400px, (100vh - 380px) * 16 / 9, 960px))"
+              sizes={stillSizes}
               loading="eager"
               fetchpriority="high"
             />
@@ -135,9 +140,7 @@ const still = { en: stillEn, fr: stillFr }[lang];
     font-style: var(--subtitle-style);
     font-weight: var(--subtitle-weight);
     line-height: 28px;
-    text-shadow:
-      0 1px 10px #000000,
-      0 0 3px #000000;
+    text-shadow: var(--shadow-on-grid);
     text-wrap: balance;
   }
 

@@ -35,7 +35,7 @@ const inFront = 1;
           class:list={["deck-card", { "is-active": index === inFront }]}
           type="button"
           style={{ "--i": index }}
-          aria-pressed={index === inFront ? "true" : "false"}
+          aria-current={index === inFront ? "true" : undefined}
           data-deck-card
         >
           <Image
@@ -68,7 +68,8 @@ const inFront = 1;
     const position = cards.indexOf(chosen);
     cards.forEach((card, index) => {
       card.classList.toggle("is-active", index === position);
-      card.setAttribute("aria-pressed", String(index === position));
+      if (index === position) card.setAttribute("aria-current", "true");
+      else card.removeAttribute("aria-current");
     });
     texts.forEach((text, index) => {
       text.hidden = index !== position;
@@ -127,7 +128,7 @@ const inFront = 1;
     filter: brightness(0.5);
     transform: translate(calc((var(--i) - 1) * 52%), -50%);
     transition:
-      transform 0.35s cubic-bezier(0.215, 0.61, 0.355, 1),
+      transform 0.35s var(--ease-draw),
       filter 0.3s;
   }
 
@@ -164,7 +165,30 @@ const inFront = 1;
     font-size: var(--size-subtitle);
   }
 
+  /* The three texts share one cell, so that the tallest gives its height to the block and the
+     title doesn't move from one card to the next. */
+  @media (width >= 721px) and (scripting: enabled) {
+    .deck-texts {
+      display: grid;
+    }
+
+    .deck-text {
+      grid-area: 1 / 1;
+    }
+
+    .deck-text[hidden] {
+      display: block;
+      visibility: hidden;
+    }
+  }
+
+  /* Without JavaScript, the cards can't be picked: none is dimmed, and every text shows. */
   @media (scripting: none) {
+    .deck-card {
+      cursor: default;
+      filter: none;
+    }
+
     .deck-text[hidden] {
       display: block;
     }
