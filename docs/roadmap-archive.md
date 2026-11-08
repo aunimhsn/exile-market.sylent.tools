@@ -2,6 +2,12 @@
 
 The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is merged, the most recent first. `roadmap.md` keeps one line per step done.
 
+## 2. Wireframe
+
+Pull request: [#7](https://github.com/aunimhsn/exile-market.sylent.tools/pull/7).
+
+One Excalidraw wireframe of the page, phone first, with grey frames for the video and the screenshots. It is removed by the pull request of the mock-up: the history keeps it.
+
 ## 1. Specifications
 
 Pull request: [#6](https://github.com/aunimhsn/exile-market.sylent.tools/pull/6).

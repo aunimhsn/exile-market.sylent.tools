@@ -107,6 +107,17 @@ The stack above is confirmed for this site. The JavaScript libraries, if any, an
 - **`scripts/brand-images.mjs`** draws, in the same Chromium, the images that come from the brand assets ([branding.md](branding.md#brand-assets)): from `src/assets/brand/icon.svg`, `public/favicon.svg`, `public/favicon.ico` (16, 32 and 48 px, the PNG images in an ICO file written by the script) and `public/apple-touch-icon.png` (180 px, on the color of the corners of the icon, since iOS shows no transparency); from `src/assets/brand/social-card.html`, a page of 1200 × 630 px designed in the style of the site, `src/assets/brand/social-card.png`. The images are committed; run `npm run brand:images` again after changing a source.
 - Rejected: a favicon generator site (a manual step, to redo by hand), and an image library such as sharp (another dependency, while Playwright is already there).
 
+## Video of the first screen
+
+- **A composition, not an edit** (`docs/mockups/video/hot-a2.js`): each image is a function of the time only, so that the result doesn't depend on the speed of the machine. `render.mjs` draws it frame by frame in a headless browser (Three.js on SwiftShader), then encodes it in two passes, H.264 and VP9, under 3 MB, with its still image at 55 % of the video.
+- **The renders stay out of Git** (`outputs/2026-11-06-video/`) until the build takes the final one.
+- **The capture** (`docs/mockups/video/capture/`): the application runs in a virtual KWin session and receives the item through its clipboard. It needs the release binary of the application in `target/release/` next to the scripts, and writes to `out-deck/`. The session has its own `XDG_RUNTIME_DIR`: otherwise a portal started on its private bus takes over the document portal of the desktop.
+- **To do before the launch**: run the capture again, then `node docs/mockups/video/render.mjs hot-a2 en` and `fr`, so that the prices and the league are current.
+
+## Burst of shards
+
+Three.js (`InstancedMesh`, 420 shards, 110 on a phone), behind the first screen only: it stops once out of sight, freezes on a still image if the machine can't follow, and stays still when the visitor asked to reduce motion. The mock-up loads Three.js from a CDN; the build takes it from npm, so that the site depends on no third party at run time.
+
 ## Commands
 
 Run `npm ci` first, and `npx playwright install --only-shell chromium` once. They are also in the `scripts` of `package.json`.

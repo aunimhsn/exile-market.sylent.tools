@@ -87,3 +87,35 @@ The static website of a freelance trainer in software development, for schools, 
 - The process names the token file `docs/design-system.md`; this project kept them in its branding note, next to the decisions they come from (the process now names it `docs/branding.md`).
 - After the build, most of the owner's remarks were about the large titles on a phone: a title that breaks on two lines or a faded word that widens the page. Each large title is now sized at build time from the metrics of its font, so that it fills one line, and a check in Chromium fails on a title on two lines. With large display titles, test them at phone width in the mock-up already.
 - The white line-art 3D scenes are what the owner liked most: playful and precise, each one tells its subject in a few elements, with the orange on what moves.
+
+## exile-market.sylent.tools (2026-11)
+
+The download page of a desktop price checker for Path of Exile 2, in English and in French ([mock-up](docs/mockups/home-page.html), [decisions](docs/branding.md)).
+
+### Context
+
+- Players who arrive at the launch of the game without a price tool, some wary of an unsigned executable from an unknown author.
+- One page, one action: download; a legal notice and a not-found page.
+
+### How it went
+
+- About a dozen decisions in one session by comparing tabs; the owner often chose the plainest option after seeing the loudest ones.
+- The video was reworked once the words and the images were compared frame by frame: they didn't match.
+
+### Choices kept
+
+- Dark and sharp: neutral blacks, white, one red, Manrope with Cormorant Garamond on the subtitle only, a burst of 3D shards behind the first screen.
+- Red on small text means a link; a heading in red is larger, so that it isn't taken for one.
+- The video follows the headline in order, with one real item from start to finish.
+- Honesty as an argument: the risk for the account in plain words, close to the download.
+
+### Choices rejected
+
+- Livelier hovers on a small link (a glowing line, an explosion, a bug that walks): a plain color change was enough.
+- A loud donation banner: one thin line, and not before the donations are allowed.
+- A second brand next to the product in the footer: the author in grey text under the name.
+
+### Lessons
+
+- Compare what a video says with what it shows, image by image, before tuning its rhythm.
+- A headless capture session must not share the runtime folder of the desktop.

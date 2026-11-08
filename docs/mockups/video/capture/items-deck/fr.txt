@@ -1,0 +1,16 @@
+Classe d'objet: Ceintures
+Rareté: Unique
+Chasseur de têtes
+Ceinture lourde
+--------
+Prérequis : Niveau 40
+--------
+Niveau de l'objet: 82
+--------
+25% d'Augmentation du Seuil d'Étourdissement (implicit)
+Possède 2 Emplacements de Charme (implicit)
+--------
++52 de Vie maximale
++31 de Force
++33 de Dextérité
+Lorsque vous Tuez un Monstre Rare, vous gagnez ses Modificateurs pendant 60 secondes
