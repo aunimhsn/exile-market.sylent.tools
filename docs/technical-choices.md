@@ -55,9 +55,15 @@ Rejected: **Astro's i18n routing** (`i18n` in `astro.config.mjs`): its helpers a
 
 Rejected: **Fluent** (the format of the application's translations; owner, 2026-11-06): it serves sentences that change with a value at run time, such as plurals, and the page has only fixed sentences. It would add a dependency and a custom link with Astro, for a check that the typed JSON files already give.
 
+## Home page without JavaScript
+
+The cards of « What it does » show one text at a time, with a script. The two others are `hidden` in the HTML, so that nothing moves when the script starts, and `@media (scripting: none)` shows the three texts when there is no JavaScript. Each card is a button named by the `alt` of its image, and the block of the texts is `aria-live`, so that a screen reader reads the text that appears.
+
+The screens of the cards (`src/assets/screens/<lang>/`) and the still image (`src/assets/video/`) come from the capture of 2026-11-08 and are provisional: they are replaced at the launch (`specs.md`, Content).
+
 ## Download buttons
 
-Confirmed in the specifications on 2026-11-06. Changed by the owner on the wireframe, the same day. The HTML holds both links as two identical buttons, Windows first, so that the download works without JavaScript, and that is the fallback: a browser without JavaScript runs no `else`, so the page must be right before any script. A small script reads the system with `navigator.userAgent`, the only way on a static site, and either fills the button of that system without moving anything, or shows the sentence for macOS and for a phone. Android is tested before Linux and an iPad is told from a Mac by `navigator.maxTouchPoints`. The addresses are `https://github.com/aunimhsn/rust-exile-market/releases/latest/download/<stable name>`, which never change from one version to the next, so that a release needs no change here.
+Confirmed in the specifications on 2026-11-06. Changed by the owner on the wireframe, the same day. The HTML holds both links as two identical buttons, Windows first, so that the download works without JavaScript, and that is the fallback: a browser without JavaScript runs no `else`, so the page must be right before any script. A small script reads the system with `navigator.userAgent`, the only way on a static site, and replaces the buttons by the sentence for macOS or for a phone, kept in a `<template>` so that the text stays in the content files. It is inline, right after the block, so that it runs before the first paint: a bundled script runs later, and a phone would see the buttons appear then leave. Android is tested before Linux and an iPad is told from a Mac by `navigator.maxTouchPoints`. A single setting, `downloadsOpen` in `src/lib/application.ts`, shows « Coming soon » in place of all this until the tag: no script runs then, and turning it on is one line. The addresses are `https://github.com/aunimhsn/rust-exile-market/releases/latest/download/<stable name>`, which never change from one version to the next, so that a release needs no change here.
 
 Read on 2026-11-06 with the identity of each system, on four download pages: the home page of VS Code, Discord and Obsidian show one button for the detected system, and the download page of VS Code shows every system with the detected one highlighted. The last pattern is the one kept: with two systems and one page, the other button costs little and survives a wrong detection. The home page of VS Code offered Linux to an Android phone, hence the order of the tests. These pages show what is done, not what converts: no figure was found.
 
@@ -88,6 +94,7 @@ The stack above is confirmed for this site. The JavaScript libraries, if any, an
 - A list of similar entries (offers, articles, projects) becomes an Astro content collection, one Markdown file per entry, whose front matter is validated by a schema in `src/content.config.ts`: a missing field fails the build instead of publishing a broken page.
 - `src/data/urls.json`: the former addresses and their redirects.
 - `src/lib/application.ts`: the addresses of the application, read by the footer and the download buttons.
+- A space between an expression and an element on the next line is lost at the build: `{text}` then a line break then `<span>` gives « textword » (seen with Astro 7 on the headline, 2026-11-08). Such a space is written `{" "}`.
 - `src/lib/url.ts`: every internal link goes through `href(routes.legal.en)`, which adds the base path of the preview.
 
 ## Addresses check

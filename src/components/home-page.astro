@@ -1,10 +1,17 @@
 ---
 // The home page, in the language of its route (src/pages/index.astro, src/pages/fr/index.astro).
-// Its texts are in src/content/<lang>/home.json.
+// Its texts are in src/content/<lang>/home.json; a text may hold a link or a key, hence set:html,
+// on texts that come only from those files.
+import { Image } from "astro:assets";
+import stillEn from "../assets/video/still-en.jpg";
+import stillFr from "../assets/video/still-fr.jpg";
 import en from "../content/en/home.json";
 import fr from "../content/fr/home.json";
 import SiteLayout from "../layouts/site-layout.astro";
+import { issues } from "../lib/application";
 import type { Lang } from "../lib/i18n";
+import DownloadArea from "./download-area.astro";
+import FeatureDeck from "./feature-deck.astro";
 
 interface Props {
   lang: Lang;
@@ -13,6 +20,12 @@ interface Props {
 const { lang } = Astro.props;
 const pages: Record<Lang, typeof en> = { en, fr };
 const page = pages[lang];
+const still = { en: stillEn, fr: stillFr }[lang];
+
+// The width the image is shown at: --gutter, --first-screen-rest and --video-ceiling of
+// src/styles/tokens.css, written out since an HTML attribute can't read a variable.
+const stillSizes =
+  "min(100vw - 40px, clamp(400px, (100vh - 380px) * 16 / 9, 960px))";
 ---
 
 <SiteLayout
@@ -21,27 +34,310 @@ const page = pages[lang];
   title={page.title}
   description={page.description}
 >
-  <section class="hero" aria-labelledby="hero-title">
+  <div class="grid-zone">
     <div class="wrap">
-      <h1 id="hero-title">{page.heading}</h1>
-      <p class="lead">{page.lead}</p>
+      <section class="hero">
+        <h1>
+          {page.headline.start}{" "}
+          <span class="hero-price">{page.headline.end}</span>
+        </h1>
+        <p class="hero-subtitle">{page.subtitle}</p>
+        <DownloadArea texts={page.download} />
+        <div class="hero-video">
+          <div class="media-frame">
+            <Image
+              class="media-still"
+              src={still}
+              alt={page.still}
+              widths={[640, 960, 1280]}
+              sizes={stillSizes}
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="band is-alt">
+    <div class="wrap">
+      <p class="band-statement">
+        <span>{page.afterDownload[0]}</span>{" "}
+        <span>{page.afterDownload[1]}</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="band is-textured">
+    <div class="wrap">
+      <h2 class="visually-hidden">{page.features.heading}</h2>
+      <FeatureDeck lang={lang} cards={page.features.cards} />
+    </div>
+  </section>
+
+  <section class="band is-alt">
+    <div class="wrap trust-grid">
+      <div>
+        <h2 class="band-heading">{page.computer.heading}</h2>
+        <ul class="trust-list">
+          {page.computer.items.map((item) => (
+            <li set:html={item} />
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2 class="band-heading">{page.questions.heading}</h2>
+        <div class="questions-list">
+          {page.questions.items.map(({ id, question, answers }) => (
+            <div class="question" id={id}>
+              <h3>{question}</h3>
+              <div class:list={{ "risk-text": id === "risk" }}>
+                {answers.map((answer) => (
+                  <p set:html={answer} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <h2 class="visually-hidden">{page.help.heading}</h2>
+      <p class="band-statement is-help">
+        <span>{page.help.question}</span>{" "}
+        <span>
+          <a href={issues}>{page.help.link}</a>
+          {page.help.rest}
+        </span>
+      </p>
     </div>
   </section>
 </SiteLayout>
 
 <style>
   .hero {
-    padding-block: var(--space-16);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--space-3) 0 var(--band-padding);
+    text-align: center;
   }
 
-  h1 {
-    margin: 0;
-    font-size: var(--size-display);
+  .hero-price {
+    color: var(--color-accent);
   }
 
-  .lead {
-    max-width: var(--width-text);
-    margin: var(--space-6) 0 0;
+  .hero-subtitle {
+    max-width: 100%;
+    margin-top: var(--space-2);
     color: var(--color-text-weak);
+    font-family: var(--font-subtitle);
+    font-size: calc(var(--size-subtitle) * var(--subtitle-scale));
+    font-style: var(--subtitle-style);
+    font-weight: var(--subtitle-weight);
+    line-height: 28px;
+    text-shadow: var(--shadow-on-grid);
+    text-wrap: balance;
+  }
+
+  /* The image stays whole: its width follows the height of the window, with a ceiling. */
+  .hero-video {
+    position: relative;
+    width: min(
+      100%,
+      clamp(
+        400px,
+        calc((100svh - var(--first-screen-rest)) * 16 / 9),
+        var(--video-ceiling)
+      )
+    );
+    margin-top: var(--download-rhythm);
+  }
+
+  .media-frame {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    outline: 1px solid var(--color-frame-line);
+    outline-offset: -1px;
+  }
+
+  .media-frame :global(.media-still) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .band {
+    padding-block: var(--band-padding);
+    background: var(--color-background);
+  }
+
+  .band.is-alt {
+    background: var(--color-band);
+  }
+
+  /* The grid of the first screen comes back in the lower half only, faded upwards and at the
+     sides. */
+  .band.is-textured {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .band.is-textured::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-image: var(--grid-image);
+    background-size: var(--grid-step) var(--grid-step);
+    mask-image:
+      linear-gradient(to top, #000000 20%, transparent 50%),
+      linear-gradient(to right, #00000066, #000000 26%, #000000 74%, #00000066);
+    mask-composite: intersect;
+    pointer-events: none;
+  }
+
+  /* The only thing a visitor must not miss after the download, and the help: no title, no steps. */
+  .band-statement {
+    color: var(--color-text);
+    font-family: var(--font-title);
+    font-size: var(--size-display);
+    font-weight: var(--weight-title);
+    letter-spacing: var(--tracking-title);
+    line-height: var(--line-title);
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .band-statement > span {
+    display: block;
+  }
+
+  .band-statement > span + span {
+    color: var(--color-accent);
+  }
+
+  /* The help: the question large and red, the answer small. Its link has no underline: its white
+     and its weight tell it from the text around it. */
+  .band-statement.is-help > span + span {
+    margin-top: var(--space-3);
+    color: var(--color-text-faint);
+    font-family: var(--font-text);
+    font-size: var(--size-subtitle);
+    font-weight: var(--weight-text);
+    letter-spacing: 0;
+    line-height: var(--line-body);
+  }
+
+  .band-statement.is-help > span:first-child {
+    color: var(--color-accent);
+  }
+
+  .is-help a {
+    color: var(--color-text);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .is-help a:hover,
+  .is-help a:focus-visible {
+    color: var(--color-accent);
+  }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .band-heading {
+    margin-bottom: var(--heading-gap);
+  }
+
+  .trust-list {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .trust-list li {
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .questions-list {
+    display: grid;
+    gap: var(--space-8);
+    max-width: var(--width-text);
+  }
+
+  .question {
+    scroll-margin-top: var(--space-4);
+  }
+
+  /* In blood red and larger than the small red links, so that a question reads as a title. */
+  .question h3 {
+    color: var(--color-accent);
+    font-size: var(--size-subtitle);
+    font-weight: 700;
+  }
+
+  .question p {
+    margin-top: var(--space-2);
+  }
+
+  /* A grey line, the grey of the Linux button: the red stays for the questions. */
+  .risk-text {
+    margin-top: var(--space-2);
+    padding-left: var(--space-4);
+    border-left: 2px solid var(--color-button-line);
+  }
+
+  .risk-text p + p {
+    margin-top: var(--space-3);
+  }
+
+  /* Centered like the first screen; on a phone, the titles stay on the left. */
+  @media (width >= 721px) {
+    .band-heading {
+      text-align: center;
+    }
+  }
+
+  /* On a phone, the video comes before the download area, which holds no button. */
+  @media (width <= 720px) {
+    .hero {
+      align-items: stretch;
+      text-align: left;
+    }
+
+    h1 {
+      text-wrap: pretty;
+    }
+
+    .hero-subtitle {
+      max-width: none;
+      text-wrap: pretty;
+    }
+
+    .hero-video {
+      order: 1;
+      width: 100%;
+      margin-top: var(--space-4);
+    }
+
+    .band-statement {
+      text-align: left;
+      text-wrap: pretty;
+    }
+
+    .trust-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

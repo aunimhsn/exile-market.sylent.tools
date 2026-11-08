@@ -1,6 +1,112 @@
 {
-  "title": "Exile Market",
-  "description": "Une phrase qui dit ce que propose le site, à qui, et pourquoi le choisir.",
-  "heading": "Le titre de la page d’accueil",
-  "lead": "Le texte d’introduction, écrit d’après specs.md."
+  "title": "Exile Market : le prix de vos objets dans Path of Exile 2",
+  "description": "Copiez un objet dans Path of Exile 2 et voyez son prix dans une petite fenêtre par-dessus le jeu. Pour Windows et Linux, gratuit et open source.",
+  "headline": {
+    "start": "Un objet. Un raccourci.",
+    "end": "Son prix."
+  },
+  "subtitle": "Copiez un objet dans Path of Exile 2 et voyez son prix dans une petite fenêtre par-dessus le jeu.",
+  "download": {
+    "windows": "Télécharger pour Windows",
+    "linux": "Télécharger pour Linux",
+    "soon": "Bientôt disponible",
+    "macos": "Exile Market n’est pas disponible sur macOS.",
+    "phone": {
+      "before": "Exile Market s’installe sur un ordinateur. Ouvrez",
+      "address": "exile-market.sylent.tools",
+      "after": "sur le vôtre."
+    },
+    "versions": "Toutes les versions et leurs checksums",
+    "risk": "Connaître le risque pour votre compte",
+    "alert": "Pourquoi Windows affiche-t-il une alerte ?"
+  },
+  "still": "La fenêtre d’Exile Market, qui affiche le prix de l’objet en trois monnaies, sous les mots « Son prix ».",
+  "afterDownload": [
+    "N’oubliez pas de mettre le jeu",
+    "en plein écran fenêtré ou en fenêtre."
+  ],
+  "features": {
+    "heading": "Ce qu’il fait",
+    "cards": [
+      {
+        "title": "Copiez un objet",
+        "body": "<kbd>Ctrl + D</kbd>, ou <kbd>Ctrl + C</kbd>.",
+        "alt": "La fenêtre d’Exile Market, qui attend un objet copié avec Ctrl + D"
+      },
+      {
+        "title": "Voyez son prix",
+        "body": "Depuis poe2scout pour les monnaies et les uniques, depuis le site d’échange pour le reste.",
+        "alt": "Le prix d’un anneau unique en trois monnaies"
+      },
+      {
+        "title": "Affinez, lisez les offres",
+        "body": "Ses statistiques et ses filtres, puis les offres, dans une petite fenêtre par-dessus le jeu.",
+        "alt": "Les statistiques d’un arc rare, chacune un filtre à cocher"
+      }
+    ]
+  },
+  "computer": {
+    "heading": "Ce qu’il fait sur votre ordinateur",
+    "items": [
+      "Il surveille le presse-papiers tant qu’il tourne et ne garde que ce qui ressemble à un objet de Path of Exile 2.",
+      "<kbd>Ctrl + D</kbd> envoie au jeu le <kbd>Ctrl + C</kbd> d’une seule copie, une fois par appui. Il ne modifie pas le jeu et ne lit pas sa mémoire.",
+      "Il ne se connecte qu’à poe2scout, au site d’échange et à GitHub. Une recherche sur le site d’échange ne part que lorsque vous cliquez."
+    ]
+  },
+  "questions": {
+    "heading": "Questions",
+    "items": [
+      {
+        "id": "free",
+        "question": "Est-il gratuit ?",
+        "answers": [
+          "Oui, et il ne demande aucun compte. Son code est ouvert, et chaque version est construite en public par GitHub Actions, avec les checksums de chaque fichier."
+        ]
+      },
+      {
+        "id": "windows-alert",
+        "question": "Pourquoi Windows affiche-t-il une alerte ?",
+        "answers": [
+          "Il n’est pas signé pour l’instant : Windows peut afficher une alerte au premier lancement. Si elle propose « Informations complémentaires », choisissez cette option, puis « Exécuter quand même ». Si elle n’affiche que « OK », validez et relancez l’outil."
+        ]
+      },
+      {
+        "id": "risk",
+        "question": "Mon compte risque-t-il quelque chose ?",
+        "answers": [
+          "Exile Market cherche les offres sur le site d’échange officiel, par une interface que Grinding Gear Games ne documente pas. Sa <a href=\"https://www.pathofexile.com/developer/docs\">documentation pour les développeurs</a> indique que reconstituer une telle interface est contraire à ses conditions d’utilisation (section 7i), et ces conditions lui permettent de fermer un compte sans préavis.",
+          "Interrogé sur ce type d’outil, Grinding Gear Games répond qu’il ne peut pas se prononcer sur leur légalité, qu’il n’encourage ni leur création ni leur usage, et qu’il ne peut pas garantir qu’un outil est autorisé ou le restera (son forum, février 2024).",
+          "Dans les faits, de nombreux joueurs utilisent des outils de ce type depuis des années. C’est un constat, pas une autorisation : cela peut changer à tout moment.",
+          "Grinding Gear Games n’encourage ni ne garantit aucun outil tiers : l’utiliser reste à vos risques. Exile Market est gratuit et fourni sans garantie, comme le prévoit sa licence. Dans les limites permises par la loi, Sylent n’est pas responsable de ce qui pourrait arriver à votre compte."
+        ]
+      },
+      {
+        "id": "windowed-fullscreen",
+        "question": "Pourquoi le jeu doit-il être en plein écran fenêtré ?",
+        "answers": [
+          "Le plein écran fenêtré ou une fenêtre conviennent tous les deux. En plein écran exclusif, le jeu ne laisse aucune application copier l’objet ni afficher son prix par-dessus."
+        ]
+      },
+      {
+        "id": "languages",
+        "question": "Quelles langues du jeu sont prises en charge ?",
+        "answers": [
+          "Un client du jeu en anglais ou en français : l’outil ne lit aucune autre langue."
+        ]
+      },
+      {
+        "id": "systems",
+        "question": "Fonctionne-t-il sur macOS ou sur console ?",
+        "answers": [
+          "Non. Il lui faut Windows ou Linux, en 64 bits ; sous Linux, le jeu via Proton, et X11 ou XWayland."
+        ]
+      }
+    ]
+  },
+  "help": {
+    "heading": "Aide",
+    "question": "Un problème ?",
+    "link": "Ouvrez une issue sur GitHub",
+    "rest": ", ou utilisez le bouton « Signaler un bug » de l’application."
+  }
 }

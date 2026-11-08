@@ -1,6 +1,112 @@
 {
-  "title": "Exile Market",
-  "description": "One sentence that says what the site offers, to whom, and why to choose it.",
-  "heading": "The title of the home page",
-  "lead": "The introduction, written from specs.md."
+  "title": "Exile Market: Path of Exile 2 price checker",
+  "description": "Copy an item in Path of Exile 2 and see its price in a small window over the game. For Windows and Linux, free and open source.",
+  "headline": {
+    "start": "One item. One shortcut.",
+    "end": "Its price."
+  },
+  "subtitle": "Copy an item in Path of Exile 2 and see its price in a small window over the game.",
+  "download": {
+    "windows": "Download for Windows",
+    "linux": "Download for Linux",
+    "soon": "Coming soon",
+    "macos": "Exile Market isn’t available on macOS.",
+    "phone": {
+      "before": "Exile Market runs on a computer. Open",
+      "address": "exile-market.sylent.tools",
+      "after": "on yours."
+    },
+    "versions": "All versions and checksums",
+    "risk": "Know the risk for your account",
+    "alert": "Why does Windows show an alert?"
+  },
+  "still": "The window of Exile Market, which shows the price of the item in three currencies, under the words “Its price”.",
+  "afterDownload": [
+    "Do not forget to set the game in",
+    "windowed fullscreen or in a window."
+  ],
+  "features": {
+    "heading": "What it does",
+    "cards": [
+      {
+        "title": "Copy an item",
+        "body": "<kbd>Ctrl + D</kbd>, or <kbd>Ctrl + C</kbd>.",
+        "alt": "The window of Exile Market, waiting for an item copied with Ctrl + D"
+      },
+      {
+        "title": "See its price",
+        "body": "From poe2scout for currencies and uniques, from the trade site for the rest.",
+        "alt": "The price of a unique ring in three currencies"
+      },
+      {
+        "title": "Refine, read the offers",
+        "body": "Its stats and filters, then the offers, in a small window over the game.",
+        "alt": "The stats of a rare bow, each one a filter to tick"
+      }
+    ]
+  },
+  "computer": {
+    "heading": "What it does on your computer",
+    "items": [
+      "It watches the clipboard while it runs and keeps only what looks like a Path of Exile 2 item.",
+      "<kbd>Ctrl + D</kbd> sends the game the <kbd>Ctrl + C</kbd> of one copy, once per press. It doesn’t modify the game nor read its memory.",
+      "It connects only to poe2scout, the trade site and GitHub. A search on the trade site runs only when you click."
+    ]
+  },
+  "questions": {
+    "heading": "Questions",
+    "items": [
+      {
+        "id": "free",
+        "question": "Is it free?",
+        "answers": [
+          "Yes, and it asks for no account. Its code is open, and each release is built in public by GitHub Actions, with the checksums of each file."
+        ]
+      },
+      {
+        "id": "windows-alert",
+        "question": "Why does Windows show an alert?",
+        "answers": [
+          "It isn’t signed for now, so Windows may show a warning at the first launch. If it offers “More info”, choose it, then “Run anyway”. If it only offers OK, confirm and start the tool again."
+        ]
+      },
+      {
+        "id": "risk",
+        "question": "Can my account be at risk?",
+        "answers": [
+          "Exile Market looks up offers on the official trade site through an interface Grinding Gear Games doesn’t document. Their <a href=\"https://www.pathofexile.com/developer/docs\">developer documentation</a> says that working out such an interface goes against their terms of use (section 7i), and those terms allow them to close an account without notice.",
+          "Asked about tools like this one, Grinding Gear Games answers that it can’t comment on their legality, doesn’t encourage creating or using them, and can’t guarantee that a tool is allowed or will remain allowed (its forum, February 2024).",
+          "In practice, many players have used tools of this kind for years. That is an observation, not a permission: it can change at any time.",
+          "Grinding Gear Games doesn’t endorse or guarantee any third-party tool: using it is at your own risk. Exile Market is free and comes with no warranty, as its license states. To the extent the law allows, Sylent isn’t liable for what may happen to your account."
+        ]
+      },
+      {
+        "id": "windowed-fullscreen",
+        "question": "Why must the game run in windowed fullscreen?",
+        "answers": [
+          "Windowed fullscreen or a window both work. In exclusive fullscreen, the game lets no application copy the item or show its price over it."
+        ]
+      },
+      {
+        "id": "languages",
+        "question": "Which languages of the game are supported?",
+        "answers": [
+          "A game client in English or in French: the tool reads no other language."
+        ]
+      },
+      {
+        "id": "systems",
+        "question": "Does it work on macOS or on a console?",
+        "answers": [
+          "No. It needs Windows or Linux, 64 bits; on Linux, the game through Proton, and X11 or XWayland."
+        ]
+      }
+    ]
+  },
+  "help": {
+    "heading": "Help",
+    "question": "A problem?",
+    "link": "Open a GitHub Issue",
+    "rest": ", or use the “Report a bug” button of the application."
+  }
 }
