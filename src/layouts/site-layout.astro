@@ -33,6 +33,40 @@ const { lang, page } = props;
   {page && <BackToTop lang={lang} />}
 </BaseLayout>
 
+<script>
+  // The grid turns red under a mouse, and never when the visitor asked to reduce motion. A zone
+  // reaches above its own box by --grid-overrun (src/styles/global.css), and the red is placed
+  // from the top of what is drawn.
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const zones = [
+    ...document.querySelectorAll<HTMLElement>(".grid-zone, .grid-band"),
+  ].map((element) => ({
+    element,
+    overrun:
+      parseFloat(
+        getComputedStyle(element).getPropertyValue("--grid-overrun"),
+      ) || 0,
+  }));
+
+  document.addEventListener("pointermove", (event) => {
+    if (event.pointerType !== "mouse" || reducedMotion.matches) return;
+    for (const { element, overrun } of zones) {
+      const box = element.getBoundingClientRect();
+      const top = box.top - overrun;
+      const isInside = event.clientY >= top && event.clientY <= box.bottom;
+      element.classList.toggle("is-lit", isInside);
+      if (isInside) {
+        element.style.setProperty("--mx", `${event.clientX - box.left}px`);
+        element.style.setProperty("--my", `${event.clientY - top}px`);
+      }
+    }
+  });
+
+  document.documentElement.addEventListener("mouseleave", () => {
+    for (const { element } of zones) element.classList.remove("is-lit");
+  });
+</script>
+
 <style>
   .skip-link:focus {
     position: fixed;

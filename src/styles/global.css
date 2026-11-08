@@ -131,34 +131,72 @@ a:hover {
   margin-inline: auto;
 }
 
-/* The grid at the top of a page, which runs under the header and fades out towards its middle. */
-.grid-zone {
+/* The grid: grey in ::before, red in ::after, which only shows around the pointer (the script of
+   src/layouts/site-layout.astro sets --mx, --my and .is-lit). */
+.grid-zone,
+.grid-band {
   position: relative;
+  isolation: isolate;
+}
+
+.grid-zone::before,
+.grid-zone::after,
+.grid-band::before,
+.grid-band::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: calc(-1 * var(--grid-overrun, 0px)) 0 0;
+  background-size: var(--grid-step) var(--grid-step);
+  mask-composite: intersect;
+  pointer-events: none;
+}
+
+.grid-zone::before,
+.grid-band::before {
+  background-image: var(--grid-image);
+  mask-image:
+    var(--grid-fade),
+    linear-gradient(to right, #00000066, #000000 26%, #000000 74%, #00000066);
+}
+
+.grid-zone::after,
+.grid-band::after {
+  background-image: var(--grid-image-lit);
+  mask-image:
+    var(--grid-fade),
+    radial-gradient(
+      190px circle at var(--mx, 50%) var(--my, 50%),
+      #000000,
+      transparent
+    );
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.is-lit::after {
+  opacity: 1;
+}
+
+/* At the top of a page: it runs under the header and fades out towards its middle. */
+.grid-zone {
+  --grid-overrun: var(--height-header);
+
   background: radial-gradient(
     60% 44% at 50% 22%,
     var(--grid-veil) 55%,
     transparent
   );
-  isolation: isolate;
-}
-
-.grid-zone::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: calc(-1 * var(--height-header)) 0 0;
-  background-image: var(--grid-image);
-  background-size: var(--grid-step) var(--grid-step);
-  mask-image:
-    var(--grid-fade),
-    linear-gradient(to right, #00000066, #000000 26%, #000000 74%, #00000066);
-  mask-composite: intersect;
-  pointer-events: none;
 }
 
 /* Over a short area, it fades out lower down. */
 .grid-zone.is-short {
   --grid-fade: linear-gradient(to bottom, #000000 50%, transparent);
+}
+
+/* In a band: the lower half only, the mirror of the first screen. */
+.grid-band {
+  --grid-fade: linear-gradient(to top, #000000 20%, transparent 50%);
 }
 
 /* Read by screen readers, hidden on screen. */

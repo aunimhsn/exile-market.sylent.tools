@@ -60,6 +60,30 @@ const stillSizes =
     </div>
   </div>
 
+  <script is:inline>
+    // The large sentences come in once, when 60 % of each is on the screen. Inline and placed before
+    // them, so that they leave their place before the first paint and no failed download can keep
+    // them out of the screen. Without JavaScript or with reduced motion, they never move.
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.classList.add("statements-wait");
+      document.addEventListener("DOMContentLoaded", () => {
+        const watch = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add("is-in");
+              watch.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.6 },
+        );
+        document
+          .querySelectorAll(".band-statement")
+          .forEach((statement) => watch.observe(statement));
+      });
+    }
+  </script>
+
   <section class="band is-alt">
     <div class="wrap">
       <p class="band-statement">
@@ -69,7 +93,7 @@ const stillSizes =
     </div>
   </section>
 
-  <section class="band is-textured">
+  <section class="band grid-band">
     <div class="wrap">
       <h2 class="visually-hidden">{page.features.heading}</h2>
       <FeatureDeck lang={lang} cards={page.features.cards} />
@@ -181,27 +205,6 @@ const stillSizes =
     background: var(--color-band);
   }
 
-  /* The grid of the first screen comes back in the lower half only, faded upwards and at the
-     sides. */
-  .band.is-textured {
-    position: relative;
-    isolation: isolate;
-  }
-
-  .band.is-textured::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    background-image: var(--grid-image);
-    background-size: var(--grid-step) var(--grid-step);
-    mask-image:
-      linear-gradient(to top, #000000 20%, transparent 50%),
-      linear-gradient(to right, #00000066, #000000 26%, #000000 74%, #00000066);
-    mask-composite: intersect;
-    pointer-events: none;
-  }
-
   /* The only thing a visitor must not miss after the download, and the help: no title, no steps. */
   .band-statement {
     color: var(--color-text);
@@ -216,10 +219,24 @@ const stillSizes =
 
   .band-statement > span {
     display: block;
+    transition: transform 1.2s var(--ease-draw);
   }
 
   .band-statement > span + span {
     color: var(--color-accent);
+    transition-delay: 0.12s;
+  }
+
+  /* Out of the screen until they come in: main clips them. Never on paper, where a sentence not
+     seen yet would be missing. */
+  @media screen {
+    :global(.statements-wait) .band-statement:not(.is-in) > span {
+      transform: translateX(100vw);
+    }
+
+    :global(.statements-wait) .band-statement:not(.is-in) > span + span {
+      transform: translateX(-100vw);
+    }
   }
 
   /* The help: the question large and red, the answer small. Its link has no underline: its white

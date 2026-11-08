@@ -84,6 +84,9 @@
   --grid-image:
     linear-gradient(#ffffff0d 1px, transparent 1px),
     linear-gradient(90deg, #ffffff0d 1px, transparent 1px);
+  --grid-image-lit:
+    linear-gradient(var(--color-accent-deep) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-accent-deep) 1px, transparent 1px);
   --grid-step: 32px;
   --grid-veil: #0a0a0af0;
 

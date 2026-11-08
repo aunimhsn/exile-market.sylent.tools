@@ -122,6 +122,11 @@ The stack above is confirmed for this site. The JavaScript libraries, if any, an
 - **The capture** (`docs/mockups/video/capture/`): the application runs in a virtual KWin session and receives the item through its clipboard. It needs the release binary of the application in `target/release/` next to the scripts, and writes to `out-deck/`. The session has its own `XDG_RUNTIME_DIR`: otherwise a portal started on its private bus takes over the document portal of the desktop.
 - **To do before the launch**: run the capture again, then `node docs/mockups/video/render.mjs hot-a2 en` and `fr`, so that the prices and the league are current.
 
+## Light motion
+
+- **The red of the grid** is a `::after` of the grid, next to its grey `::before` (`src/styles/global.css`), so that the pages hold no extra element and the first screen, the band « What it does », the legal notice and the not-found page share one rule. The script is in `src/layouts/site-layout.astro`, since every page with a grid goes through it. A mouse only, never with reduced motion.
+- **The entrance of the large sentences** is an inline script placed before them in `src/components/home-page.astro`, for the reason of the download buttons: a bundled script runs later, and a sentence already on the screen would jump. Being inline, it also can't fail to download while the sentences wait out of the screen, and the class that moves them is set by that same script: without JavaScript, or with reduced motion, they never leave their place. On paper too.
+
 ## Burst of shards
 
 Three.js (`InstancedMesh`, 420 shards, 110 on a phone), behind the first screen only: it stops once out of sight, freezes on a still image if the machine can't follow, and stays still when the visitor asked to reduce motion. The mock-up loads Three.js from a CDN; the build takes it from npm, so that the site depends on no third party at run time.
