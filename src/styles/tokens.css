@@ -1,41 +1,100 @@
 /* The design tokens: the named values of the visual design, written once here and used by every
    component (`color: var(--color-accent)`), so that changing a color or a size means changing one
-   line. These are neutral starting values: the mock-up replaces them, and docs/branding.md
-   records each one with its reason. The breakpoints can't be variables, since a media query
-   doesn't read them: they are listed in docs/branding.md (Layout). */
+   line. They come from the :root of the mock-up, and docs/branding.md records each one with its
+   reason. The breakpoints can't be variables, since a media query doesn't read them: they are
+   listed in docs/branding.md (Layout). */
 :root {
-  /* Colors: contrast checked against WCAG AA in docs/branding.md. */
-  --color-background: #ffffff;
-  --color-surface: #f4f4f5;
-  --color-border: #d4d4d8;
-  --color-text: #18181b;
-  --color-text-weak: #52525b;
-  --color-accent: #1d4ed8;
-  --color-focus: #1d4ed8;
-
   /* Spacing: --space-N = N × 4 px. */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
   --space-4: 16px;
+  --space-5: 20px;
   --space-6: 24px;
   --space-8: 32px;
+  --space-10: 40px;
   --space-12: 48px;
   --space-16: 64px;
+  --space-20: 80px;
 
-  /* Typography: one size per role rather than a scale. */
-  --font-text: system-ui, sans-serif;
-  --font-title: system-ui, sans-serif;
-  --size-display: clamp(36px, 8vw, 64px);
-  --size-title: 28px;
-  --size-body: 17px;
+  /* Type: one size per role. --font-manrope and --font-cormorant come from the fonts of
+     astro.config.mjs. */
+  --font-text: var(--font-manrope);
+  --font-title: var(--font-manrope);
+  --font-subtitle: var(--font-cormorant);
+  --subtitle-style: italic;
+  --subtitle-weight: 500;
+  --subtitle-scale: 1.26;
+  --weight-text: 400;
+  --weight-title: 800;
+  --tracking-title: -0.045em;
+  --tracking-button: 0.01em;
+  --size-display: clamp(34px, 3.8vw, 54px);
+  --size-title: clamp(26px, 2.6vw, 38px);
+  --size-subtitle: 19px;
+  --size-brand: 17px;
+  --size-body: 16px;
   --size-label: 14px;
-  --line-body: 1.6;
+  --line-body: 1.55;
   --line-title: 1.15;
 
+  /* Colors: neutral blacks and white; red only on what follows the pointer and on a few links.
+     Contrast checked against WCAG AA in docs/branding.md. */
+  --color-background: #0a0a0a;
+  --color-band: #0d0d0d;
+  --color-surface: #1a1a1a;
+  --color-border: #262626;
+  --color-text: #ffffff;
+  --color-text-weak: #a3a3a3;
+
+  /* Text around a link without an underline: 3.7:1 against the white link, 5.3:1 against the
+     background. */
+  --color-text-faint: #858585;
+  --color-link-line: #858585;
+  --color-focus: #ffffff;
+  --color-frame-line: #ffffff17;
+  --color-button-line: #404040;
+  --color-card: #ffffff09;
+  --color-card-line: #ffffff17;
+  --color-accent-deep: #a80f18;
+  --color-accent: #e5383b;
+  --video-neutral: #161616;
+
+  /* The line that draws itself around a download button: it starts fast and slows down. */
+  --draw-in: 0.7s cubic-bezier(0.215, 0.61, 0.355, 1);
+  --draw-out: 0.25s ease-out;
+
   /* Layout and shapes. */
-  --width-content: 1100px;
+  --width-content: 1120px;
   --width-text: 68ch;
-  --gutter: var(--space-4);
-  --radius: 8px;
+  --height-header: 56px;
+  --size-top-button: 48px;
+  --gutter: var(--space-5);
+  --card-padding: var(--space-6);
+  --band-padding: var(--space-20);
+  --heading-gap: var(--space-8);
+
+  /* The same gap above and below the links of the download area. */
+  --download-rhythm: var(--space-3);
+  --radius-small: 2px;
+  --grid-image:
+    linear-gradient(#ffffff0d 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff0d 1px, transparent 1px);
+
+  /* The grid of the first screen holds the upper half and fades out towards it. */
+  --grid-fade: linear-gradient(to bottom, #000000 20%, transparent 50%);
+
+  /* What the first screen holds besides the video, and the title of the next block. */
+  --first-screen-rest: 380px;
+  --video-ceiling: 960px;
+}
+
+@media (width <= 720px) {
+  :root {
+    --size-display: clamp(30px, 8.8vw, 37px);
+    --size-title: 25px;
+    --size-subtitle: 17px;
+    --band-padding: var(--space-12);
+    --card-padding: var(--space-4);
+  }
 }

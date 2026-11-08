@@ -7,12 +7,12 @@
   },
   "languageName": "English",
   "skipLink": "Skip to content",
-  "nav": {
-    "label": "Main navigation",
-    "home": "Home"
-  },
   "footer": {
     "legal": "Legal notice",
-    "copyright": "© {year} Exile Market"
-  }
+    "sourceCode": "Source code",
+    "license": "License GPL-3.0-or-later",
+    "disclaimer": "This product isn’t affiliated with or endorsed by Grinding Gear Games in any way.",
+    "author": "by Sylent"
+  },
+  "backToTop": "Back to top"
 }

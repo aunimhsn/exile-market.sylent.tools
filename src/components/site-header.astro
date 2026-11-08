@@ -1,11 +1,12 @@
 ---
-// The header of every page: the logo, which leads to the home page, the main navigation, whose
-// links are listed in src/i18n/<lang>.json, and the link to the same page in the other language,
-// without any automatic redirect. The not-found page holds both languages and has no such link.
-// The link of the current page is marked with aria-current.
-import logo from "../assets/brand/logo.svg?raw";
+// The header of every page: the emblem and the name, which lead to the home page, and the flag of
+// the other language, which links to the same page in that language, without any automatic
+// redirect. The not-found page holds both languages and has no such link.
+import emblem from "../assets/brand/emblem.svg?raw";
+import flagEn from "../assets/flags/en.svg?raw";
+import flagFr from "../assets/flags/fr.svg?raw";
 import { type Lang, otherLang, type PageId, routes, ui } from "../lib/i18n";
-import { currentOf, href } from "../lib/url";
+import { href } from "../lib/url";
 
 interface Props {
   lang: Lang;
@@ -13,70 +14,87 @@ interface Props {
 }
 
 const { lang, page } = Astro.props;
-const texts = ui(lang);
 const other = otherLang(lang);
-const links = [{ path: routes.home[lang], label: texts.nav.home }];
-const current = Astro.url.pathname;
+const otherName = ui(other).languageName;
+// Drawn in SVG: an emoji flag shows as two letters on Windows.
+const flags: Record<Lang, string> = { en: flagEn, fr: flagFr };
 ---
 
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href={href(routes.home[lang])} aria-label={texts.site.name}>
-      <Fragment set:html={logo} />
+    <a class="site-brand" href={href(routes.home[lang])}>
+      <span aria-hidden="true">
+        <Fragment set:html={emblem} />
+      </span>
+      <span class="site-brand-text">{ui(lang).site.name}</span>
     </a>
-    <nav aria-label={texts.nav.label}>
-      <ul>
-        {links.map(({ path, label }) => (
-          <li>
-            <a href={href(path)} aria-current={currentOf(path, current)}>
-              {label}
-            </a>
-          </li>
-        ))}
-        {page && (
-          <li>
-            <a href={href(routes[page][other])} hreflang={other} lang={other}>
-              {ui(other).languageName}
-            </a>
-          </li>
-        )}
-      </ul>
-    </nav>
+    {page && (
+      <a
+        href={href(routes[page][other])}
+        hreflang={other}
+        class="site-language"
+        lang={other}
+        aria-label={otherName}
+        title={otherName}
+      >
+        <Fragment set:html={flags[other]} />
+      </a>
+    )}
   </div>
 </header>
 
 <style>
+  .site-header {
+    position: relative;
+    z-index: 1;
+  }
+
   .wrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--space-4);
-    padding-block: var(--space-4);
+    height: var(--height-header);
   }
 
-  .logo {
+  .site-brand :global(svg) {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* Under the pointer, the name grows a little instead of turning red, and the emblem doesn't
+     move. */
+  .site-brand:hover,
+  .site-brand:focus-visible {
     color: var(--color-text);
   }
 
-  .logo :global(svg) {
-    width: auto;
-    height: 32px;
+  .site-brand-text {
+    display: inline-block;
+    transform-origin: left center;
+    transition: transform 0.2s;
   }
 
-  ul {
-    display: flex;
-    gap: var(--space-4);
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  .site-brand:hover .site-brand-text,
+  .site-brand:focus-visible .site-brand-text {
+    transform: scale(1.06);
   }
 
-  nav a {
-    color: var(--color-text);
-    text-decoration: none;
+  .site-language {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -8px;
   }
 
-  nav a[aria-current] {
-    text-decoration: underline;
+  .site-language :global(svg) {
+    width: 28px;
+    height: 19px;
+    box-shadow: 0 0 0 1px #ffffff33;
+    transition: transform 0.15s;
+  }
+
+  .site-language:hover :global(svg) {
+    transform: scale(1.1);
   }
 </style>

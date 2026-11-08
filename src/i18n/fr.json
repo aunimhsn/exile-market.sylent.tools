@@ -7,12 +7,12 @@
   },
   "languageName": "Français",
   "skipLink": "Aller au contenu",
-  "nav": {
-    "label": "Navigation principale",
-    "home": "Accueil"
-  },
   "footer": {
     "legal": "Mentions légales",
-    "copyright": "© {year} Exile Market"
-  }
+    "sourceCode": "Code source",
+    "license": "Licence GPL-3.0-or-later",
+    "disclaimer": "Ce produit n’est ni affilié à Grinding Gear Games ni approuvé par ce studio, de quelque manière que ce soit.",
+    "author": "par Sylent"
+  },
+  "backToTop": "Revenir en haut"
 }

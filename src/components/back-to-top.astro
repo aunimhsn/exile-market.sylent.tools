@@ -1,0 +1,80 @@
+---
+// The button that goes back to the top of a long page, shown once the visitor has scrolled. It
+// needs JavaScript to do anything, so it stays hidden without it.
+import { type Lang, ui } from "../lib/i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<button class="site-top" type="button" aria-label={ui(lang).backToTop}>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+    aria-hidden="true"
+  >
+    <path d="m4 10 4-4 4 4"></path>
+  </svg>
+</button>
+
+<style>
+  .site-top {
+    position: fixed;
+    z-index: 5;
+    right: var(--space-5);
+    bottom: var(--space-5);
+    display: none;
+    place-items: center;
+    width: var(--size-top-button);
+    height: var(--size-top-button);
+    padding: 0;
+    border: 1px solid var(--color-button-line);
+    background: #0a0a0ab3;
+    color: var(--color-text);
+    cursor: pointer;
+    opacity: 0.6;
+    transition:
+      opacity 0.2s,
+      border-color 0.2s,
+      background-color 0.2s;
+  }
+
+  .site-top:hover,
+  .site-top:focus-visible {
+    border-color: var(--color-text);
+    background: #0a0a0af2;
+    opacity: 1;
+  }
+
+  .site-top.is-shown {
+    display: grid;
+  }
+</style>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>(".site-top");
+  const SHOWN_FROM = 600;
+
+  const update = () => {
+    button?.classList.toggle("is-shown", window.scrollY > SHOWN_FROM);
+  };
+
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+
+  button?.addEventListener("click", () => {
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: still ? "auto" : "smooth" });
+    // The button disappears at the top: the keyboard focus goes to the name in the header.
+    document
+      .querySelector<HTMLElement>(".site-header .site-brand")
+      ?.focus({ preventScroll: true });
+  });
+</script>

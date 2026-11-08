@@ -8,10 +8,10 @@ What the owner provides (process.md, Specifications), where it is kept, and what
 
 | Asset | Format | File | Status |
 |---|---|---|---|
-| Emblem and icon, in bronze | SVG | `../rust-exile-market/assets/logo/emblem.svg`, `icon.svg`, copied to `src/assets/brand/` at step 4a | Given, the placeholders still in place |
+| Emblem, in white, and icon, in bronze | SVG | `src/assets/brand/emblem.svg`, `icon.svg`, copied from `../rust-exile-market/assets/logo/` | In place |
 | Full logo | PNG | `../rust-exile-market/assets/logo/exile-market.png` | Given |
-| Favicon (SVG, ICO 16/32/48 px) and iPhone icon (180 px) | Made from the icon | `public/` | Made by the script at step 4a |
-| Preview card of the links (1200 × 630 px) | HTML drawn to PNG, converted to JPEG by the build | `src/assets/brand/social-card.html` | Placeholder until step 4a |
+| Favicon (SVG, ICO 16/32/48 px) and iPhone icon (180 px) | Made from the icon | `public/` | Made by the script |
+| Preview card of the links (1200 × 630 px) | HTML drawn to PNG, converted to JPEG by the build | `src/assets/brand/social-card.html` | In place |
 | Colors | Tokens of the application | `../rust-exile-market/specs.md`, Visual style | Reference for one of the two styles of the mock-up |
 | Font | Manrope, SIL Open Font License, self-hosting allowed | `../rust-exile-market/assets/fonts/` | Given |
 | Video and screenshots | Silent video, images | `docs/mockups/video/`, renders in `outputs/` | The video is made, to capture again just before the launch; the screenshots of the application are asked of the owner at the launch |
@@ -25,11 +25,15 @@ Style H, chosen by the owner on 2026-11-06: the fonts and the grid of a dark, sh
 
 In the header, the emblem in white, 26 px, next to the name in capitals; under the pointer or the keyboard focus, the name alone grows a little (+6 %) and doesn't turn red (owner, 2026-11-08). In the footer, the name alone in capitals, at the size of the header, at the bottom right, clear of the back-to-top button (owner, 2026-11-07). On its own line under it, right-aligned, « by Sylent » (« par Sylent ») in `--color-text-weak`, 14 px, the whole phrase a link to sylent.art, white under the pointer or the keyboard focus (owner, 2026-11-08): the author is named without a second brand beside the product.
 
+## Icon and preview card
+
+The icon of the browser tab is the bronze of the application, the only bronze of the site: a player finds the same icon in the taskbar after the download (owner, 2026-11-08). The preview card of the links is one image for both languages: the white emblem, the name in capitals and the address on the black of the page, over the grid of the first screen; no sentence, since the description next to it is translated (owner, 2026-11-08).
+
 ## Colors
 
 <!-- One line per token: name, value, use, contrast checked against WCAG AA. -->
 
-The values below are in the `:root` of the mock-up (`docs/mockups/home-page.html`), which becomes `src/styles/tokens.css`. The contrast is computed against WCAG AA.
+The values below are in `src/styles/tokens.css`, taken from the `:root` of the mock-up (`docs/mockups/home-page.html`). The contrast is computed against WCAG AA.
 
 | Token | Value | Use |
 |---|---|---|
@@ -123,6 +127,7 @@ French addresses the visitor with « vous », like the application. Short, factu
 
 <!-- The options compared and not kept, with the reason, so that they are not proposed again. -->
 
+- A preview card per language with the headline on it, and the white emblem as the icon of the browser tab (2026-11-08): see Icon and preview card.
 - The other videos, compared with the friends of the owner: The gesture, The corridor, The big bang, The blood, and the first version of The deck, whose words didn't match the images (« One item » over a price, « One shortcut » over an empty window). Removed on 2026-11-08. The guided tour is kept, in case (`docs/mockups/video/normal-b.js`, its renders in `outputs/`), not used on the page.
 - Bodoni Moda italic as the second font, and the second font on all the text: Cormorant Garamond on the subtitle alone was kept (2026-11-08).
 - A pause button for the burst of shards: the owner sees no place for it and doesn't want it (2026-11-08). The burst stays still when the visitor asked to reduce motion.

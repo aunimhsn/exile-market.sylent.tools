@@ -2,6 +2,12 @@
 
 The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is merged, the most recent first. `roadmap.md` keeps one line per step done.
 
+## 3. Mock-up
+
+Pull requests: [#8](https://github.com/aunimhsn/exile-market.sylent.tools/pull/8), [#9](https://github.com/aunimhsn/exile-market.sylent.tools/pull/9).
+
+The home page, the legal notice and the not-found page in the chosen style, the video of the first screen; checked on the owner's phone; decisions in `docs/branding.md`, tokens in the `:root` of the mock-up. Tools: mock-up, design system.
+
 ## 2. Wireframe
 
 Pull request: [#7](https://github.com/aunimhsn/exile-market.sylent.tools/pull/7).

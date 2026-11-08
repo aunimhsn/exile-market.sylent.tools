@@ -9,10 +9,11 @@
 }
 
 html {
-  color-scheme: light;
+  color-scheme: dark;
   background: var(--color-background);
   color: var(--color-text);
-  font: var(--size-body) / var(--line-body) var(--font-text);
+  font: var(--weight-text) var(--size-body) / var(--line-body) var(--font-text);
+  -webkit-font-smoothing: antialiased;
   text-size-adjust: 100%;
 }
 
@@ -36,20 +37,87 @@ svg {
 }
 
 h1,
-h2,
-h3 {
+h2 {
+  margin: 0;
+  color: var(--color-text);
   font-family: var(--font-title);
+  font-weight: var(--weight-title);
+  letter-spacing: var(--tracking-title);
   line-height: var(--line-title);
+}
+
+h1 {
+  font-size: var(--size-display);
+  text-shadow: 0 2px 18px #000000;
   text-wrap: balance;
 }
 
+h2 {
+  font-size: var(--size-title);
+  text-transform: uppercase;
+}
+
+h3 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--size-body);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+p {
+  margin: 0;
+}
+
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+kbd {
+  padding: 1px 5px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-surface);
+  font: 600 0.84em / 1 var(--font-text);
+  white-space: nowrap;
+}
+
+code {
+  font: 700 1em var(--font-text);
+}
+
 a {
+  color: var(--color-text);
+  text-decoration-color: var(--color-link-line);
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+a:hover {
   color: var(--color-accent);
+  text-decoration-color: currentcolor;
 }
 
 :focus-visible {
   outline: 2px solid var(--color-focus);
-  outline-offset: 2px;
+  outline-offset: 3px;
+}
+
+/* The name of the product, in the header and in the footer. */
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text);
+  font-family: var(--font-title);
+  font-size: var(--size-brand);
+  font-weight: var(--weight-title);
+  letter-spacing: var(--tracking-title);
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 /* The width of the content, with the side margins of a phone. */

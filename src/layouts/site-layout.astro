@@ -2,6 +2,7 @@
 // The frame of every page: a link to skip to the content, the header, the content in main and the
 // footer. main clips what runs past the sides of the screen (src/styles/global.css): anything
 // that may, as a large faded word, goes inside it.
+import BackToTop from "../components/back-to-top.astro";
 import SiteFooter from "../components/site-footer.astro";
 import SiteHeader from "../components/site-header.astro";
 import { type Lang, type PageId, ui } from "../lib/i18n";
@@ -28,7 +29,8 @@ const { lang, page } = props;
   <main id="content" tabindex="-1">
     <slot />
   </main>
-  <SiteFooter lang={lang} />
+  <SiteFooter lang={lang} page={page} />
+  {page && <BackToTop lang={lang} />}
 </BaseLayout>
 
 <style>
