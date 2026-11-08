@@ -28,7 +28,7 @@ Read only by the steps that need them:
 - [x] **0b. Languages** ([#5](https://github.com/aunimhsn/exile-market.sylent.tools/pull/5)).
 - [x] **1. Specifications** ([#6](https://github.com/aunimhsn/exile-market.sylent.tools/pull/6)).
 - [x] **2. Wireframe** ([#7](https://github.com/aunimhsn/exile-market.sylent.tools/pull/7)).
-- [x] **3. Mock-up**: the home page, the legal notice and the not-found page in the chosen style, the video of the first screen; checked on the owner's phone; decisions in `docs/branding.md`, tokens in the `:root` of the mock-up. Tools: mock-up, design system.
+- [x] **3. Mock-up** ([#8](https://github.com/aunimhsn/exile-market.sylent.tools/pull/8), [#9](https://github.com/aunimhsn/exile-market.sylent.tools/pull/9)).
 - [ ] **4a. Skeleton and deployment**: the tokens and fonts of the mock-up in `src/styles/` (its `:root` becomes `tokens.css`, the components its CSS), the brand assets (`npm run brand:images`), the header and footer, the deployment to the `github.io` preview. Tools: build, code review.
 - [ ] **4b. The page**: the home page, the legal notice and the not-found page in both languages, the download buttons by system. Tools: build, code review.
 - [ ] **5. Launch**: the video and the screenshots asked of the owner with their exact list, the site checked on the preview, the DNS switched by the owner, the custom domain and HTTPS, the placeholder deleted at Cloudflare; once the tag is out, the download buttons turned on. Tool: launch.
