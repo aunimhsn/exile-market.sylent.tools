@@ -1,0 +1,16 @@
+Item Class: Belts
+Rarity: Unique
+Headhunter
+Heavy Belt
+--------
+Requires: Level 40
+--------
+Item Level: 82
+--------
+25% increased Stun Threshold (implicit)
+Has 2 Charm Slots (implicit)
+--------
++52 to maximum Life
++31 to Strength
++33 to Dexterity
+When you kill a Rare monster, you gain its Modifiers for 60 seconds

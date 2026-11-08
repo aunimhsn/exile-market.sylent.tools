@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exile Market: video variants</title>
+<!--
+  The six video variants, side by side, played at the size they would have on the page.
+  Rendered from docs/mockups/video/ by render.mjs, with the real captures of the application, to
+  outputs/2026-11-06-video/renders/ (ignored by Git until a variant is chosen).
+-->
+<style>
+  :root { --bg: #0a0a0a; --line: #262626; --text: #fff; --weak: #a3a3a3; --red: #e5383b; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.5 system-ui, sans-serif; }
+  header { position: sticky; top: 0; z-index: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; padding: 10px 16px; background: #141414; border-bottom: 1px solid var(--line); }
+  header h1 { margin: 0 12px 0 0; font-size: 16px; }
+  .group { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+  .group > span { margin-right: 4px; color: var(--weak); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; }
+  button { padding: 3px 9px; border: 1px solid #3a3a3a; border-radius: 4px; background: #1d1d1d; color: #e5e5e5; font: inherit; font-size: 13px; cursor: pointer; }
+  button[aria-pressed="true"] { border-color: #fff; background: #fff; color: #0a0a0a; }
+  main { display: grid; gap: 40px; padding: 24px 16px 64px; }
+  .level h2 { margin: 0 0 12px; font-size: 13px; color: var(--weak); letter-spacing: .08em; text-transform: uppercase; }
+  .row { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+  .card { width: var(--video-width); max-width: 100%; }
+  video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; outline: 1px solid var(--line); }
+  .card h3 { margin: 10px 0 2px; font-size: 16px; }
+  .card p { margin: 0; color: var(--weak); font-size: 14px; }
+  .facts { margin-top: 4px; color: var(--weak); font: 12px ui-monospace, monospace; }
+  .card a { color: var(--red); font-size: 13px; font-weight: 600; text-decoration: none; }
+  .card a:hover { color: #fff; }
+  .is-over { color: var(--red); }
+  .assets { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .assets a { color: var(--weak); font-size: 12px; text-decoration: none; }
+  .assets a:hover { color: #fff; }
+  .assets img, .assets video { display: block; width: 100%; height: auto; aspect-ratio: 840 / 1440; object-fit: cover; object-position: top; margin-bottom: 4px; outline: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Video variants</h1>
+  <div class="group" id="lang"><span>Language</span></div>
+  <div class="group" id="size"><span>Size</span></div>
+  <div class="group" id="play"><span>Play</span><button type="button" id="restart">All from the start</button></div>
+</header>
+<main id="list"></main>
+<script>
+  const VIDEOS = [
+    ["Normal", [
+      ["normal-b", "The guided tour (kept, in case)", "The window in a calm 3D space, turning from one screen to the next: price, offers, filters, settings."],
+    ]],
+    ["Hotter", [
+      ["hot-a2", "The deck", "One item: a real unique, slow enough to read. One shortcut: Ctrl + D. Its price: the card turns over. Then the fan and the name."],
+    ]],
+  ];
+  // The collection of assets, captured from the real application.
+  const STILLS = ["s-empty", "s-unique", "s-unique2", "s-currency", "s-rare", "s-offers", "s-tooltip", "s-list", "s-list2", "s-filters", "s-filters2", "s-league", "s-settings"];
+  const CLIPS = ["copy", "search", "offers", "filters", "league", "settings"];
+  const SIZES = { laptop: ["Laptop, 492 px", "492px"], phone: ["Phone, 350 px", "350px"], large: ["Large, 960 px", "960px"], half: ["Compare, 620 px", "620px"] };
+  const state = { lang: "fr", size: "half" };
+  const url = (name, ext) => `../../outputs/2026-11-06-video/renders/${name}-${state.lang}.${ext}`;
+  function tabs(id, options, key) {
+    const box = document.getElementById(id);
+    box.querySelectorAll("button").forEach(button => button.remove());
+    for (const [value, label] of Object.entries(options)) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = Array.isArray(label) ? label[0] : label;
+      button.setAttribute("aria-pressed", state[key] === value);
+      button.addEventListener("click", () => {
+        state[key] = value;
+        render();
+      });
+      box.append(button);
+    }
+  }
+  function render() {
+    tabs("lang", { fr: "Français", en: "English" }, "lang");
+    tabs("size", SIZES, "size");
+    document.documentElement.style.setProperty("--video-width", SIZES[state.size][1]);
+    document.getElementById("list").innerHTML = VIDEOS.map(([level, items]) => `<section class="level"><h2>${level}</h2><div class="row">${items.map(([name, title, text]) => `
+      <article class="card">
+        <video poster="${url(name, "jpg")}" autoplay muted loop playsinline controls data-name="${name}"><source src="${url(name, "webm")}" type="video/webm"><source src="${url(name, "mp4")}" type="video/mp4"></video>
+        <h3>${title}</h3>
+        <p>${text}</p>
+        <div class="facts" id="facts-${name}"></div>
+        <a href="home-page.html?video=${name}&lang=${state.lang}">See it on the page</a>
+      </article>`).join("")}</div></section>`).join("") + `
+      <section class="level"><h2>Assets: the screens</h2><div class="assets">${STILLS.map(name => {
+        const file = `../../outputs/2026-11-06-video/assets/${state.lang}/${name}.png`;
+        return `<a href="${file}" target="_blank"><img src="${file}" alt="" loading="lazy">${name}</a>`;
+      }).join("")}</div></section>
+      <section class="level"><h2>Assets: the recordings</h2><div class="assets">${CLIPS.map(name => `<a href="../../outputs/2026-11-06-video/assets/${state.lang}/r-${name}.mp4" target="_blank"><video src="../../outputs/2026-11-06-video/assets/${state.lang}/r-${name}.mp4" muted loop autoplay playsinline></video>${name}</a>`).join("")}</div></section>`;
+    document.querySelectorAll("video[data-name]").forEach(async video => {
+      const box = document.getElementById(`facts-${video.dataset.name}`);
+      video.addEventListener("loadedmetadata", () => { box.dataset.seconds = video.duration.toFixed(1); fill(box); });
+      const answer = await fetch(url(video.dataset.name, "mp4"), { method: "HEAD" });
+      box.dataset.size = answer.ok ? (Number(answer.headers.get("content-length")) / 1e6).toFixed(2) : "";
+      fill(box);
+    });
+  }
+  function fill(box) {
+    const over = Number(box.dataset.size) > 3;
+    box.innerHTML = box.dataset.size ? `${box.dataset.seconds ?? "…"} s · <span class="${over ? "is-over" : ""}">${box.dataset.size} MB</span>` : "Not rendered yet";
+  }
+  document.getElementById("restart").addEventListener("click", () => document.querySelectorAll("video").forEach(video => { video.currentTime = 0; video.play(); }));
+  render();
+</script>
+</body>
+</html>
