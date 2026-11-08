@@ -33,6 +33,66 @@ const { lang, page } = props;
   {page && <BackToTop lang={lang} />}
 </BaseLayout>
 
+<script>
+  // The grid turns red under a mouse, and never when the visitor asked to reduce motion. A zone
+  // reaches above its own box by --grid-overrun (src/styles/global.css), and the red is placed
+  // from the top of what is drawn.
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const zones = [
+    ...document.querySelectorAll<HTMLElement>(".grid-zone, .grid-band"),
+  ].map((element) => ({
+    element,
+    overrun:
+      parseFloat(
+        getComputedStyle(element).getPropertyValue("--grid-overrun"),
+      ) || 0,
+  }));
+
+  // The last place of the mouse, so that the red also follows the page when it scrolls under a
+  // still mouse. At most one update per frame, and none without a mouse.
+  let mouse: { x: number; y: number } | null = null;
+  let frame = 0;
+
+  const light = () => {
+    frame = 0;
+    if (!mouse) return;
+    for (const { element, overrun } of zones) {
+      const box = element.getBoundingClientRect();
+      const top = box.top - overrun;
+      const isInside = mouse.y >= top && mouse.y <= box.bottom;
+      element.classList.toggle("is-lit", isInside);
+      if (isInside) {
+        element.style.setProperty("--mx", `${mouse.x - box.left}px`);
+        element.style.setProperty("--my", `${mouse.y - top}px`);
+      }
+    }
+  };
+
+  const schedule = () => {
+    if (mouse && !frame) frame = requestAnimationFrame(light);
+  };
+
+  const forget = () => {
+    mouse = null;
+    for (const { element } of zones) element.classList.remove("is-lit");
+  };
+
+  // A finger or a pen drops the mouse: the red would stay lit while it scrolls the page.
+  const follow = (event: PointerEvent) => {
+    if (event.pointerType !== "mouse" || reducedMotion.matches) {
+      forget();
+      return;
+    }
+    mouse = { x: event.clientX, y: event.clientY };
+    schedule();
+  };
+
+  document.addEventListener("pointermove", follow);
+  document.addEventListener("pointerdown", follow);
+  window.addEventListener("scroll", schedule, { passive: true });
+  document.documentElement.addEventListener("mouseleave", forget);
+</script>
+
 <style>
   .skip-link:focus {
     position: fixed;
