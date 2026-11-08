@@ -65,6 +65,10 @@
   --draw-in: 0.7s var(--ease-draw);
   --draw-out: 0.25s ease-out;
 
+  /* The large sentences: the time they take to come in, and the gap between their two lines. */
+  --entrance-time: 1.2s;
+  --entrance-gap: 0.12s;
+
   /* Layout and shapes. */
   --width-content: 1120px;
 
@@ -88,6 +92,7 @@
     linear-gradient(var(--color-accent-deep) 1px, transparent 1px),
     linear-gradient(90deg, var(--color-accent-deep) 1px, transparent 1px);
   --grid-step: 32px;
+  --grid-light-radius: 190px;
   --grid-veil: #0a0a0af0;
 
   /* Text set straight on the grid of the first screen keeps a dark halo. */

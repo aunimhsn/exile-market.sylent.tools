@@ -103,7 +103,7 @@ The questions of the block « Questions » are in blood red (`--color-accent`, 4
 
 The burst (Three.js): 420 shards, one in five in blood red and the others white (owner, 2026-11-06), leave the center at load and at each click on a download button, 110 on a phone, dimmed there behind the text. It covers the first screen only and stops once out of sight. Below 24 images per second over 3 s, it freezes on a still image; with reduced motion, it starts as one. Without WebGL, the page stays whole.
 
-The grid of the first screen holds the upper half and fades out towards the middle, with no sharp edge (owner, 2026-11-06); it turns red under the pointer, with a mouse only, in the upper half too.
+The grid of the first screen holds the upper half and fades out towards the middle, with no sharp edge (owner, 2026-11-06); it turns red under the pointer, within 190 px of it (`--grid-light-radius`), with a mouse only, in the upper half too, and the red follows the page when it scrolls under a still mouse.
 
 A blood line of 2 px with a glow draws itself around a download button under the pointer or the keyboard focus, clockwise from the top left corner, fast then slower in 0.7 s, so that it answers the pointer at once, and goes back in 0.25 s (owner, 2026-11-06). With reduced motion, it appears at once.
 

@@ -166,7 +166,7 @@ a:hover {
   mask-image:
     var(--grid-fade),
     radial-gradient(
-      190px circle at var(--mx, 50%) var(--my, 50%),
+      var(--grid-light-radius) circle at var(--mx, 50%) var(--my, 50%),
       #000000,
       transparent
     );

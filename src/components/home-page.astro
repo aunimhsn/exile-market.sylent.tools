@@ -61,26 +61,11 @@ const stillSizes =
   </div>
 
   <script is:inline>
-    // The large sentences come in once, when 60 % of each is on the screen. Inline and placed before
-    // them, so that they leave their place before the first paint and no failed download can keep
-    // them out of the screen. Without JavaScript or with reduced motion, they never move.
+    // The large sentences leave their place before the first paint, hence an inline script placed
+    // before them. Without JavaScript or with reduced motion, they never move. The second script,
+    // after the last sentence, brings them in.
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document.documentElement.classList.add("statements-wait");
-      document.addEventListener("DOMContentLoaded", () => {
-        const watch = new IntersectionObserver(
-          (entries) => {
-            for (const entry of entries) {
-              if (!entry.isIntersecting) continue;
-              entry.target.classList.add("is-in");
-              watch.unobserve(entry.target);
-            }
-          },
-          { threshold: 0.6 },
-        );
-        document
-          .querySelectorAll(".band-statement")
-          .forEach((statement) => watch.observe(statement));
-      });
     }
   </script>
 
@@ -140,6 +125,26 @@ const stillSizes =
       </p>
     </div>
   </section>
+
+  <script is:inline>
+    // Each large sentence comes in once, when 60 % of it is on the screen. Inline and right after
+    // them, so that no script to download, now or later, can keep them out of the screen.
+    if (document.documentElement.classList.contains("statements-wait")) {
+      const watch = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add("is-in");
+            watch.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.6 },
+      );
+      document
+        .querySelectorAll(".band-statement")
+        .forEach((statement) => watch.observe(statement));
+    }
+  </script>
 </SiteLayout>
 
 <style>
@@ -219,12 +224,12 @@ const stillSizes =
 
   .band-statement > span {
     display: block;
-    transition: transform 1.2s var(--ease-draw);
+    transition: transform var(--entrance-time) var(--ease-draw);
   }
 
   .band-statement > span + span {
     color: var(--color-accent);
-    transition-delay: 0.12s;
+    transition-delay: var(--entrance-gap);
   }
 
   /* Out of the screen until they come in: main clips them. Never on paper, where a sentence not

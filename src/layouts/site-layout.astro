@@ -48,23 +48,49 @@ const { lang, page } = props;
       ) || 0,
   }));
 
-  document.addEventListener("pointermove", (event) => {
-    if (event.pointerType !== "mouse" || reducedMotion.matches) return;
+  // The last place of the mouse, so that the red also follows the page when it scrolls under a
+  // still mouse. At most one update per frame, and none without a mouse.
+  let mouse: { x: number; y: number } | null = null;
+  let frame = 0;
+
+  const light = () => {
+    frame = 0;
+    if (!mouse) return;
     for (const { element, overrun } of zones) {
       const box = element.getBoundingClientRect();
       const top = box.top - overrun;
-      const isInside = event.clientY >= top && event.clientY <= box.bottom;
+      const isInside = mouse.y >= top && mouse.y <= box.bottom;
       element.classList.toggle("is-lit", isInside);
       if (isInside) {
-        element.style.setProperty("--mx", `${event.clientX - box.left}px`);
-        element.style.setProperty("--my", `${event.clientY - top}px`);
+        element.style.setProperty("--mx", `${mouse.x - box.left}px`);
+        element.style.setProperty("--my", `${mouse.y - top}px`);
       }
     }
-  });
+  };
 
-  document.documentElement.addEventListener("mouseleave", () => {
+  const schedule = () => {
+    if (mouse && !frame) frame = requestAnimationFrame(light);
+  };
+
+  const forget = () => {
+    mouse = null;
     for (const { element } of zones) element.classList.remove("is-lit");
-  });
+  };
+
+  // A finger or a pen drops the mouse: the red would stay lit while it scrolls the page.
+  const follow = (event: PointerEvent) => {
+    if (event.pointerType !== "mouse" || reducedMotion.matches) {
+      forget();
+      return;
+    }
+    mouse = { x: event.clientX, y: event.clientY };
+    schedule();
+  };
+
+  document.addEventListener("pointermove", follow);
+  document.addEventListener("pointerdown", follow);
+  window.addEventListener("scroll", schedule, { passive: true });
+  document.documentElement.addEventListener("mouseleave", forget);
 </script>
 
 <style>
