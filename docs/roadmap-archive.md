@@ -2,6 +2,12 @@
 
 The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is merged, the most recent first. `roadmap.md` keeps one line per step done.
 
+## 4b. The simple pages
+
+Pull request: [#11](https://github.com/aunimhsn/exile-market.sylent.tools/pull/11).
+
+The legal notice with the real details (those public on sylent.art) and the not-found page, from the mock-up; the outlined button and the grid shared with the home page; the address of the application repository in one place. Tools: build, code review.
+
 ## 4a. Skeleton and deployment
 
 Pull request: [#10](https://github.com/aunimhsn/exile-market.sylent.tools/pull/10).
