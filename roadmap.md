@@ -29,7 +29,7 @@ Read only by the steps that need them:
 - [x] **1. Specifications** ([#6](https://github.com/aunimhsn/exile-market.sylent.tools/pull/6)).
 - [x] **2. Wireframe** ([#7](https://github.com/aunimhsn/exile-market.sylent.tools/pull/7)).
 - [x] **3. Mock-up** ([#8](https://github.com/aunimhsn/exile-market.sylent.tools/pull/8), [#9](https://github.com/aunimhsn/exile-market.sylent.tools/pull/9)).
-- [ ] **4a. Skeleton and deployment**: the tokens and fonts of the mock-up in `src/styles/` (its `:root` becomes `tokens.css`, the components its CSS), the brand assets (`npm run brand:images`), the header and footer, the deployment to the `github.io` preview. Tools: build, code review.
+- [x] **4a. Skeleton and deployment**: the tokens and fonts of the mock-up in `src/styles/` (its `:root` becomes `tokens.css`, the components its CSS), the brand assets (`npm run brand:images`), the header and footer, the deployment to the `github.io` preview. Tools: build, code review.
 - [ ] **4b. The page**: the home page, the legal notice and the not-found page in both languages, the download buttons by system. Tools: build, code review.
 - [ ] **5. Launch**: the video and the screenshots asked of the owner with their exact list, the site checked on the preview, the DNS switched by the owner, the custom domain and HTTPS, the placeholder deleted at Cloudflare; once the tag is out, the download buttons turned on. Tool: launch.
 - [ ] **6. Retrospective**: the lessons in `process.md` (and in the template when they apply to every website), the backlog sorted, the memory moved to the files. Tool: retrospective.
@@ -47,6 +47,7 @@ Done in the application's repository, before its tag, and not by a pull request 
 - Step 17b of its roadmap still says a VPS with Coolify: the page is on GitHub Pages.
 - Its specifications say the owner has no Windows: the owner now tests on a Windows laptop.
 - Its specifications and `release.yml` still count macOS among the systems, while the page offers no macOS download (owner, 2026-11-06): keep the macOS archives on the release page, untested, or remove them.
+- The license at the root in a file named `LICENSE` (step 17d, `GPL-3.0-or-later`): the footer of the page links to `blob/main/LICENSE`, which answers 404 as long as the repository has `LICENSE-APACHE` and `LICENSE-MIT`.
 - `v0.1.0` published as a normal release, never a pre-release: `releases/latest` skips them.
 - Donations for its step 18 (owner, 2026-11-06): free donations only, nothing paid in the tool, no perks, no image or logo of Grinding Gear Games near the button; email support@grindinggear.com before turning them on; ask the tax office how to declare them (the owner has no accountant); read again the rule of the developer documentation on commercial revenue. The banner of this page is designed and waits for that step (`backlog.md`).
 - Its README (step 17d) states the risk for the account with the same words as the page (`specs.md`, The risk for your account), and the audit (step 17e) reads Ctrl + D against the macro rules of the developer documentation.

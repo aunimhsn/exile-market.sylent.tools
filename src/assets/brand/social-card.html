@@ -1,14 +1,19 @@
 <!doctype html>
 <!--
   The card that LinkedIn, Facebook and the messaging apps show for a link to the site, drawn at
-  1200 × 630 px by `npm run brand:images` into social-card.png. Design it in the style of the site
-  (docs/branding.md): the logo, the name and the address, large enough to read on a phone. Keep
-  the important part away from the edges: some apps crop the card to a square.
+  1200 × 630 px by `npm run brand:images` into social-card.png. One image for both languages, so
+  no sentence on it: the description beside it is translated. The important part stays away from
+  the edges, since some apps crop the card to a square. Manrope is read from Google Fonts only
+  when the image is drawn; the site never loads this page.
 -->
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Carte d’aperçu</title>
+    <title>Preview card</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;800&display=block"
+      rel="stylesheet"
+    />
     <style>
       html,
       body {
@@ -18,34 +23,56 @@
       }
 
       body {
+        position: relative;
         display: grid;
         place-content: center;
         justify-items: center;
-        gap: 32px;
-        background: #18181b;
+        gap: 24px;
+        background: #0a0a0a;
         color: #ffffff;
-        font-family: system-ui, sans-serif;
+        font-family: Manrope, system-ui, sans-serif;
+      }
+
+      /* The grid of the first screen of the site, faded towards the middle. */
+      body::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(#ffffff14 1px, transparent 1px),
+          linear-gradient(90deg, #ffffff14 1px, transparent 1px);
+        background-size: 32px 32px;
+        mask-image: radial-gradient(closest-side, transparent 45%, #000000);
+      }
+
+      img,
+      p,
+      small {
+        position: relative;
       }
 
       img {
-        width: 160px;
-        height: 160px;
+        width: 168px;
+        height: 168px;
       }
 
       p {
         margin: 0;
-        font-size: 64px;
-        font-weight: 700;
+        font-size: 76px;
+        font-weight: 800;
+        letter-spacing: -0.045em;
+        line-height: 1.15;
+        text-transform: uppercase;
       }
 
       small {
-        font-size: 32px;
-        opacity: 0.7;
+        color: #a3a3a3;
+        font-size: 30px;
       }
     </style>
   </head>
   <body>
-    <img src="icon.svg" alt="" />
+    <img src="emblem.svg" alt="" />
     <p>Exile Market</p>
     <small>exile-market.sylent.tools</small>
   </body>

@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import sitemap from "./scripts/sitemap.mjs";
 import urls from "./src/data/urls.json" with { type: "json" };
 
@@ -24,18 +24,26 @@ export default defineConfig({
     Object.entries(urls.redirects).map(([from, path]) => [from, to(path)]),
   ),
   integrations: [sitemap()],
-  // Self-hosted fonts, downloaded at build time once the mock-up has chosen them
-  // (docs/branding.md, Typography), for example:
-  // fonts: [
-  //   {
-  //     provider: fontProviders.google(),
-  //     name: "Manrope",
-  //     cssVariable: "--font-title",
-  //     weights: ["600 800"],
-  //     styles: ["normal"],
-  //     display: "block",
-  //     fallbacks: ["system-ui", "sans-serif"],
-  //   },
-  // ],
-  // then `<Font cssVariable="--font-title" preload />` in src/layouts/base-layout.astro.
+  // Self-hosted fonts, downloaded at build time and served by the site itself (docs/branding.md,
+  // Typography). The tokens --font-text, --font-title and --font-subtitle read these variables.
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Manrope",
+      cssVariable: "--font-manrope",
+      weights: [400, 600, 700, 800],
+      styles: ["normal"],
+      display: "block",
+      fallbacks: ["system-ui", "sans-serif"],
+    },
+    {
+      provider: fontProviders.google(),
+      name: "Cormorant Garamond",
+      cssVariable: "--font-cormorant",
+      weights: [500],
+      styles: ["italic"],
+      display: "swap",
+      fallbacks: ["serif"],
+    },
+  ],
 });

@@ -1,48 +1,120 @@
 ---
-// The footer of every page: the copyright and the link to the legal notice.
-import { type Lang, routes, ui } from "../lib/i18n";
+// The footer of every page: the legal notice, the source code, its license and the disclaimer
+// asked by the developer documentation of Grinding Gear Games, then the name and the author. The
+// not-found page, which holds both languages and has no twin, keeps only the name and the author.
+import { type Lang, type PageId, routes, ui } from "../lib/i18n";
 import { href } from "../lib/url";
 
 interface Props {
   lang: Lang;
+  page?: PageId | undefined;
 }
 
-const { lang } = Astro.props;
+const { lang, page } = Astro.props;
 const texts = ui(lang);
-const copyright = texts.footer.copyright.replace(
-  "{year}",
-  String(new Date().getFullYear()),
-);
+const repository = "https://github.com/aunimhsn/rust-exile-market";
 ---
 
 <footer class="site-footer">
-  <div class="wrap">
-    <p>{copyright}</p>
-    <a href={href(routes.legal[lang])}>{texts.footer.legal}</a>
+  <div class="wrap footer-row">
+    {page && (
+      <div>
+        <ul class="footer-links">
+          <li>
+            <a href={href(routes.legal[lang])}>{texts.footer.legal}</a>
+          </li>
+          <li>
+            <a href={repository}>{texts.footer.sourceCode}</a>
+          </li>
+          <li>
+            <a href={`${repository}/blob/main/LICENSE`}>
+              {texts.footer.license}
+            </a>
+          </li>
+        </ul>
+        <p>{texts.footer.disclaimer}</p>
+      </div>
+    )}
+    <p class:list={["site-brand", "footer-brand", { "is-alone": !page }]}>
+      {texts.site.name}
+      <a class="footer-by" href="https://sylent.art" hreflang="fr">
+        {texts.footer.author}
+      </a>
+    </p>
   </div>
 </footer>
 
 <style>
   .site-footer {
-    margin-top: var(--space-16);
-    border-top: 1px solid var(--color-border);
+    container-type: inline-size;
+    padding-block: var(--space-8);
+    background-image: var(--grid-image);
+    background-size: 40px 40px;
     color: var(--color-text-weak);
     font-size: var(--size-label);
   }
 
-  .wrap {
+  .footer-row {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-end;
     justify-content: space-between;
-    gap: var(--space-4);
-    padding-block: var(--space-6);
+    gap: var(--space-4) var(--space-8);
   }
 
-  p {
-    margin: 0;
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-4);
+    margin-bottom: var(--space-2);
   }
 
+  /* Like the links under the download buttons: red, white under the pointer, without an
+     underline. */
   a {
-    color: inherit;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-text);
+  }
+
+  /* The name at the size of the header, alone, at the bottom right, clear of the back-to-top
+     button (48 px, 20 px from the edge) at every width; 100cqw, unlike 100vw, doesn't count the
+     scrollbar. */
+  .footer-brand {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    margin: 0
+      max(
+        0px,
+        calc(
+          48px + var(--space-5) + var(--space-4) - var(--gutter) -
+            (100cqw - min(100cqw, var(--width-content) + 2 * var(--gutter))) / 2
+        )
+      )
+      0 auto;
+  }
+
+  /* The not-found page is too short for the back-to-top button: the name goes to the edge. */
+  .footer-brand.is-alone {
+    margin-right: 0;
+  }
+
+  /* The author, in grey on its own line under the name: the whole phrase is the link. */
+  .footer-by {
+    color: var(--color-text-weak);
+    font-family: var(--font-text);
+    font-size: var(--size-label);
+    font-weight: var(--weight-text);
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .footer-by:hover,
+  .footer-by:focus-visible {
+    color: var(--color-text);
   }
 </style>

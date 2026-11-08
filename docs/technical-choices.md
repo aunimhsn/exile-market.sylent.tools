@@ -36,8 +36,8 @@ Rejected:
 - **Open Graph**: `src/layouts/base-layout.astro` gives every page the tags that LinkedIn, Facebook and the messaging apps read to show a card for a link (`og:title`, `og:description`, `og:url`, `og:site_name`, `og:locale`, `twitter:card`) and one image, `src/assets/brand/social-card.png`, converted to JPEG at 1200 × 630 (the networks read JPEG everywhere, WebP not always); its name carries a hash of its content, so that a new image gets a new URL. The URLs are absolute, built from `site` and the base.
 - **Not-found page**: `src/pages/404.astro`, written as `404.html`, which GitHub Pages serves for every path without a page, with `noindex` and no canonical link.
 - **Images**: the `astro:assets` `<Image>` component converts the images to WebP at the size they are shown and sets their width and height, which avoids layout shifts.
-- **Fonts**: Astro's Fonts API (`fonts` in `astro.config.mjs`, `<Font />` in the layout) downloads the fonts at build time and serves them from the site itself, with a fallback adjusted to their metrics so that the text doesn't move when they load. Only fonts whose license allows self-hosting (SIL Open Font License).
-- **JavaScript**: none by default. The scripts the mock-up needs (animations, 3D) are chosen after it, installed with npm and bundled by Astro, without a CDN; the content never depends on them, and nothing moves when the visitor asked to reduce motion.
+- **Fonts**: Astro's Fonts API (`fonts` in `astro.config.mjs`, `<Font />` in the layout) downloads the fonts at build time and serves them from the site itself, with a fallback adjusted to their metrics so that the text doesn't move when they load. Only fonts whose license allows self-hosting (SIL Open Font License). Manrope (400, 600, 700, 800) and Cormorant Garamond (italic 500) come from Google Fonts at build time, not from the fonts of the application, which lack the 700; only Manrope is preloaded. The variables of the fonts are `--font-manrope` and `--font-cormorant`, which the tokens `--font-text`, `--font-title` and `--font-subtitle` read.
+- **JavaScript**: none by default. The scripts the mock-up needs (animations, 3D) are chosen after it, installed with npm and bundled by Astro, without a CDN; the content never depends on them, and nothing moves when the visitor asked to reduce motion. The back-to-top control is a `<button>`, not the link of the mock-up: it only acts through a script and stays hidden without one; it then gives the keyboard focus to the name in the header, since it disappears at the top.
 
 ## Languages
 
@@ -75,7 +75,7 @@ The stack above is confirmed for this site. The JavaScript libraries, if any, an
 
 ## Styles
 
-- **Design tokens** are the named values of the visual design: `--color-accent: #1d4ed8`, `--space-4: 16px`, `--size-title: 28px`. They are declared once in `src/styles/tokens.css`, and every component uses them (`color: var(--color-accent)`): changing the main color means changing one line. The values of the template are neutral placeholders, replaced by those of the mock-up.
+- **Design tokens** are the named values of the visual design: `--color-accent: #1d4ed8`, `--space-4: 16px`, `--size-title: 28px`. They are declared once in `src/styles/tokens.css`, and every component uses them (`color: var(--color-accent)`): changing the main color means changing one line.
 - The **breakpoints** can't be CSS variables, since a media query doesn't read them: they are written as numbers in the media queries, and listed in `docs/branding.md`.
 - Component styles live in the `<style>` block of each Astro component, which Astro scopes to that component: a class name in one component cannot break another. A component styles the inside of a child (an SVG logo) with `:global(...)` inside one of its own selectors.
 - The classes shared by every page (`.wrap`, `.visually-hidden`…) are in `src/styles/global.css`.
@@ -83,7 +83,7 @@ The stack above is confirmed for this site. The JavaScript libraries, if any, an
 
 ## Content
 
-- `src/i18n/<lang>.json`: the interface texts (name of the site, navigation, footer, skip link), so that no text is hard-coded in a component.
+- `src/i18n/<lang>.json`: the interface texts (name of the site, footer, skip link, back-to-top button), so that no text is hard-coded in a component.
 - `src/content/<lang>/<page>.json`: the texts of each page (`home.json`, `legal.json`, `not-found.json`), imported as JSON.
 - A list of similar entries (offers, articles, projects) becomes an Astro content collection, one Markdown file per entry, whose front matter is validated by a schema in `src/content.config.ts`: a missing field fails the build instead of publishing a broken page.
 - `src/data/urls.json`: the former addresses and their redirects.

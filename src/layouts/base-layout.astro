@@ -1,6 +1,6 @@
 ---
 // The document shared by every page: language, metadata, icons, preview card and base styles.
-import { getImage } from "astro:assets";
+import { Font, getImage } from "astro:assets";
 import socialCard from "../assets/brand/social-card.png";
 import {
   defaultLang,
@@ -56,6 +56,8 @@ const urlIn = (language: Lang) =>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <Font cssVariable="--font-manrope" preload />
+    <Font cssVariable="--font-cormorant" />
     <!--
       The icon of the site (npm run brand:images, from src/assets/brand/icon.svg): SVG for the
       browsers that read it, ICO (16, 32, 48 px) for the others and for the search engines, which
