@@ -17,6 +17,8 @@ const PRICE = KEYS + 1.65;
 const FAN = 6.7;
 const NAME = 9.3;
 const DURATION = NAME + 1.6;
+// The fade under a word over a card: long and eased, so that no edge shows on the card.
+const CARD_FADE = "linear-gradient(#000e 66%,#0009 76%,#0004 85%,#0001 93%,#0000)";
 // The slow life of a word after it has landed: its growth, per second, and its descent, in pixels per second.
 const WORD_GROWTH = 0.03;
 const WORD_SINK = 6;
@@ -265,8 +267,8 @@ async function frame(t) {
   $("shade").style.opacity = t < FAN ? 1 : 0;
   // A short fade over a card, the word standing out of it; a longer one over the keys.
   const onCard = t < KEYS || t >= PRICE - 0.05;
-  $("shade").style.height = onCard ? "218px" : "300px";
-  $("shade").style.background = `linear-gradient(#000e ${onCard ? 88 : 62}%,#0000)`;
+  $("shade").style.height = onCard ? "250px" : "300px";
+  $("shade").style.background = onCard ? CARD_FADE : "linear-gradient(#000e 62%,#0000)";
   slam($("w0"), 0.7, KEYS);
   slam($("w1"), KEYS + 0.05, KEYS + 1.35);
   slam($("w2"), PRICE - 0.05, FAN);

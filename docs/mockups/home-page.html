@@ -116,6 +116,11 @@
   .site-top-zone { position: relative; z-index: 1; }
   .site-header { display: flex; align-items: center; justify-content: space-between; height: 56px; }
   .site-brand { display: flex; align-items: center; gap: var(--space-2); color: var(--color-text); font-family: var(--font-title); font-size: 17px; font-weight: var(--weight-title); letter-spacing: var(--tracking-title); text-decoration: none; text-transform: uppercase; }
+  /* Under the pointer, the name grows a little instead of turning red, and the emblem doesn't move. */
+  a.site-brand:hover, a.site-brand:focus-visible { color: var(--color-text); }
+  .site-brand-text { display: inline-block; transform-origin: left center; transition: transform .2s; }
+  a.site-brand:hover .site-brand-text, a.site-brand:focus-visible .site-brand-text { transform: scale(1.06); }
+  :root[data-motion="still"] .site-brand-text { transition: none; }
   .site-brand svg { width: 26px; height: 26px; filter: grayscale(1) brightness(1.7); }
   /* The flag alone (owner's choice), with its name for screen readers and under the pointer. */
   .site-language { display: grid; place-items: center; width: 44px; height: 44px; margin-right: -8px; }
@@ -270,7 +275,7 @@
   .band-statement.is-help .help-link { color: var(--color-text); font-weight: 700; text-decoration: none; }
   .band-statement.is-help .help-link:hover, .band-statement.is-help .help-link:focus-visible { color: var(--color-accent); }
 
-  .site-footer { padding: var(--space-8) 0; background-image: var(--grid-image); background-size: 40px 40px; color: var(--color-text-weak); font-size: var(--size-label); }
+  .site-footer { container-type: inline-size; padding: var(--space-8) 0; background-image: var(--grid-image); background-size: 40px 40px; color: var(--color-text-weak); font-size: var(--size-label); }
   /* Like the links under the download buttons: red, white under the pointer, without an underline (owner, 2026-11-08). */
   .site-footer a { color: var(--color-accent); text-decoration: none; }
   .site-footer a:hover { color: var(--color-text); }
@@ -281,9 +286,11 @@
   .site-footer a.footer-by:hover, .site-footer a.footer-by:focus-visible { color: var(--color-text); }
   .footer-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: var(--space-4) var(--space-8); }
   /* Clear of the back-to-top button (48 px, 20 px from the edge) where the page is narrower than the content. */
-  .footer-brand { margin: 0 max(0px, calc(48px + var(--space-2) - (100vw - min(100vw, var(--width-content) + 2 * var(--gutter))) / 2)) 0 auto; }
+  /* Clear of the back-to-top button at every width; 100cqw, unlike 100vw, doesn't count the scrollbar. */
+  .footer-brand { margin: 0 max(0px, calc(48px + var(--space-5) + var(--space-4) - var(--gutter) - (100cqw - min(100cqw, var(--width-content) + 2 * var(--gutter))) / 2)) 0 auto; }
   .footer-links { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); margin-bottom: var(--space-2); }
-  .site-top { position: fixed; right: var(--space-5); bottom: var(--space-5); z-index: 5; display: none; place-items: center; width: 48px; height: 48px; border: 1px solid var(--color-button-line); background: #0a0a0ab3; color: var(--color-text); }
+  .site-top { position: fixed; right: var(--space-5); bottom: var(--space-5); z-index: 5; display: none; place-items: center; width: 48px; height: 48px; border: 1px solid var(--color-button-line); background: #0a0a0ab3; color: var(--color-text); opacity: .6; transition: opacity .2s, color .2s, border-color .2s, background-color .2s; }
+  .site-top:hover, .site-top:focus-visible { border-color: var(--color-text); background: #0a0a0af2; color: var(--color-text); opacity: 1; }
   .site-top.is-shown { display: grid; }
 
   /* On a phone, the video comes before the download area, which holds no button. */
@@ -680,7 +687,7 @@
     document.body.innerHTML = `
       ${donateHtml(text)}
       <div class="site-top-zone"><div class="site-container"><header class="site-header">
-        <a class="site-brand" href="#" data-page="home">${ICON}Exile Market</a>
+        <a class="site-brand" href="#" data-page="home">${ICON}<span class="site-brand-text">Exile Market</span></a>
         ${chosen.page === "notfound" ? "" : `<a class="site-language" href="#" data-other-language="${other}" lang="${other}" aria-label="${text.otherLanguage}" title="${text.otherLanguage}">${FLAGS[other]}</a>`}
       </header></div></div>
       ${mainHtml(text)}
@@ -978,7 +985,7 @@
         pickFromPage("lang", lang);
       } else if (anchor.getAttribute("href") === "#") {
         event.preventDefault();
-        if (anchor.dataset.toTop !== undefined) scrollTo(0, 0);
+        if (anchor.dataset.toTop !== undefined) scrollTo({ top: 0, behavior: isStill() ? "auto" : "smooth" });
       }
     });
   } else {
