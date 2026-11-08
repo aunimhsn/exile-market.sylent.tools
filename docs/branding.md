@@ -59,7 +59,7 @@ Vertical rhythm of the download area (owner, 2026-11-06): the same gap above and
 
 ## Layout and shapes
 
-Content width 1120 px, sharp corners, one breakpoint at 720 px in the mock-up.
+Content width 1120 px, sharp corners, breakpoints at 720 px, and at 860 px for the not-found page, where the two languages take the whole width. A page shorter than the screen keeps its footer at the bottom of the screen (owner, 2026-11-08).
 
 Gap under the first screen (owner, 2026-11-08): the end of the first screen keeps `--band-padding` before the next band, 80 px on a computer and 48 px on a phone, the same as under the fan of cards, so that the vertical rhythm is even. On a laptop of 1366 × 768, the change of background then falls just under the end of the screen; the video stays whole.
 
@@ -83,7 +83,7 @@ Bands (owner, 2026-11-08): no line between them nor above the footer, on any pag
 
 Legal notice (owner, 2026-11-08): one column, its title on the grid of the first screen with the red under the pointer, its headings like the questions, then a button back to the home page in the style of the Linux download button, so as not to weigh as much as the main action.
 
-Not-found page (owner, 2026-11-08): the grid of the first screen; a huge 404 in blood red behind, at 15 % opacity; the two languages one under the other, in the second half of the page on a computer, the text aligned on the left, each with a button in the style of the Linux download button. Its sentence holds on one line down to phones of 345 px. No link to the other language, and a footer reduced to the name, since the page holds both languages.
+Not-found page (owner, 2026-11-08): the grid of the first screen; a huge 404 in blood red behind, at 15 % opacity; the two languages one under the other, in the second half of the page on a computer, the text aligned on the left, each with a button in the style of the Linux download button. Its sentence holds on one line down to phones of 345 px, at a font size a little smaller than in the mock-up (the room divided by 25 and not 24), where it was cut on a phone of 390 px. No link to the other language, and a footer reduced to the name, since the page holds both languages.
 
 Donation banner (owner, 2026-11-08): one thin line above the header, 36 px high plus its border, on the background of the page: « Exile Market is free. » in `--color-text-faint`, then the link to Ko-fi in red, white under the pointer or the keyboard focus, like the links under the download buttons, 14 px. The grey and the red have nearly the same luminance, so the 700 weight of the link is what tells it from the text around it (WCAG 1.4.1). It stays in the mock-up, hidden by default behind the tab « Donation banner (later) », ready to be added (`backlog.md`): donations stay out of this version (`specs.md`) and the banner isn't published before the conditions of step 18 of the application are met (`roadmap.md`).
 

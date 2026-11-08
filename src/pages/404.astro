@@ -2,6 +2,7 @@
 // The not-found page, written as 404.html, which GitHub Pages serves for every path without a
 // page, whatever its language: it holds both, without JavaScript. No canonical link and noindex.
 // Its texts are in src/content/<lang>/not-found.json.
+import OutlineButton from "../components/outline-button.astro";
 import english from "../content/en/not-found.json";
 import french from "../content/fr/not-found.json";
 import SiteLayout from "../layouts/site-layout.astro";
@@ -19,29 +20,105 @@ const { en, fr } = texts;
   description={`${en.description} ${fr.description}`}
   noindex
 >
-  <div class="wrap">
-    <h1>{en.heading}</h1>
-    <p>{en.lead}</p>
-    <a href={href(routes.home.en)}>{en.home}</a>
-    <h2 lang="fr">{fr.heading}</h2>
-    <p lang="fr">{fr.lead}</p>
-    <a lang="fr" href={href(routes.home.fr)}>
-      {fr.home}
-    </a>
+  <div class="grid-zone">
+    <div class="wrap not-found">
+      <p class="not-found-code" aria-hidden="true">
+        404
+      </p>
+      <div class="not-found-blocks">
+        <div class="not-found-block">
+          <h1>{en.heading}</h1>
+          <p class="not-found-lead" data-one-line="345">
+            {en.lead}
+          </p>
+          <OutlineButton href={href(routes.home.en)}>{en.home}</OutlineButton>
+        </div>
+        <div class="not-found-block" lang="fr">
+          <h2>{fr.heading}</h2>
+          <p class="not-found-lead" data-one-line="345">
+            {fr.lead}
+          </p>
+          <OutlineButton href={href(routes.home.fr)}>{fr.home}</OutlineButton>
+        </div>
+      </div>
+    </div>
   </div>
 </SiteLayout>
 
 <style>
-  .wrap {
-    padding-block: var(--space-16);
+  /* A huge 404 as a watermark behind, and the two languages one above the other, in the second
+     half of the page. */
+  .not-found {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 520px;
+    padding-block: var(--band-padding);
+  }
+
+  .not-found-code {
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 0;
+    color: var(--color-accent-deep);
+    font-family: var(--font-title);
+    font-size: clamp(170px, 34vw, 480px);
+    font-weight: var(--weight-title);
+    letter-spacing: var(--tracking-title);
+    line-height: 1;
+    opacity: 0.15;
+    transform: translateY(-50%);
+    user-select: none;
+  }
+
+  .not-found-blocks {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-16);
+    width: 50%;
+  }
+
+  .not-found-block {
+    display: grid;
+    justify-items: start;
   }
 
   h1,
   h2 {
     font-size: var(--size-title);
+    text-transform: none;
   }
 
-  h2 {
-    margin-top: var(--space-12);
+  /* The sentence stays on one line, down to the small phones where it would become too small to
+     read: 345 px, the value of data-one-line above. It is about 24 em wide: dividing the room it
+     has by 25 leaves a margin, since browsers don't all round the width of the letters alike. */
+  .not-found-lead {
+    margin: var(--space-3) 0 var(--space-6);
+    color: var(--color-text-weak);
+    font-size: min(var(--size-body), calc((100vw - 2 * var(--gutter)) / 25));
+    white-space: nowrap;
+  }
+
+  @media (width <= 860px) {
+    .not-found-blocks {
+      width: 100%;
+    }
+  }
+
+  @media (width <= 720px) {
+    .not-found-code {
+      top: var(--space-12);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (width < 345px) {
+    .not-found-lead {
+      font-size: var(--size-body);
+      white-space: normal;
+    }
   }
 </style>
