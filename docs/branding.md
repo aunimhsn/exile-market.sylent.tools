@@ -23,7 +23,7 @@ Style H, chosen by the owner on 2026-11-06: the fonts and the grid of a dark, sh
 
 ## Logo
 
-In the header, the emblem in white, 26 px, next to the name in capitals. In the footer, the name alone in capitals, at the size of the header, at the bottom right, clear of the back-to-top button (owner, 2026-11-07). On its own line under it, right-aligned, « by Sylent » (« par Sylent ») in `--color-text-weak`, 14 px, the whole phrase a link to sylent.art, white under the pointer or the keyboard focus (owner, 2026-11-08): the author is named without a second brand beside the product.
+In the header, the emblem in white, 26 px, next to the name in capitals; under the pointer or the keyboard focus, the name alone grows a little (+6 %) and doesn't turn red (owner, 2026-11-08). In the footer, the name alone in capitals, at the size of the header, at the bottom right, clear of the back-to-top button (owner, 2026-11-07). On its own line under it, right-aligned, « by Sylent » (« par Sylent ») in `--color-text-weak`, 14 px, the whole phrase a link to sylent.art, white under the pointer or the keyboard focus (owner, 2026-11-08): the author is named without a second brand beside the product.
 
 ## Colors
 
@@ -73,6 +73,8 @@ Order of the links under the buttons (owner, 2026-11-08): on a computer, « All 
 
 Questions (owner, 2026-11-08): in blood red like the small links, but at `--size-subtitle` and in 700, so that they read as titles and not as links; the answers stay in the body color.
 
+Back-to-top button (owner, 2026-11-08): at 60 % opacity at rest, so that it hinders less when it passes over the content; under the pointer or the keyboard focus, fully opaque, with a white chevron, a white border and a nearly opaque background. It scrolls smoothly, and at once when the visitor asked to reduce motion. The name in the footer stays clear of it at every width, the scrollbar included.
+
 Bands (owner, 2026-11-08): no line between them nor above the footer, on any page; on the home page, two very close blacks alternate.
 
 Legal notice (owner, 2026-11-08): one column, its title on the grid of the first screen with the red under the pointer, its headings like the questions, then a button back to the home page in the style of the Linux download button, so as not to weigh as much as the main action.
@@ -101,7 +103,7 @@ The grid of the first screen holds the upper half and fades out towards the midd
 
 A blood line of 2 px with a glow draws itself around a download button under the pointer or the keyboard focus, clockwise from the top left corner, fast then slower in 0.7 s, so that it answers the pointer at once, and goes back in 0.25 s (owner, 2026-11-06). With reduced motion, it appears at once.
 
-The video, « The deck » reworked (owner, 2026-11-08), 10.9 s, silent, tells the headline in order. One item: a card with a real unique, Headhunter, sober like the application, without frame or image of the game (clause 8), its lines appearing one by one so that its modifiers can be read. One shortcut: Ctrl + D in 3D in front of the dimmed card, with a shock wave. Its price: the card turns over and its back is the real window of the application, with the name of the item readable under the word and the prices of poe2scout. Then the fan of real screens, and the name, which closes it. The three words have no final period, unlike the headline, since they appear one at a time; each stands out of a black fade over the card, then keeps growing slowly (3 % per second) and sinks a little (6 px per second). The prices and the league are those of the capture of 2026-11-08: capture it again just before the launch.
+The video, « The deck » reworked (owner, 2026-11-08), 10.9 s, silent, tells the headline in order. One item: a card with a real unique, Headhunter, sober like the application, without frame or image of the game (clause 8), its lines appearing one by one so that its modifiers can be read. One shortcut: Ctrl + D in 3D in front of the dimmed card, with a shock wave. Its price: the card turns over and its back is the real window of the application, with the name of the item readable under the word and the prices of poe2scout. Then the fan of real screens, and the name, which closes it. The three words have no final period, unlike the headline, since they appear one at a time; each stands out of a black fade over the card, long and eased so that no edge shows on it (owner, 2026-11-08), then keeps growing slowly (3 % per second) and sinks a little (6 px per second). The prices and the league are those of the capture of 2026-11-08: capture it again just before the launch.
 
 The video tilts slightly under the pointer.
 
