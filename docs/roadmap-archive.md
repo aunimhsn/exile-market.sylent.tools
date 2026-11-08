@@ -2,6 +2,12 @@
 
 The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is merged, the most recent first. `roadmap.md` keeps one line per step done.
 
+## 4c. The home page, still
+
+Pull request: [#12](https://github.com/aunimhsn/exile-market.sylent.tools/pull/12).
+
+Every block and text in both languages, the download area with its states behind a single setting (« Coming soon » until the tag) and the detection of the system, the three cards, the still image in place of the video. Complete and usable without JavaScript. Tools: build, code review.
+
 ## 4b. The simple pages
 
 Pull request: [#11](https://github.com/aunimhsn/exile-market.sylent.tools/pull/11).
