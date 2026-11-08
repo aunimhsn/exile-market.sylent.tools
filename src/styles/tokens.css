@@ -80,6 +80,8 @@
   --grid-image:
     linear-gradient(#ffffff0d 1px, transparent 1px),
     linear-gradient(90deg, #ffffff0d 1px, transparent 1px);
+  --grid-step: 32px;
+  --grid-veil: #0a0a0af0;
 
   /* The grid of the first screen holds the upper half and fades out towards it. */
   --grid-fade: linear-gradient(to bottom, #000000 20%, transparent 50%);

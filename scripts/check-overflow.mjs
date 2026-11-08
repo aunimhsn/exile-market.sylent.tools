@@ -3,7 +3,8 @@
 // on Android widen the page to show it, which the build and linkinator can't see: only a browser
 // that lays the page out does. Each page is loaded in the Chromium of Playwright, then scrolled to
 // the bottom, since some blocks move with the scroll. It also fails on an element marked
-// `data-one-line` (a large title) that takes more than one line.
+// `data-one-line` (a large title) that takes more than one line or whose text is cut; a value
+// gives the width of the screen from which it must hold (`data-one-line="345"`).
 // Run after `npm run build`: `node scripts/check-overflow.mjs [dist]`. Install the browser once
 // with `npx playwright install --only-shell chromium`.
 import {
@@ -86,16 +87,31 @@ const widest = async () => {
   return width;
 };
 
-// The elements marked data-one-line that take more than one line, with their number of lines.
-// Runs in the page.
+// The elements marked data-one-line that take more than one line or whose text is cut, at the
+// widths where they must hold. An element kept on one line by CSS can't wrap: its text then runs
+// past its box, so the text is measured, against the first ancestor that clips it. Runs in the
+// page.
 const wrapped = () =>
   [...document.querySelectorAll("[data-one-line]")].flatMap((element) => {
+    const screen = document.documentElement.clientWidth;
+    if (screen < Number(element.dataset.oneLine)) return [];
     const style = getComputedStyle(element);
     const line =
       parseFloat(style.lineHeight) || parseFloat(style.fontSize) * 1.2;
     const lines = Math.round(element.getBoundingClientRect().height / line);
-    return lines > 1
-      ? [`« ${element.textContent.trim()} » on ${lines} lines`]
+    const text = element.textContent.trim();
+    if (lines > 1) return [`« ${text} » on ${lines} lines`];
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    let limit = screen;
+    for (let box = element.parentElement; box; box = box.parentElement) {
+      if (getComputedStyle(box).overflowX !== "visible") {
+        limit = Math.min(limit, box.getBoundingClientRect().right);
+        break;
+      }
+    }
+    return range.getBoundingClientRect().right > limit
+      ? [`« ${text} » cut at ${Math.round(limit)} px`]
       : [];
   });
 

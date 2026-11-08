@@ -1,17 +1,40 @@
 {
-  "$comment": "The legal notice (in France, article 1-1 of the LCEN): the publisher and the host. Fill it from specs.md (Contact details and legal information) and record the accepted risks in docs/external-services.md.",
-  "title": "Mentions légales",
-  "description": "L’éditeur et l’hébergeur du site.",
+  "title": "Mentions légales · Exile Market",
+  "description": "L’éditeur et l’hébergeur du site, et la façon dont il compte ses visites.",
+  "heading": "Mentions légales",
+  "back": "Retour à l’accueil",
   "sections": [
     {
       "heading": "Éditeur",
-      "lines": ["Nom ou raison sociale", "Statut, SIRET", "Adresse e-mail"]
+      "lines": [
+        "Aunim Hassan",
+        "Entrepreneur individuel",
+        "SIRET 894 104 132 00010",
+        "aunim.hassan@gmail.com",
+        "+33 6 13 44 94 24",
+        "Direction de la publication : la même personne"
+      ]
     },
     {
-      "heading": "Hébergement",
+      "heading": "Hébergeur",
       "lines": [
         "GitHub, Inc. (GitHub Pages)",
-        "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis"
+        "88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis",
+        "+1 877 448 4820"
+      ]
+    },
+    {
+      "heading": "Statistiques",
+      "lines": [
+        "Le site compte ses visites avec GoatCounter, sans cookie et sans rien stocker dans votre navigateur : pages, provenance de la visite, navigateur, système, taille d’écran, pays. Ces décomptes sont anonymes et hébergés par GoatCounter. <a href=\"https://www.goatcounter.com/help/privacy\">Lire sa politique de confidentialité</a>.",
+        "Le site n’a aucun formulaire et ne collecte rien d’autre."
+      ]
+    },
+    {
+      "heading": "Crédits",
+      "lines": [
+        "Manrope et Cormorant Garamond, sous licence SIL Open Font License.",
+        "Path of Exile et ses images appartiennent à Grinding Gear Games."
       ]
     }
   ]

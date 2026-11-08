@@ -1,10 +1,13 @@
 ---
 // The legal notice, in the language of its route (src/pages/legal.astro,
-// src/pages/fr/mentions-legales.astro). Its texts are in src/content/<lang>/legal.json.
+// src/pages/fr/mentions-legales.astro). Its texts are in src/content/<lang>/legal.json; a line
+// may hold a link, hence set:html, on texts that come only from those files.
 import en from "../content/en/legal.json";
 import fr from "../content/fr/legal.json";
 import SiteLayout from "../layouts/site-layout.astro";
-import type { Lang } from "../lib/i18n";
+import { type Lang, routes } from "../lib/i18n";
+import { href } from "../lib/url";
+import OutlineButton from "./outline-button.astro";
 
 interface Props {
   lang: Lang;
@@ -21,30 +24,78 @@ const page = pages[lang];
   title={page.title}
   description={page.description}
 >
-  <div class="wrap">
-    <h1>{page.title}</h1>
-    {page.sections.map(({ heading, lines }) => (
-      <section>
-        <h2>{heading}</h2>
-        {lines.map((line) => (
-          <p>{line}</p>
+  <div class="grid-zone is-short">
+    <div class="wrap legal-head">
+      <h1>{page.heading}</h1>
+    </div>
+  </div>
+  <div class="legal-body">
+    <div class="wrap">
+      <div class="legal">
+        {page.sections.map(({ heading, lines }) => (
+          <section>
+            <h2>{heading}</h2>
+            {lines.map((line) => (
+              <p set:html={line} />
+            ))}
+          </section>
         ))}
-      </section>
-    ))}
+        <div class="legal-back">
+          <OutlineButton href={href(routes.home[lang])}>
+            {page.back}
+          </OutlineButton>
+        </div>
+      </div>
+    </div>
   </div>
 </SiteLayout>
 
 <style>
-  .wrap {
-    max-width: var(--width-text);
-    padding-block: var(--space-12);
+  .legal-head {
+    padding-block: var(--space-16);
   }
 
   h1 {
     font-size: var(--size-title);
+    text-transform: uppercase;
   }
 
-  p {
-    margin: 0;
+  .legal-body {
+    padding-bottom: var(--band-padding);
+    background: var(--color-background);
+  }
+
+  .legal {
+    max-width: var(--width-text);
+    margin-inline: auto;
+  }
+
+  section + section {
+    margin-top: var(--space-8);
+  }
+
+  /* Written like the questions of the home page. */
+  h2 {
+    margin-bottom: var(--space-2);
+    color: var(--color-accent);
+    font-family: var(--font-text);
+    font-size: var(--size-subtitle);
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  p + p {
+    margin-top: var(--space-1);
+  }
+
+  .legal-back {
+    margin-top: var(--space-8);
+  }
+
+  @media (width >= 721px) {
+    h1 {
+      text-align: center;
+    }
   }
 </style>

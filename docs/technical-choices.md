@@ -87,6 +87,7 @@ The stack above is confirmed for this site. The JavaScript libraries, if any, an
 - `src/content/<lang>/<page>.json`: the texts of each page (`home.json`, `legal.json`, `not-found.json`), imported as JSON.
 - A list of similar entries (offers, articles, projects) becomes an Astro content collection, one Markdown file per entry, whose front matter is validated by a schema in `src/content.config.ts`: a missing field fails the build instead of publishing a broken page.
 - `src/data/urls.json`: the former addresses and their redirects.
+- `src/lib/application.ts`: the addresses of the application, read by the footer and the download buttons.
 - `src/lib/url.ts`: every internal link goes through `href(routes.legal.en)`, which adds the base path of the preview.
 
 ## Addresses check
@@ -99,7 +100,7 @@ The stack above is confirmed for this site. The JavaScript libraries, if any, an
 ## Width check
 
 - **Why**: on sylent.art, a large faded word ran past the right edge of the screen; `overflow-x: hidden` on the body hid it on a computer, but Chrome on Android still widened the page and left a black band. Only a browser that lays the page out can see it.
-- **`scripts/check-overflow.mjs`** serves `dist/` as GitHub Pages would, loads every page (the not-found page included, the redirect pages left out) in the Chromium of Playwright as on a phone (320, 360 and 412 px, `isMobile`), then on a computer (1024 and 1440 px), scrolls it to the bottom, and fails if the page got wider than the screen, if an element marked `data-one-line` (a large title) takes more than one line, or if a script throws. Only the local server is reached.
+- **`scripts/check-overflow.mjs`** serves `dist/` as GitHub Pages would, loads every page (the not-found page included, the redirect pages left out) in the Chromium of Playwright as on a phone (320, 360 and 412 px, `isMobile`), then on a computer (1024 and 1440 px), scrolls it to the bottom, and fails if the page got wider than the screen, if an element marked `data-one-line` (a large title) takes more than one line, or if a script throws. A value on `data-one-line` gives the width of the screen from which the element must hold on one line (`data-one-line="345"`), and an element kept on one line by CSS can't wrap, so its text is also measured, and the check fails when the first ancestor that clips it, or the screen, cuts it. Only the local server is reached.
 - **Playwright** (the library, without its test runner, a development dependency): its Chromium is downloaded apart, headless only, once with `npx playwright install --only-shell chromium` locally, at every run with `--with-deps` in CI. Chromium, since the bug showed on Android, whose browsers are mostly built on it.
 
 ## Brand images

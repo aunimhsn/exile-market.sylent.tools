@@ -2,6 +2,7 @@
 // The footer of every page: the legal notice, the source code, its license and the disclaimer
 // asked by the developer documentation of Grinding Gear Games, then the name and the author. The
 // not-found page, which holds both languages and has no twin, keeps only the name and the author.
+import { repository } from "../lib/application";
 import { type Lang, type PageId, routes, ui } from "../lib/i18n";
 import { href } from "../lib/url";
 
@@ -12,7 +13,6 @@ interface Props {
 
 const { lang, page } = Astro.props;
 const texts = ui(lang);
-const repository = "https://github.com/aunimhsn/rust-exile-market";
 ---
 
 <footer class="site-footer">

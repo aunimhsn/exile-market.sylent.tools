@@ -1,0 +1,99 @@
+---
+// An outlined link: the download buttons, and the way back to the home page. Under the pointer or
+// the keyboard focus, a red line with a glow draws itself clockwise over its border. `main` gives
+// it the white border of the main action.
+interface Props {
+  href: string;
+  main?: boolean;
+}
+
+const { href, main = false } = Astro.props;
+---
+
+<a class:list={["outline-button", { "is-main": main }]} href={href}>
+  <slot />
+  <svg class="button-line is-glow" aria-hidden="true">
+    <rect pathLength="1"></rect>
+  </svg>
+  <svg class="button-line" aria-hidden="true">
+    <rect pathLength="1"></rect>
+  </svg>
+</a>
+
+<style>
+  /* isolation keeps the glow behind the text and in front of what is behind the button. */
+  .outline-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 var(--space-6);
+    border: 1px solid var(--color-button-line);
+    color: var(--color-text);
+    font-family: var(--font-title);
+    font-weight: 600;
+    letter-spacing: var(--tracking-button);
+    text-decoration: none;
+    white-space: nowrap;
+    isolation: isolate;
+  }
+
+  .outline-button:hover {
+    color: var(--color-text);
+  }
+
+  .is-main {
+    border-color: var(--color-text);
+  }
+
+  .button-line {
+    position: absolute;
+    inset: -1px;
+    overflow: visible;
+    width: calc(100% + 2px);
+    max-width: none;
+    height: calc(100% + 2px);
+    pointer-events: none;
+  }
+
+  .button-line.is-glow {
+    z-index: -1;
+    filter: drop-shadow(0 0 3px var(--color-accent-deep))
+      drop-shadow(0 0 10px var(--color-accent-deep));
+  }
+
+  rect {
+    x: 1px;
+    y: 1px;
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    fill: none;
+    stroke: var(--color-accent-deep);
+    stroke-width: 2px;
+    stroke-linecap: square;
+    stroke-dasharray: 1 1;
+    stroke-dashoffset: 1;
+    opacity: 0;
+    transition:
+      stroke-dashoffset var(--draw-out),
+      opacity 0s linear 0.25s;
+  }
+
+  .outline-button:hover rect,
+  .outline-button:focus-visible rect {
+    stroke-dashoffset: 0;
+    opacity: 1;
+    transition:
+      stroke-dashoffset var(--draw-in),
+      opacity 0s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    rect,
+    .outline-button:hover rect,
+    .outline-button:focus-visible rect {
+      transition: none;
+    }
+  }
+</style>
