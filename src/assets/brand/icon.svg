@@ -1,15 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="12 12 76 76" width="256" height="256">
-  <!-- Exile Market icon: the emblem (emblem.svg) in flat colors, the rings in the deep red of the site
-       and the diamonds in its red, the two accent colors of src/styles/tokens.css, the same in dark and
-       light modes (docs/branding.md, Icon and preview card). `npm run brand:images` makes the images of the
-       site from it; the application copies it to assets/logo/icon.svg. -->
+  <!-- Exile Market icon: the emblem (emblem.svg) in one flat red per mode of the system, the two accent
+       colors of src/styles/tokens.css (docs/branding.md, Icon and preview card). The attributes hold the
+       red for a dark background, which a renderer without media queries and the images of a fixed size
+       take; the rule below gives the deep red to a light mode. `npm run brand:images` makes the images
+       of the site from this file; the application copies it to assets/logo/icon.svg. -->
+  <style>
+    @media (prefers-color-scheme: light) {
+      .mark { fill: #a80f18; }
+      .line { stroke: #a80f18; }
+    }
+  </style>
   <defs>
     <path id="blade" d="M50 13 L54.6 21 L50 31 L45.4 21 Z"/>
     <path id="small-blade" d="M50 14 L53 22 L50 28 L47 22 Z"/>
   </defs>
-  <circle cx="50" cy="50" r="28" fill="none" stroke="#a80f18" stroke-width="5"/>
-  <circle cx="50" cy="50" r="21.5" fill="none" stroke="#a80f18" stroke-width="1.5" opacity=".55"/>
-  <g fill="#e5383b">
+  <circle class="line" cx="50" cy="50" r="28" fill="none" stroke="#e5383b" stroke-width="5"/>
+  <circle class="line" cx="50" cy="50" r="21.5" fill="none" stroke="#e5383b" stroke-width="1.5" opacity=".55"/>
+  <g class="mark" fill="#e5383b">
     <use xlink:href="#blade"/>
     <use xlink:href="#blade" transform="rotate(90 50 50)"/>
     <use xlink:href="#blade" transform="rotate(180 50 50)"/>

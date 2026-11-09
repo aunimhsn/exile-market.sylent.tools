@@ -121,7 +121,7 @@
   .site-brand-text { display: inline-block; transform-origin: left center; transition: transform .2s; }
   a.site-brand:hover .site-brand-text, a.site-brand:focus-visible .site-brand-text { transform: scale(1.06); }
   :root[data-motion="still"] .site-brand-text { transition: none; }
-  .site-brand svg { width: 26px; height: 26px; filter: grayscale(1) brightness(1.7); }
+  .site-brand svg { width: 26px; height: 26px; filter: brightness(0) invert(1); }
   /* The flag alone (owner's choice), with its name for screen readers and under the pointer. */
   .site-language { display: grid; place-items: center; width: 44px; height: 44px; margin-right: -8px; }
   .site-language svg { width: 28px; height: 19px; box-shadow: 0 0 0 1px #ffffff33; transition: transform .15s; }
@@ -352,7 +352,7 @@
 </head>
 <body>
 <script>
-  const ICON = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="12 12 76 76" width="256" height="256"> <defs> <path id="blade" d="M50 13 L54.6 21 L50 31 L45.4 21 Z"/> <path id="small-blade" d="M50 14 L53 22 L50 28 L47 22 Z"/> </defs> <circle cx="50" cy="50" r="28" fill="none" stroke="#a80f18" stroke-width="5"/> <circle cx="50" cy="50" r="21.5" fill="none" stroke="#a80f18" stroke-width="1.5" opacity=".55"/> <g fill="#e5383b"> <use xlink:href="#blade"/> <use xlink:href="#blade" transform="rotate(90 50 50)"/> <use xlink:href="#blade" transform="rotate(180 50 50)"/> <use xlink:href="#blade" transform="rotate(270 50 50)"/> <use xlink:href="#small-blade" transform="rotate(45 50 50)"/> <use xlink:href="#small-blade" transform="rotate(135 50 50)"/> <use xlink:href="#small-blade" transform="rotate(225 50 50)"/> <use xlink:href="#small-blade" transform="rotate(315 50 50)"/> <path d="M50 39 L58 50 L50 61 L42 50 Z"/> </g> </svg>`;
+  const ICON = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="12 12 76 76" width="256" height="256"> <style> @media (prefers-color-scheme: light) { .mark { fill: #a80f18; } .line { stroke: #a80f18; } } </style> <defs> <path id="blade" d="M50 13 L54.6 21 L50 31 L45.4 21 Z"/> <path id="small-blade" d="M50 14 L53 22 L50 28 L47 22 Z"/> </defs> <circle class="line" cx="50" cy="50" r="28" fill="none" stroke="#e5383b" stroke-width="5"/> <circle class="line" cx="50" cy="50" r="21.5" fill="none" stroke="#e5383b" stroke-width="1.5" opacity=".55"/> <g class="mark" fill="#e5383b"> <use xlink:href="#blade"/> <use xlink:href="#blade" transform="rotate(90 50 50)"/> <use xlink:href="#blade" transform="rotate(180 50 50)"/> <use xlink:href="#blade" transform="rotate(270 50 50)"/> <use xlink:href="#small-blade" transform="rotate(45 50 50)"/> <use xlink:href="#small-blade" transform="rotate(135 50 50)"/> <use xlink:href="#small-blade" transform="rotate(225 50 50)"/> <use xlink:href="#small-blade" transform="rotate(315 50 50)"/> <path d="M50 39 L58 50 L50 61 L42 50 Z"/> </g> </svg>`;
   // The second font, on the subtitle only. `size` scales the subtitle, since a script looks smaller.
   const SUBTITLE_FONT = { css: "Cormorant+Garamond:ital,wght@1,500", family: "Cormorant Garamond", italic: true, weight: 500, size: 1.26 };
   const DEVICES = {

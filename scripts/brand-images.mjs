@@ -41,7 +41,9 @@ const ico = (images) => {
 
 const browser = await chromium.launch();
 try {
-  const page = await browser.newPage();
+  // In dark mode, so that the images of a fixed size take the red of the site, not the deep red
+  // that the icon keeps for a light mode.
+  const page = await browser.newPage({ colorScheme: "dark" });
 
   /** The icon drawn at a size, on a transparent background or on a color, with a margin if any. */
   const drawIcon = async (size, background = "transparent", margin = 0) => {
