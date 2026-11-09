@@ -1,0 +1,46 @@
+---
+// The burst of shards behind the first screen (src/lib/hero-burst.ts). It lies under the whole
+// page, from its top to the bottom of the grid zone. Without JavaScript or WebGL, the canvas stays
+// empty and transparent.
+---
+
+<canvas class="hero-burst" aria-hidden="true"></canvas>
+
+<script>
+  const canvas = document.querySelector<HTMLCanvasElement>(".hero-burst");
+  const zone = document.querySelector<HTMLElement>(".grid-zone");
+
+  const start = () => {
+    // Three.js needs WebGL 2: without it, nothing is downloaded. The test uses a canvas of its own,
+    // since a canvas keeps the settings of its first context.
+    if (!canvas || !zone) return;
+    if (!document.createElement("canvas").getContext("webgl2")) return;
+    // Decorative: if the file can't be downloaded, the page stays whole without it.
+    import("../lib/hero-burst")
+      .then(({ startBurst }) => startBurst(canvas, zone))
+      .catch(() => undefined);
+  };
+
+  // Three.js is the heaviest file of the page: it waits until the page is shown.
+  if (document.readyState === "complete") start();
+  else window.addEventListener("load", start, { once: true });
+</script>
+
+<style>
+  .hero-burst {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+    mask-image: linear-gradient(#000000 82%, transparent);
+  }
+
+  /* On a phone, the text lies over the shards. */
+  @media (width <= 720px) {
+    .hero-burst {
+      opacity: var(--opacity-burst-on-phone);
+    }
+  }
+</style>

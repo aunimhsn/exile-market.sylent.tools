@@ -30,6 +30,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 // Under a base path, the site is the preview at its github.io address, which search engines
 // must not index beside the former site or the domain.
 const isPreview = import.meta.env.BASE_URL !== "/";
+// The statistics count the real domain only: neither the preview nor the development server
+// (docs/external-services.md, GoatCounter).
+const countsVisits = import.meta.env.PROD && !isPreview;
 // The card that LinkedIn, Facebook and the messaging apps show for a link to any page: its title,
 // its description and one image of 1200 × 630 px (docs/branding.md, Brand assets). The networks
 // want an absolute URL and read JPEG everywhere, WebP not always; the name of the file carries a
@@ -93,6 +96,16 @@ const urlIn = (language: Lang) =>
     <meta property="og:image:height" content={String(card.attributes.height)} />
     <meta property="og:image:alt" content={texts.site.cardAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    {countsVisits && (
+      <script
+        is:inline
+        async
+        data-goatcounter="https://exile-market.goatcounter.com/count"
+        src="https://gc.zgo.at/count.v5.js"
+        crossorigin="anonymous"
+        integrity="sha384-atnOLvQb9t+jTSipvd75X2yginT4PjVbqDdlJAmxMm+wYElFmeR6EmLP5bYeoRVQ"
+      />
+    )}
   </head>
   <body>
     <slot />

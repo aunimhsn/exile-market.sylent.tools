@@ -24,6 +24,9 @@ export default defineConfig({
     Object.entries(urls.redirects).map(([from, path]) => [from, to(path)]),
   ),
   integrations: [sitemap()],
+  // The renderer of Three.js is one block of about 540 kB (132 kB compressed), which can't be cut
+  // further: it loads alone, after the page is shown (docs/technical-choices.md, Burst of shards).
+  vite: { build: { chunkSizeWarningLimit: 600 } },
   // Self-hosted fonts, downloaded at build time and served by the site itself (docs/branding.md,
   // Typography). The tokens --font-text, --font-title and --font-subtitle read these variables.
   fonts: [

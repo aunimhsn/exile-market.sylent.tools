@@ -103,6 +103,7 @@
   --grid-step: 32px;
   --grid-light-radius: 190px;
   --grid-veil: #0a0a0af0;
+  --opacity-burst-on-phone: 0.42;
 
   /* Text set straight on the grid of the first screen keeps a dark halo. */
   --shadow-on-grid: 0 1px 10px #000000, 0 0 3px #000000;

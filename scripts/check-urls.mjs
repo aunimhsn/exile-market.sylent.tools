@@ -7,6 +7,7 @@
 // - the sitemap lists only pages that exist, no redirect;
 // - every page has the Open Graph tags of its own title and canonical link, and an image built
 //   in the site;
+// - every page holds the statistics script on the real domain, and none in the preview;
 // - every page says the language of its address, gives the address of both languages to the search
 //   engines (hreflang), and links to the other language, each page pointing back to the other.
 // Run after `npm run build`, or on a build under a base: `node scripts/check-urls.mjs <folder> <base>`.
@@ -160,6 +161,10 @@ for (const file of htmlFiles) {
   if (isRedirect(html)) {
     redirectPages.add(file);
     continue;
+  }
+  // Only the real domain is counted, on every page; a build under a base is the preview.
+  if (html.includes("data-goatcounter=") !== (base === "")) {
+    errors.push(`${file}: the statistics must count the real domain only`);
   }
   const title = html.match(/<title>([^<]*)<\/title>/)?.[1];
   if (meta(html, "og:title") !== title) {

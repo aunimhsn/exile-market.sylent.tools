@@ -9,6 +9,7 @@ import { issues } from "../lib/application";
 import type { Lang } from "../lib/i18n";
 import DownloadArea from "./download-area.astro";
 import FeatureDeck from "./feature-deck.astro";
+import HeroBurst from "./hero-burst.astro";
 import HeroVideo from "./hero-video.astro";
 
 interface Props {
@@ -26,6 +27,7 @@ const page = pages[lang];
   title={page.title}
   description={page.description}
 >
+  <HeroBurst />
   <div class="grid-zone">
     <div class="wrap">
       <section class="hero">
