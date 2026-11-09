@@ -122,6 +122,8 @@ French addresses the visitor with « vous », like the application. Short, factu
 
 <!-- Where they come from, their license, their format and sizes. -->
 
+The screens and the video keep the status line of the application, with the name of poe2scout: they show the real window, and poe2scout is the source of the prices, already named in the texts of the page, not a tool it is compared with (owner, 2026-11-09).
+
 ## Accessibility
 
 <!-- Contrast, focus, the minimum size of touch targets, the alternative texts. -->
