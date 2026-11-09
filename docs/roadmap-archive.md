@@ -2,6 +2,12 @@
 
 The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is merged, the most recent first. `roadmap.md` keeps one line per step done.
 
+## 4d. The light motion
+
+Pull request: [#13](https://github.com/aunimhsn/exile-market.sylent.tools/pull/13).
+
+The red grid under the pointer on every page that has the grid, the grid of the first screen and that of the block « What it does » becoming one shared rule (code review of 4c); the entrance of the large sentences. No dependency. Tools: build, code review.
+
 ## 4c. The home page, still
 
 Pull request: [#12](https://github.com/aunimhsn/exile-market.sylent.tools/pull/12).

@@ -20,7 +20,11 @@
     "risk": "Connaître le risque pour votre compte",
     "alert": "Pourquoi Windows affiche-t-il une alerte ?"
   },
-  "still": "La fenêtre d’Exile Market, qui affiche le prix de l’objet en trois monnaies, sous les mots « Son prix ».",
+  "video": {
+    "still": "La fenêtre d’Exile Market, qui affiche le prix de l’objet en trois monnaies, sous les mots « Son prix ».",
+    "play": "Lancer la vidéo",
+    "pause": "Mettre la vidéo en pause"
+  },
   "afterDownload": [
     "N’oubliez pas de mettre le jeu",
     "en plein écran fenêtré ou en fenêtre."

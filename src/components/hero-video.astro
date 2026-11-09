@@ -1,0 +1,287 @@
+---
+// The video of the first screen, in the language of the page. The still image is always there, and
+// shows alone without JavaScript or with reduced motion; the video lies over it, transparent until
+// it has a frame, and the script starts it.
+import { Image } from "astro:assets";
+import deckEnMp4 from "../assets/video/deck-en.mp4";
+import deckEnWebm from "../assets/video/deck-en.webm";
+import deckFrMp4 from "../assets/video/deck-fr.mp4";
+import deckFrWebm from "../assets/video/deck-fr.webm";
+import stillEn from "../assets/video/still-en.jpg";
+import stillFr from "../assets/video/still-fr.jpg";
+import type en from "../content/en/home.json";
+import type { Lang } from "../lib/i18n";
+
+interface Props {
+  lang: Lang;
+  texts: (typeof en)["video"];
+}
+
+const { lang, texts } = Astro.props;
+const still = { en: stillEn, fr: stillFr }[lang];
+const sources = {
+  en: { webm: deckEnWebm, mp4: deckEnMp4 },
+  fr: { webm: deckFrWebm, mp4: deckFrMp4 },
+}[lang];
+
+// The width the image is shown at: --gutter, --first-screen-rest and --video-ceiling of
+// src/styles/tokens.css, written out since an HTML attribute can't read a variable.
+const stillSizes =
+  "min(100vw - 40px, clamp(400px, (100vh - 380px) * 16 / 9, 960px))";
+---
+
+<div class="hero-video">
+  <div class="media-frame">
+    <Image
+      class="media-still"
+      src={still}
+      alt={texts.still}
+      widths={[640, 960, 1280]}
+      sizes={stillSizes}
+      loading="eager"
+      fetchpriority="high"
+    />
+    <video
+      class="media-video"
+      muted
+      loop
+      playsinline
+      preload="none"
+      aria-hidden="true"
+    >
+      <source src={sources.webm} type='video/webm; codecs="vp9"' />
+      <source src={sources.mp4} type='video/mp4; codecs="avc1.64001f"' />
+    </video>
+    <button
+      type="button"
+      class="media-toggle"
+      aria-label={texts.play}
+      data-play={texts.play}
+      data-pause={texts.pause}
+      hidden
+    >
+      <svg
+        class="icon-play"
+        width="26"
+        height="26"
+        viewBox="0 0 26 26"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M8 4.5v17l14-8.5z"></path>
+      </svg>
+      <svg
+        class="icon-pause"
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="currentColor"
+        aria-hidden="true"
+      >
+        <path d="M3 2h3v10H3zM8 2h3v10H8z"></path>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  const box = document.querySelector<HTMLElement>(".hero-video");
+  const video = box?.querySelector("video");
+  const button = box?.querySelector("button");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (box && video && button) {
+    // What the visitor wants, apart from what the screen shows: out of sight, the video stops but
+    // its button still says it plays. Nothing is kept for the next visit.
+    let wanted = !reducedMotion.matches;
+    let inSight = false;
+
+    const showState = () => {
+      button.classList.toggle("is-playing", wanted);
+      button.setAttribute(
+        "aria-label",
+        (wanted ? button.dataset.pause : button.dataset.play) ?? "",
+      );
+    };
+
+    const refuse = (error: DOMException) => {
+      // A pause or a scroll cut a start short: nothing went wrong.
+      if (error.name === "AbortError") return;
+      // The browser refused to start the video (a battery saver): the still image stays, with the
+      // play button.
+      wanted = false;
+      showState();
+    };
+
+    const apply = () => {
+      showState();
+      if (wanted && inSight) video.play().catch(refuse);
+      else video.pause();
+    };
+
+    // No source could be loaded (no network, a blocker): the last one fails, and play() neither
+    // ends nor rejects. The still image stays, without a button that would do nothing.
+    video
+      .querySelector("source:last-of-type")
+      ?.addEventListener("error", () => {
+        wanted = false;
+        button.hidden = true;
+        showState();
+      });
+
+    // Stopped by the system or the browser rather than by this script: the button tells so. Paused
+    // is read again, since the event may come after a new start.
+    video.addEventListener("pause", () => {
+      if (video.paused && wanted && inSight && !document.hidden) {
+        wanted = false;
+        showState();
+      }
+    });
+
+    button.hidden = false;
+    showState();
+
+    button.addEventListener("click", () => {
+      wanted = !wanted;
+      apply();
+    });
+
+    // Several changes may come at once, the latest one last.
+    new IntersectionObserver((entries) => {
+      inSight = entries.at(-1)?.isIntersecting ?? false;
+      apply();
+    }).observe(box);
+
+    reducedMotion.addEventListener("change", () => {
+      if (!reducedMotion.matches) return;
+      wanted = false;
+      apply();
+    });
+
+    // The slight tilt under a mouse, and never with reduced motion. At most one update per frame,
+    // and none out of sight.
+    const TILT_AROUND_Y = 4.5;
+    const TILT_AROUND_X = 3.5;
+    let mouse = { x: 0, y: 0 };
+    let frame = 0;
+
+    const tilt = () => {
+      frame = 0;
+      box.style.setProperty("--tilt-y", `${mouse.x * TILT_AROUND_Y}deg`);
+      box.style.setProperty("--tilt-x", `${-mouse.y * TILT_AROUND_X}deg`);
+    };
+
+    const lean = (x: number, y: number) => {
+      mouse = { x, y };
+      if (!frame) frame = requestAnimationFrame(tilt);
+    };
+
+    // A finger or a pen puts the video back flat, as it drops the mouse for the red grid.
+    const follow = (event: PointerEvent) => {
+      if (event.pointerType !== "mouse" || reducedMotion.matches) {
+        lean(0, 0);
+        return;
+      }
+      if (!inSight) return;
+      lean(
+        (event.clientX / window.innerWidth) * 2 - 1,
+        (event.clientY / window.innerHeight) * 2 - 1,
+      );
+    };
+
+    document.addEventListener("pointermove", follow);
+    document.addEventListener("pointerdown", follow);
+    document.documentElement.addEventListener("mouseleave", () => lean(0, 0));
+  }
+</script>
+
+<style>
+  /* It stays whole: its width follows the height of the window, with a ceiling. */
+  .hero-video {
+    position: relative;
+    width: min(
+      100%,
+      clamp(
+        400px,
+        calc((100svh - var(--first-screen-rest)) * 16 / 9),
+        var(--video-ceiling)
+      )
+    );
+    margin-top: var(--download-rhythm);
+    perspective: var(--tilt-depth);
+  }
+
+  .media-frame {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    transition: transform var(--tilt-time) ease-out;
+  }
+
+  /* The line of the frame, over the video, which would otherwise cover it. */
+  .media-frame::after {
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 1px var(--color-frame-line);
+    content: "";
+    pointer-events: none;
+  }
+
+  .media-frame :global(.media-still),
+  .media-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .media-video {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* One button, so that it keeps the keyboard focus: large in the middle when the video is
+     stopped, small in the corner while it plays. */
+  .media-toggle {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    width: var(--size-media-button-large);
+    height: var(--size-media-button-large);
+    margin: auto;
+    border: 0;
+    border-radius: 50%;
+    background: var(--color-media-button-large);
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  .media-toggle[hidden],
+  .media-toggle .icon-pause,
+  .media-toggle.is-playing .icon-play {
+    display: none;
+  }
+
+  .media-toggle.is-playing .icon-pause {
+    display: block;
+  }
+
+  .media-toggle.is-playing {
+    inset: auto var(--space-2) var(--space-2) auto;
+    width: var(--size-media-button);
+    height: var(--size-media-button);
+    margin: 0;
+    border-radius: var(--radius-media-button);
+    background: var(--color-media-button);
+  }
+
+  /* On a phone, the video comes before the download area, which holds no button. */
+  @media (width <= 720px) {
+    .hero-video {
+      order: 1;
+      width: 100%;
+      margin-top: var(--space-4);
+    }
+  }
+</style>

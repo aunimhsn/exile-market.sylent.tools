@@ -59,11 +59,17 @@
   --color-accent-deep: #a80f18;
   --color-accent: #e5383b;
   --video-neutral: #161616;
+  --color-media-button: #0f1216cc;
+  --color-media-button-large: #0f1216e6;
 
   /* What moves starts fast and slows down: the line around a download button, the cards. */
   --ease-draw: cubic-bezier(0.215, 0.61, 0.355, 1);
   --draw-in: 0.7s var(--ease-draw);
   --draw-out: 0.25s ease-out;
+
+  /* The tilt of the video under the pointer: how far the eye stands, and how fast it follows. */
+  --tilt-depth: 1100px;
+  --tilt-time: 0.12s;
 
   /* The large sentences: the time they take to come in, and the gap between their two lines. */
   --entrance-time: 1.2s;
@@ -77,6 +83,9 @@
   --width-text: 42.5em;
   --height-header: 56px;
   --size-top-button: 48px;
+  --size-media-button: 32px;
+  --size-media-button-large: 64px;
+  --radius-media-button: 3px;
   --gutter: var(--space-5);
   --card-padding: var(--space-6);
   --band-padding: var(--space-20);
