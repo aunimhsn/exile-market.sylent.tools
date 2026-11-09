@@ -35,7 +35,7 @@ Download the application. The buttons link straight to the file (`releases/lates
 
 | Visitor | Download area |
 |---|---|
-| Before the tag `v0.1.0` | « Coming soon » / « Bientôt disponible » as text, in place of the buttons: never a link to `#` |
+| Before the tag `v0.1.0` | « Coming soon » / « Bientôt disponible » in a single frame with the shape of the main button, in place of the buttons: a text, never a link to `#` |
 | Windows, Linux, system not detected, or no JavaScript | Two outlined buttons of the same size, side by side, Windows with a white border then Linux with a grey one: this is the HTML of the page, which works alone; the script only replaces them for macOS or a phone |
 | macOS | No button. « Exile Market isn't available on macOS. » / « Exile Market n’est pas disponible sur macOS. » |
 | Phone or tablet | No button. « Exile Market runs on a computer. Open exile-market.sylent.tools on yours. » / « Exile Market s’installe sur un ordinateur. Ouvrez exile-market.sylent.tools sur le vôtre. » The address never breaks on two lines. |
@@ -46,7 +46,7 @@ Under the buttons, one link per line, centered on a computer (owner, 2026-11-08)
 
 The wording about macOS says what the tool does, not what the game does: Steam lists the game for Windows only (checked on 2026-11-06), but a third-party source speaks of a Mac client, and the standalone client wasn't checked.
 
-**After the download** (owner, 2026-11-07): one sentence, the only thing players can't guess: « Do not forget to set the game in windowed fullscreen or in a window. » / « N’oubliez pas de mettre le jeu en plein écran fenêtré ou en fenêtre. » The Windows alert is answered in the questions, reached by a link under the buttons; the help for Linux (Wayland, the clipboard) stays in the README of the application.
+**After the download** (owner, 2026-11-07): one sentence, the only thing players can't guess: « Do not forget to set the game in windowed fullscreen or in a window. » / « N'oubliez pas de mettre le jeu en plein écran fenêtré ou en fenêtré. » The Windows alert is answered in the questions, reached by a link under the buttons; the help for Linux (Wayland, the clipboard) stays in the README of the application.
 
 ## Content tree
 
@@ -67,7 +67,7 @@ The mock-up (`docs/mockups/home-page.html`, approved by the owner on 2026-11-08)
    - The video is captured again just before the launch, so that its prices and its league are current (`docs/technical-choices.md`, Video of the first screen).
 3. **After the download** / **Après le téléchargement**: the sentence of [Main action](#main-action), large and centered, without title and without steps.
 4. **What it does**: no visible title; three real screens of the application overlapping, and the text of the one in front next to them (`docs/branding.md`): copy an item (Ctrl + D, or Ctrl + C), see its price (from poe2scout for currencies and uniques, from the trade site for the rest), its stats and filters, the offers, in a small window over the game.
-5. **What it does on your computer** / **Ce qu’il fait sur votre ordinateur** (not « Safety »: the word would promise what the page can't), a short list, to the left of the questions on a computer and above them on a phone:
+5. **What it does on your computer** / **Ce qu'il fait sur votre ordinateur** (not « Safety »: the word would promise what the page can't), a short list, to the left of the questions on a computer and above them on a phone:
    - It watches the clipboard while it runs and keeps only what looks like a Path of Exile 2 item.
    - Ctrl + D sends the game the Ctrl + C of one copy, once per press. It doesn't modify the game nor read its memory.
    - It connects only to poe2scout, the trade site and GitHub. A search on the trade site runs only when the player clicks.
@@ -145,7 +145,7 @@ From the application (`docs/branding.md`, Brand assets): the bronze emblem and t
 - **Host**: GitHub, Inc. (GitHub Pages), its address and phone number.
 - **Statistics**: the site counts its visits with GoatCounter, without a cookie, without storing anything in the browser and without a banner. The notice says what is counted (pages, source of the visit, browser, system, screen size, country), that the counts are anonymous, who hosts them, and where to read GoatCounter's privacy policy. The site has no form and collects nothing else.
 - **Contact for players**: GitHub Issues and the bug report button of the application. The email address and the phone number are in the legal notice only.
-- **Credits**: Manrope and Cormorant Garamond, under the SIL Open Font License. Path of Exile and its images belong to Grinding Gear Games.
+- **Credits**: Manrope and Cormorant Garamond, under the SIL Open Font License. Three.js, with its copyright, under the MIT License, linked to its text. Path of Exile and its images belong to Grinding Gear Games.
 
 ## Constraints
 

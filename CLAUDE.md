@@ -29,7 +29,7 @@
 - Everything in the project (code, identifiers, comments, documentation, commit messages) must be written in English.
 - Exception: the content of the site (pages, metadata shown to visitors) is written in English and in French, every page in both. It lives in content or translation files, one per language (`src/content/<lang>/`, `src/i18n/<lang>.json`), never hard-coded in the layouts or components.
 - Exception: the code review notes in `outputs/` are written in French.
-- French content follows French typography: a non-breaking space before `?`, `!`, `:`, `;` and inside « », the typographic apostrophe (’), and correct accents and capitals (e.g. « À propos »), even on capitals.
+- French content follows French typography: a non-breaking space before `?`, `!`, `:`, `;` and inside « », the typographic apostrophe (’), except in the titles and large sentences set in Manrope, where the owner chose the straight one (', `docs/branding.md`, Typography), and correct accents and capitals (e.g. « À propos »), even on capitals.
 
 ## Specifications and roadmap
 
@@ -117,7 +117,7 @@ Follow [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.
 
 - Before opening any pull request that changes code or its build (layouts, components, styles, scripts, Astro config, dependencies, `.github/workflows/`), run the `code-reviewer` subagent (`.claude/agents/code-reviewer.md`) on the branch. A pull request that only changes content or documentation doesn't need it.
 - It writes its recommendations, in French, to `outputs/<YYYY-MM-DD>-<branch>-code-review.md`. These notes are ignored by Git.
-- Summarize the recommendations to the owner, apply only the ones they approve, then open the pull request: never before the owner has chosen.
+- Summarize the recommendations to the owner in a table, one line each, most important first, with these columns: the problem, its priority as given by the review (high, medium or low), and Claude Code's opinion. The owner uses the priority to choose: never drop it. Apply only the recommendations they approve, then open the pull request: never before the owner has chosen.
 - When the owner asks to look at the Dependabot pull requests (the dependency updates, `.github/dependabot.yml`), run the `dependency-reviewer` subagent (`.claude/agents/dependency-reviewer.md`): it writes, in French, to `outputs/<YYYY-MM-DD>-dependency-review.md`, a recommendation for each one, with its link and the comment to post. Give the owner its summary table; never merge, close or comment a Dependabot pull request yourself unless the owner asks.
 
 ## Development

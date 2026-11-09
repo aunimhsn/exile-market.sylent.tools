@@ -134,6 +134,8 @@ The stack above is confirmed for this site. The JavaScript libraries, if any, an
 
 Three.js (`InstancedMesh`, 420 shards, 110 on a phone), behind the first screen only: it stops once out of sight, freezes on a still image if the machine can't follow, and stays still when the visitor asked to reduce motion. The mock-up loads Three.js from a CDN; the build takes it from npm, so that the site depends on no third party at run time.
 
+The script waits for the `load` event, and downloads nothing without WebGL 2: Three.js is the heaviest file of the page (about 540 kB, 132 kB compressed, with only the parts the burst uses), hence `chunkSizeWarningLimit` in `astro.config.mjs`, since its renderer can't be cut further. The choice of the visitor on motion is read once and then followed by its `change` event: read at every image, Chromium no longer sends that event, and the burst didn't start again when the visitor turned motion back on.
+
 ## Commands
 
 Run `npm ci` first, and `npx playwright install --only-shell chromium` once. They are also in the `scripts` of `package.json`.

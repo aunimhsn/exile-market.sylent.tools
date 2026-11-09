@@ -51,6 +51,8 @@ The values below are in `src/styles/tokens.css`, taken from the `:root` of the m
 
 Two fonts only (owner, 2026-11-06 and 2026-11-08), under the SIL Open Font License: Manrope for everything, titles, text, buttons, keys and commands, which only a heavier weight marks; Cormorant Garamond in italics for the subtitle only. The sizes per role are the `--size-*` tokens of the mock-up. The headline is white, its last words « Its price. » / « Son prix. » in red (owner, 2026-11-06). The section titles are in capitals and keep their accents in French, over a large faded word.
 
+Apostrophe of the titles (owner, 2026-11-09): the straight one (') in the French titles and large sentences set in Manrope, compared on the whole page; the text of the page keeps the typographic one (’), as French typography asks. Manrope has only these two, and replaces a straight one by the curved one through its `calt` feature in a few sequences of lowercase letters (`l'e`, English contractions): a new title with an apostrophe is checked by eye.
+
 ## Spacing
 
 `--space-N` = N × 4 px.
@@ -88,6 +90,8 @@ Not-found page (owner, 2026-11-08): the grid of the first screen; a huge 404 in 
 Donation banner (owner, 2026-11-08): one thin line above the header, 36 px high plus its border, on the background of the page: « Exile Market is free. » in `--color-text-faint`, then the link to Ko-fi in red, white under the pointer or the keyboard focus, like the links under the download buttons, 14 px. The grey and the red have nearly the same luminance, so the 700 weight of the link is what tells it from the text around it (WCAG 1.4.1). It stays in the mock-up, hidden by default behind the tab « Donation banner (later) », ready to be added (`backlog.md`): donations stay out of this version (`specs.md`) and the banner isn't published before the conditions of step 18 of the application are met (`roadmap.md`).
 
 Download buttons (owner, 2026-11-06): Windows and Linux side by side, with the same size and always in this order. Both are outlined, without a background even under the pointer, and the detected system changes nothing. Windows has a white border and Linux a grey one, which gives Windows a little more weight (owner, 2026-11-06).
+
+Before the tag (owner, 2026-11-09): « Coming soon » stands alone in a frame with the shape of the main button, white border and white text at full contrast, as wide as a button on a phone. It stays a text: not a link, not focusable, nothing under the pointer. Plain text was too easy to miss for an information this important.
 
 The titles of the blocks are centered on a computer and have no faded word behind them, which took too much height for what it adds (owner, 2026-11-06).
 
@@ -130,6 +134,8 @@ French addresses the visitor with « vous », like the application. Short, factu
 - A preview card per language with the headline on it, and the white emblem as the icon of the browser tab (2026-11-08): see Icon and preview card.
 - The other videos, compared with the friends of the owner: The gesture, The corridor, The big bang, The blood, and the first version of The deck, whose words didn't match the images (« One item » over a price, « One shortcut » over an empty window). Removed on 2026-11-08. The guided tour is kept, in case (`docs/mockups/video/normal-b.js`, its renders in `outputs/`), not used on the page.
 - Bodoni Moda italic as the second font, and the second font on all the text: Cormorant Garamond on the subtitle alone was kept (2026-11-08).
+- For « Coming soon », a real disabled button, greyed by convention and so harder to read than the plain text it replaced, and two frames « Windows » and « Linux », two more things to try to click (2026-11-09).
+- For the apostrophe of the titles, compared on 2026-11-09: the typographic one of Manrope, the same a little apart from the letters, and the typographic one borrowed from Inter, Poppins, Montserrat, Plus Jakarta Sans or Lora, which would have needed one more small font file.
 - A pause button for the burst of shards: the owner sees no place for it and doesn't want it (2026-11-08). The burst stays still when the visitor asked to reduce motion.
 - For the legal notice, two columns on a computer: the order of reading gets less clear for no gain (2026-11-08).
 - For the not-found page: the two languages side by side with a line between them, then the text aligned on the right, then buttons in the style of the Windows button, too strong for this page (2026-11-08).

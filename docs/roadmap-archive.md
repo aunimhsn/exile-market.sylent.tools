@@ -2,6 +2,12 @@
 
 The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is merged, the most recent first. `roadmap.md` keeps one line per step done.
 
+## 4e. The video
+
+Pull request: [#14](https://github.com/aunimhsn/exile-market.sylent.tools/pull/14).
+
+The video in each language, its pause and play buttons, its slight tilt under the pointer, the still image when the visitor asked to reduce motion. Tools: build, code review.
+
 ## 4d. The light motion
 
 Pull request: [#13](https://github.com/aunimhsn/exile-market.sylent.tools/pull/13).
