@@ -102,6 +102,7 @@
     linear-gradient(90deg, var(--color-accent-deep) 1px, transparent 1px);
   --grid-step: 32px;
   --grid-light-radius: 190px;
+  --height-button: 46px;
   --grid-veil: #0a0a0af0;
   --opacity-burst-on-phone: 0.42;
 

@@ -10,6 +10,8 @@ What is noted and not being done: an evolving list, read when the next work is c
 
 - The legal notes of the template and of sylent.art cite article 6 of the LCEN; the article in force is 1-1, since 23 May 2024. Depends on: the retrospective of this cycle, which carries it to the template. Noted on 2026-11-06.
 
+- A new shape for the emblem, for a stronger identity than a new color alone: too long and uncertain before the tag, so step 4g keeps the current shape (owner, 2026-11-09). Depends on: the feedback after v0.1. Noted on 2026-11-09.
+
 ## Edge cases
 
 - A Windows installer or a bare `.exe` instead of a `.zip`, if players stumble on the archive. Depends on: the feedback on v0.1 and the application's release workflow. Noted on 2026-11-06.
