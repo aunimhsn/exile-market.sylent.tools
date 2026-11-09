@@ -118,9 +118,12 @@ The stack above is confirmed for this site. The JavaScript libraries, if any, an
 ## Video of the first screen
 
 - **A composition, not an edit** (`docs/mockups/video/hot-a2.js`): each image is a function of the time only, so that the result doesn't depend on the speed of the machine. `render.mjs` draws it frame by frame in a headless browser (Three.js on SwiftShader), then encodes it in two passes, H.264 and VP9, under 3 MB, with its still image at 55 % of the video.
-- **The renders stay out of Git** (`outputs/2026-11-06-video/`) until the build takes the final one.
+- **The renders stay out of Git** (`outputs/2026-11-06-video/`), except the two the page shows, copied as `src/assets/video/deck-<lang>.webm` and `.mp4` (2.5 MB each). Imported by `src/components/hero-video.astro`, their names carry a hash of their content: a new capture gets a new address, and no browser keeps the old one. Each replacement adds about 10 MB to the history of the repository, so the video is replaced only at the launch.
+- **The still image stays under the video**: an `<img>` with its sizes and its `alt` remains what the browser paints first and what shows without JavaScript; the `<video>` lies over it, transparent until it has a frame. A `poster` would have served one size to every screen.
+- **The script starts the video**, rather than the `autoplay` attribute, which ignores reduced motion: with `preload="none"`, a visitor who asked to reduce motion downloads nothing unless they press play. The video stops out of sight and starts again in sight, unless the visitor paused it. WebM (VP9) comes first, MP4 (H.264) for the browsers that can't read it.
+- **One button** for play and pause, restyled by a class, so that it keeps the keyboard focus when its state changes.
 - **The capture** (`docs/mockups/video/capture/`): the application runs in a virtual KWin session and receives the item through its clipboard. It needs the release binary of the application in `target/release/` next to the scripts, and writes to `out-deck/`. The session has its own `XDG_RUNTIME_DIR`: otherwise a portal started on its private bus takes over the document portal of the desktop.
-- **To do before the launch**: run the capture again, then `node docs/mockups/video/render.mjs hot-a2 en` and `fr`, so that the prices and the league are current.
+- **To do before the launch**: run the capture again, then `node docs/mockups/video/render.mjs hot-a2 en` and `fr`, so that the prices and the league are current, and copy the renders to `src/assets/video/` with the still images.
 
 ## Light motion
 

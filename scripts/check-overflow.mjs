@@ -33,6 +33,8 @@ const types = {
   ".png": "image/png",
   ".jpg": "image/jpeg",
   ".webp": "image/webp",
+  ".webm": "video/webm",
+  ".mp4": "video/mp4",
   ".woff2": "font/woff2",
 };
 
