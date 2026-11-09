@@ -9,7 +9,6 @@ What the owner provides (process.md, Specifications), where it is kept, and what
 | Asset | Format | File | Status |
 |---|---|---|---|
 | Emblem, in white, and icon, in the two reds of the site | SVG | `src/assets/brand/emblem.svg`, copied from `../rust-exile-market/assets/logo/`; `src/assets/brand/icon.svg`, drawn here and copied to the application | In place |
-| Full logo | PNG | `../rust-exile-market/assets/logo/exile-market.png` | Given |
 | Favicon (SVG, ICO 16/32/48 px) and iPhone icon (180 px) | Made from the icon | `public/` | Made by the script |
 | Preview card of the links (1200 × 630 px) | HTML drawn to PNG, converted to JPEG by the build | `src/assets/brand/social-card.html` | In place |
 | Colors | Tokens of the application | `../rust-exile-market/specs.md`, Visual style | Reference for one of the two styles of the mock-up |
@@ -27,7 +26,7 @@ In the header, the emblem in white, 26 px, next to the name in capitals; under t
 
 ## Icon and preview card
 
-The icon is the emblem in flat colors, without a square or a gradient: the rings in `--color-accent-deep` (`#a80f18`), the eight diamonds and the center stone in `--color-accent` (`#e5383b`), the thin inner ring kept. The same file in dark and in light mode (owner, 2026-11-09), and the same icon in the application, so that a player finds it in the taskbar after the download. Known limit, accepted: at 16 px on a dark tab, the deep red of the rings stands out little (2.1:1). The preview card of the links is one image for both languages: the white emblem, the name in capitals and the address on the black of the page, over the grid of the first screen; no sentence, since the description next to it is translated (owner, 2026-11-08).
+The icon is the emblem in flat colors, without a square or a gradient: the rings in `--color-accent-deep` (`#a80f18`), the eight diamonds and the center stone in `--color-accent` (`#e5383b`), the thin inner ring kept. The same file in dark and in light mode (owner, 2026-11-09), and the same icon in the application, so that a player finds it in the taskbar after the download. Known limit, accepted: at 16 px on a dark tab, the deep red of the rings stands out little (2.1:1). No bronze is left in the brand: the full logo, which had it, is removed and not redrawn (owner, 2026-11-09). The preview card of the links is one image for both languages: the white emblem, the name in capitals and the address on the black of the page, over the grid of the first screen; no sentence, since the description next to it is translated (owner, 2026-11-08).
 
 ## Colors
 

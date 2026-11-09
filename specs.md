@@ -136,7 +136,7 @@ Each page links to the same page in the other language, without any automatic re
 
 ## Brand assets
 
-From the application (`docs/branding.md`, Brand assets): the emblem and the logo, Manrope (SIL Open Font License). Nothing else is missing but the video and the screenshots above.
+From the application (`docs/branding.md`, Brand assets): the emblem, Manrope (SIL Open Font License). Nothing else is missing but the video and the screenshots above.
 
 ## Contact details and legal information
 
