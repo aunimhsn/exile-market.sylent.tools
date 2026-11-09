@@ -35,7 +35,7 @@ Download the application. The buttons link straight to the file (`releases/lates
 
 | Visitor | Download area |
 |---|---|
-| Before the tag `v0.1.0` | « Coming soon » / « Bientôt disponible » as text, in place of the buttons: never a link to `#` |
+| Before the tag `v0.1.0` | « Coming soon » / « Bientôt disponible » in a single frame with the shape of the main button, in place of the buttons: a text, never a link to `#` |
 | Windows, Linux, system not detected, or no JavaScript | Two outlined buttons of the same size, side by side, Windows with a white border then Linux with a grey one: this is the HTML of the page, which works alone; the script only replaces them for macOS or a phone |
 | macOS | No button. « Exile Market isn't available on macOS. » / « Exile Market n’est pas disponible sur macOS. » |
 | Phone or tablet | No button. « Exile Market runs on a computer. Open exile-market.sylent.tools on yours. » / « Exile Market s’installe sur un ordinateur. Ouvrez exile-market.sylent.tools sur le vôtre. » The address never breaks on two lines. |
@@ -46,7 +46,7 @@ Under the buttons, one link per line, centered on a computer (owner, 2026-11-08)
 
 The wording about macOS says what the tool does, not what the game does: Steam lists the game for Windows only (checked on 2026-11-06), but a third-party source speaks of a Mac client, and the standalone client wasn't checked.
 
-**After the download** (owner, 2026-11-07): one sentence, the only thing players can't guess: « Do not forget to set the game in windowed fullscreen or in a window. » / « N’oubliez pas de mettre le jeu en plein écran fenêtré ou en fenêtre. » The Windows alert is answered in the questions, reached by a link under the buttons; the help for Linux (Wayland, the clipboard) stays in the README of the application.
+**After the download** (owner, 2026-11-07): one sentence, the only thing players can't guess: « Do not forget to set the game in windowed fullscreen or in a window. » / « N'oubliez pas de mettre le jeu en plein écran fenêtré ou en fenêtré. » The Windows alert is answered in the questions, reached by a link under the buttons; the help for Linux (Wayland, the clipboard) stays in the README of the application.
 
 ## Content tree
 

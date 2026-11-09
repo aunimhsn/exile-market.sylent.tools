@@ -72,7 +72,7 @@ const { texts } = Astro.props;
   </>
 ) : (
   <div class="download">
-    <p class="download-message">{texts.soon}</p>
+    <p class="download-soon">{texts.soon}</p>
   </div>
 )}
 
@@ -89,6 +89,22 @@ const { texts } = Astro.props;
     display: inline-grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-3);
+  }
+
+  /* The shape of the main download button, at full contrast so that it reads at once, without
+     anything of a link: it stays a text, and does nothing under the pointer. */
+  .download-soon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    margin: 0;
+    padding: 0 var(--space-6);
+    border: 1px solid var(--color-text);
+    font-family: var(--font-title);
+    font-weight: 600;
+    letter-spacing: var(--tracking-button);
+    white-space: nowrap;
   }
 
   .download-message {

@@ -29,7 +29,7 @@
 - Everything in the project (code, identifiers, comments, documentation, commit messages) must be written in English.
 - Exception: the content of the site (pages, metadata shown to visitors) is written in English and in French, every page in both. It lives in content or translation files, one per language (`src/content/<lang>/`, `src/i18n/<lang>.json`), never hard-coded in the layouts or components.
 - Exception: the code review notes in `outputs/` are written in French.
-- French content follows French typography: a non-breaking space before `?`, `!`, `:`, `;` and inside « », the typographic apostrophe (’), and correct accents and capitals (e.g. « À propos »), even on capitals.
+- French content follows French typography: a non-breaking space before `?`, `!`, `:`, `;` and inside « », the typographic apostrophe (’), except in the visible titles and large sentences set in Manrope, where the owner chose the straight one (', `docs/branding.md`, Typography), and correct accents and capitals (e.g. « À propos »), even on capitals.
 
 ## Specifications and roadmap
 

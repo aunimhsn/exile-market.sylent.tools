@@ -99,14 +99,15 @@ export function startBurst(canvas: HTMLCanvasElement, zone: HTMLElement): void {
   // Set by the first image: a tab opened in the background draws nothing until it is shown.
   let startedAt: number | undefined;
   let frame = 0;
-  let measure = {
-    from: performance.now() + MEASURE_FIRST_DELAY,
-    images: 0,
-  };
+  let measure = { from: 0, images: 0 };
   let mouse = { x: 0, y: 0 };
 
+  // Never sooner than the first delay, while it runs.
   const measureAgain = () => {
-    measure = { from: performance.now() + MEASURE_AGAIN_DELAY, images: 0 };
+    measure = {
+      from: Math.max(measure.from, performance.now() + MEASURE_AGAIN_DELAY),
+      images: 0,
+    };
   };
 
   const showState = () => {
@@ -130,7 +131,10 @@ export function startBurst(canvas: HTMLCanvasElement, zone: HTMLElement): void {
 
   function draw(now: number) {
     frame = 0;
-    startedAt ??= now;
+    if (startedAt === undefined) {
+      startedAt = now;
+      measure = { from: now + MEASURE_FIRST_DELAY, images: 0 };
+    }
     const still = isStill();
     const seconds = now / 1000;
     const age = still ? AGE_WHEN_STILL : (now - startedAt) / 1000;
@@ -188,7 +192,11 @@ export function startBurst(canvas: HTMLCanvasElement, zone: HTMLElement): void {
     renderer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    if (hasAnImage) renderer.render(scene, camera);
+    if (hasAnImage) {
+      renderer.render(scene, camera);
+      // The images of a resize cost more than the others: they don't count.
+      measureAgain();
+    }
   };
   fit();
   new ResizeObserver(fit).observe(zone);

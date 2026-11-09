@@ -26,11 +26,11 @@
     "pause": "Mettre la vidéo en pause"
   },
   "afterDownload": [
-    "N’oubliez pas de mettre le jeu",
-    "en plein écran fenêtré ou en fenêtre."
+    "N'oubliez pas de mettre le jeu",
+    "en plein écran fenêtré ou en fenêtré."
   ],
   "features": {
-    "heading": "Ce qu’il fait",
+    "heading": "Ce qu'il fait",
     "cards": [
       {
         "title": "Copiez un objet",
@@ -50,7 +50,7 @@
     ]
   },
   "computer": {
-    "heading": "Ce qu’il fait sur votre ordinateur",
+    "heading": "Ce qu'il fait sur votre ordinateur",
     "items": [
       "Il surveille le presse-papiers tant qu’il tourne et ne garde que ce qui ressemble à un objet de Path of Exile 2.",
       "<kbd>Ctrl + D</kbd> envoie au jeu le <kbd>Ctrl + C</kbd> d’une seule copie, une fois par appui. Il ne modifie pas le jeu et ne lit pas sa mémoire.",
