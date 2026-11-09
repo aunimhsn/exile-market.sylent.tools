@@ -2,6 +2,12 @@
 
 The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is merged, the most recent first. `roadmap.md` keeps one line per step done.
 
+## 4g. The icon
+
+Pull request: [#16](https://github.com/aunimhsn/exile-market.sylent.tools/pull/16).
+
+The bronze of the icon didn't match the black, white and red of the site (owner, 2026-11-09). Same shape, new treatment, compared at its real sizes: the emblem in flat colors, one red per mode of the system. `src/assets/brand/icon.svg`, the images of `npm run brand:images`, and `docs/branding.md`, whose decision of 2026-11-08 on the bronze it replaces. Tools: mock-up (the comparison), build.
+
 ## 4f. The burst and the statistics
 
 Pull request: [#15](https://github.com/aunimhsn/exile-market.sylent.tools/pull/15).
