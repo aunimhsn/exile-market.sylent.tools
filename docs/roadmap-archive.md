@@ -2,6 +2,12 @@
 
 The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is merged, the most recent first. `roadmap.md` keeps one line per step done.
 
+## 4f. The burst and the statistics
+
+Pull request: [#15](https://github.com/aunimhsn/exile-market.sylent.tools/pull/15).
+
+The burst of shards (Three.js from npm, loaded after the page is shown); the GoatCounter script, on the real domain only, with the code of the site created on goatcounter.com. Tools: build, code review.
+
 ## 4e. The video
 
 Pull request: [#14](https://github.com/aunimhsn/exile-market.sylent.tools/pull/14).
