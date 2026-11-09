@@ -8,7 +8,7 @@ What the owner provides (process.md, Specifications), where it is kept, and what
 
 | Asset | Format | File | Status |
 |---|---|---|---|
-| Emblem, in white, and icon, in bronze | SVG | `src/assets/brand/emblem.svg`, `icon.svg`, copied from `../rust-exile-market/assets/logo/` | In place |
+| Emblem, in white, and icon, in the two reds of the site | SVG | `src/assets/brand/emblem.svg`, copied from `../rust-exile-market/assets/logo/`; `src/assets/brand/icon.svg`, drawn here and copied to the application | In place |
 | Full logo | PNG | `../rust-exile-market/assets/logo/exile-market.png` | Given |
 | Favicon (SVG, ICO 16/32/48 px) and iPhone icon (180 px) | Made from the icon | `public/` | Made by the script |
 | Preview card of the links (1200 × 630 px) | HTML drawn to PNG, converted to JPEG by the build | `src/assets/brand/social-card.html` | In place |
@@ -27,7 +27,7 @@ In the header, the emblem in white, 26 px, next to the name in capitals; under t
 
 ## Icon and preview card
 
-The icon of the browser tab is the bronze of the application, the only bronze of the site: a player finds the same icon in the taskbar after the download (owner, 2026-11-08). The preview card of the links is one image for both languages: the white emblem, the name in capitals and the address on the black of the page, over the grid of the first screen; no sentence, since the description next to it is translated (owner, 2026-11-08).
+The icon is the emblem in flat colors, without a square or a gradient: the rings in `--color-accent-deep` (`#a80f18`), the eight diamonds and the center stone in `--color-accent` (`#e5383b`), the thin inner ring kept. The same file in dark and in light mode (owner, 2026-11-09), and the same icon in the application, so that a player finds it in the taskbar after the download. Known limit, accepted: at 16 px on a dark tab, the deep red of the rings stands out little (2.1:1). The preview card of the links is one image for both languages: the white emblem, the name in capitals and the address on the black of the page, over the grid of the first screen; no sentence, since the description next to it is translated (owner, 2026-11-08).
 
 ## Colors
 
@@ -131,6 +131,7 @@ French addresses the visitor with « vous », like the application. Short, factu
 
 <!-- The options compared and not kept, with the reason, so that they are not proposed again. -->
 
+- For the icon, compared at its real sizes on 2026-11-09: the bronze of the application (2026-11-08), which didn't match the black, white and red of the site; the white emblem on a bright red, a deep red, a black or a red metal square; the emblem alone in plain red or in a red metal gradient; a version per mode of the system (lighter diamonds in dark mode), which the images of a fixed size and the application couldn't follow.
 - A preview card per language with the headline on it, and the white emblem as the icon of the browser tab (2026-11-08): see Icon and preview card.
 - The other videos, compared with the friends of the owner: The gesture, The corridor, The big bang, The blood, and the first version of The deck, whose words didn't match the images (« One item » over a price, « One shortcut » over an empty window). Removed on 2026-11-08. The guided tour is kept, in case (`docs/mockups/video/normal-b.js`, its renders in `outputs/`), not used on the page.
 - Bodoni Moda italic as the second font, and the second font on all the text: Cormorant Garamond on the subtitle alone was kept (2026-11-08).
