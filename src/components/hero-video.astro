@@ -49,8 +49,8 @@ const stillSizes =
       preload="none"
       aria-hidden="true"
     >
-      <source src={sources.webm} type="video/webm" />
-      <source src={sources.mp4} type="video/mp4" />
+      <source src={sources.webm} type='video/webm; codecs="vp9"' />
+      <source src={sources.mp4} type='video/mp4; codecs="avc1.64001f"' />
     </video>
     <button
       type="button"
@@ -107,10 +107,9 @@ const stillSizes =
     const refuse = (error: DOMException) => {
       // A pause or a scroll cut a start short: nothing went wrong.
       if (error.name === "AbortError") return;
-      // The browser refused to start the video (a battery saver), or can't read it: the still
-      // image stays, with the play button in the first case and without any in the second.
+      // The browser refused to start the video (a battery saver): the still image stays, with the
+      // play button.
       wanted = false;
-      button.hidden = error.name === "NotSupportedError";
       showState();
     };
 
@@ -120,6 +119,25 @@ const stillSizes =
       else video.pause();
     };
 
+    // No source could be loaded (no network, a blocker): the last one fails, and play() neither
+    // ends nor rejects. The still image stays, without a button that would do nothing.
+    video
+      .querySelector("source:last-of-type")
+      ?.addEventListener("error", () => {
+        wanted = false;
+        button.hidden = true;
+        showState();
+      });
+
+    // Stopped by the system or the browser rather than by this script: the button tells so. Paused
+    // is read again, since the event may come after a new start.
+    video.addEventListener("pause", () => {
+      if (video.paused && wanted && inSight && !document.hidden) {
+        wanted = false;
+        showState();
+      }
+    });
+
     button.hidden = false;
     showState();
 
@@ -128,8 +146,9 @@ const stillSizes =
       apply();
     });
 
-    new IntersectionObserver(([entry]) => {
-      inSight = entry?.isIntersecting ?? false;
+    // Several changes may come at once, the latest one last.
+    new IntersectionObserver((entries) => {
+      inSight = entries.at(-1)?.isIntersecting ?? false;
       apply();
     }).observe(box);
 
@@ -139,7 +158,8 @@ const stillSizes =
       apply();
     });
 
-    // The slight tilt under a mouse, and never with reduced motion. At most one update per frame.
+    // The slight tilt under a mouse, and never with reduced motion. At most one update per frame,
+    // and none out of sight.
     const TILT_AROUND_Y = 4.5;
     const TILT_AROUND_X = 3.5;
     let mouse = { x: 0, y: 0 };
@@ -156,16 +176,21 @@ const stillSizes =
       if (!frame) frame = requestAnimationFrame(tilt);
     };
 
-    document.addEventListener("pointermove", (event) => {
+    // A finger or a pen puts the video back flat, as it drops the mouse for the red grid.
+    const follow = (event: PointerEvent) => {
       if (event.pointerType !== "mouse" || reducedMotion.matches) {
         lean(0, 0);
         return;
       }
+      if (!inSight) return;
       lean(
         (event.clientX / window.innerWidth) * 2 - 1,
         (event.clientY / window.innerHeight) * 2 - 1,
       );
-    });
+    };
+
+    document.addEventListener("pointermove", follow);
+    document.addEventListener("pointerdown", follow);
     document.documentElement.addEventListener("mouseleave", () => lean(0, 0));
   }
 </script>
@@ -190,10 +215,17 @@ const stillSizes =
     position: relative;
     overflow: hidden;
     aspect-ratio: 16 / 9;
-    outline: 1px solid var(--color-frame-line);
-    outline-offset: -1px;
     transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
     transition: transform var(--tilt-time) ease-out;
+  }
+
+  /* The line of the frame, over the video, which would otherwise cover it. */
+  .media-frame::after {
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 0 1px var(--color-frame-line);
+    content: "";
+    pointer-events: none;
   }
 
   .media-frame :global(.media-still),
@@ -215,8 +247,8 @@ const stillSizes =
     inset: 0;
     display: grid;
     place-items: center;
-    width: 64px;
-    height: 64px;
+    width: var(--size-media-button-large);
+    height: var(--size-media-button-large);
     margin: auto;
     border: 0;
     border-radius: 50%;
@@ -237,10 +269,10 @@ const stillSizes =
 
   .media-toggle.is-playing {
     inset: auto var(--space-2) var(--space-2) auto;
-    width: 32px;
-    height: 32px;
+    width: var(--size-media-button);
+    height: var(--size-media-button);
     margin: 0;
-    border-radius: 3px;
+    border-radius: var(--radius-media-button);
     background: var(--color-media-button);
   }
 
