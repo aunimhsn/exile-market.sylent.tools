@@ -145,7 +145,7 @@ From the application (`docs/branding.md`, Brand assets): the bronze emblem and t
 - **Host**: GitHub, Inc. (GitHub Pages), its address and phone number.
 - **Statistics**: the site counts its visits with GoatCounter, without a cookie, without storing anything in the browser and without a banner. The notice says what is counted (pages, source of the visit, browser, system, screen size, country), that the counts are anonymous, who hosts them, and where to read GoatCounter's privacy policy. The site has no form and collects nothing else.
 - **Contact for players**: GitHub Issues and the bug report button of the application. The email address and the phone number are in the legal notice only.
-- **Credits**: Manrope and Cormorant Garamond, under the SIL Open Font License. Path of Exile and its images belong to Grinding Gear Games.
+- **Credits**: Manrope and Cormorant Garamond, under the SIL Open Font License. Three.js, with its copyright, under the MIT License, linked to its text. Path of Exile and its images belong to Grinding Gear Games.
 
 ## Constraints
 

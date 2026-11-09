@@ -96,9 +96,13 @@ export function startBurst(canvas: HTMLCanvasElement, zone: HTMLElement): void {
   scene.add(mesh);
 
   const placed = new Object3D();
-  let startedAt = performance.now();
+  // Set by the first image: a tab opened in the background draws nothing until it is shown.
+  let startedAt: number | undefined;
   let frame = 0;
-  let measure = { from: startedAt + MEASURE_FIRST_DELAY, images: 0 };
+  let measure = {
+    from: performance.now() + MEASURE_FIRST_DELAY,
+    images: 0,
+  };
   let mouse = { x: 0, y: 0 };
 
   const measureAgain = () => {
@@ -126,6 +130,7 @@ export function startBurst(canvas: HTMLCanvasElement, zone: HTMLElement): void {
 
   function draw(now: number) {
     frame = 0;
+    startedAt ??= now;
     const still = isStill();
     const seconds = now / 1000;
     const age = still ? AGE_WHEN_STILL : (now - startedAt) / 1000;
@@ -166,8 +171,9 @@ export function startBurst(canvas: HTMLCanvasElement, zone: HTMLElement): void {
     requestDraw();
   }
 
-  // From the top of the page to the bottom of the first screen. A new size empties the canvas, so
-  // only a real change sets it, and a still image is then drawn again.
+  // From the top of the page to the bottom of the first screen. A new size empties the canvas, and
+  // the observer runs after the images of the frame: only a real change sets it, and the same
+  // image is drawn again at once.
   let shownWidth = 0;
   let shownHeight = 0;
   const fit = () => {
@@ -176,12 +182,13 @@ export function startBurst(canvas: HTMLCanvasElement, zone: HTMLElement): void {
       zone.getBoundingClientRect().bottom + window.scrollY,
     );
     if (width === shownWidth && height === shownHeight) return;
+    const hasAnImage = startedAt !== undefined;
     shownWidth = width;
     shownHeight = height;
     renderer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    if (isStill()) requestDraw();
+    if (hasAnImage) renderer.render(scene, camera);
   };
   fit();
   new ResizeObserver(fit).observe(zone);
@@ -189,7 +196,10 @@ export function startBurst(canvas: HTMLCanvasElement, zone: HTMLElement): void {
   // Hiding the tab or leaving the first screen starts the measure again: those images don't count.
   document.addEventListener("visibilitychange", measureAgain);
   new IntersectionObserver((entries) => {
-    inSight = entries.at(-1)?.isIntersecting ?? false;
+    const isInSight = entries.at(-1)?.isIntersecting ?? false;
+    // The first report only confirms the start: it must not shorten the first delay.
+    if (isInSight === inSight) return;
+    inSight = isInSight;
     showState();
     measureAgain();
     if (inSight && !isStill()) requestDraw();

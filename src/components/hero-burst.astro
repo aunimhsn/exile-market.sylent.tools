@@ -15,10 +15,12 @@
     // since a canvas keeps the settings of its first context.
     if (!canvas || !zone) return;
     if (!document.createElement("canvas").getContext("webgl2")) return;
-    // Decorative: if the file can't be downloaded, the page stays whole without it.
-    import("../lib/hero-burst")
-      .then(({ startBurst }) => startBurst(canvas, zone))
-      .catch(() => undefined);
+    // Decorative: if the file can't be downloaded, the page stays whole without it. An error of the
+    // burst itself stays visible, for scripts/check-overflow.mjs.
+    import("../lib/hero-burst").then(
+      ({ startBurst }) => startBurst(canvas, zone),
+      () => undefined,
+    );
   };
 
   // Three.js is the heaviest file of the page: it waits until the page is shown.
