@@ -13,7 +13,7 @@ What the owner provides (process.md, Specifications), where it is kept, and what
 | Preview card of the links (1200 × 630 px) | HTML drawn to PNG, converted to JPEG by the build | `src/assets/brand/social-card.html` | In place |
 | Colors | Tokens of the application | `../rust-exile-market/specs.md`, Visual style | Reference for one of the two styles of the mock-up |
 | Font | Manrope, SIL Open Font License, self-hosting allowed | `../rust-exile-market/assets/fonts/` | Given |
-| Video and screenshots | Silent video, images | `docs/mockups/video/`, renders in `outputs/` | The video is made, to capture again just before the launch; the screens of the cards and the still image are provisional in `src/assets/screens/` and `src/assets/video/`; the final screenshots of the application are asked of the owner at the launch |
+| Video and screenshots | Silent video, images | `docs/mockups/video/`, renders in `outputs/` | The video, the screens of the cards and the still image captured from the application after its audit (2026-11-13), in `src/assets/screens/` and `src/assets/video/`; the small screens of the fan in the video stay those of 2026-11-08 |
 | Public contact details and legal information | Text | `src/content/<lang>/legal.json`, from sylent.art | At step 4b |
 
 ## Principles

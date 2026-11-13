@@ -1,0 +1,7 @@
+# What a capture writes: the binary of the application, the images, the logs and its session.
+/target/
+/out*/
+/home-*/
+/runtime/
+/cmd.fifo
+*.log
