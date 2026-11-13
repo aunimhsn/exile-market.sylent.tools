@@ -2,6 +2,12 @@
 
 The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is merged, the most recent first. `roadmap.md` keeps one line per step done.
 
+## 5a. The final images
+
+Pull request: [#21](https://github.com/aunimhsn/exile-market.sylent.tools/pull/21).
+
+The video and the screenshots captured again in both languages from a release build of the application made after its audit (2026-11-13), with the prices of the day; nothing was left for the owner to capture. `run-screens.sh` and `common.sh` added next to `run-deck.sh`, which fail a run without the binary, with an error or with missing images; the French `alt` of the price names a « bague », as the game does. Tools: launch, code review.
+
 ## 4g. The icon
 
 Pull request: [#16](https://github.com/aunimhsn/exile-market.sylent.tools/pull/16).
