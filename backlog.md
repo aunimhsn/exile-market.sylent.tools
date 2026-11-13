@@ -14,6 +14,8 @@ What is noted and not being done: an evolving list, read when the next work is c
 
 ## Edge cases
 
+- The sources of the video out of Git: its card and the ten small screens of its fan are read from `outputs/2026-11-06-video/assets/` (`docs/mockups/video/lib.js`), so the video can't be made again if `outputs/` is emptied. Depends on: the skill for the videos, at the retrospective (step 6). Noted on 2026-11-13.
+
 - The video of the page on a real iPhone and in Safari: it starts, no black flash before its first image, Low Power Mode (if iOS draws its own play triangle, hide it with `::-webkit-media-controls-start-playback-button`). Left out of the launch by the owner on 2026-11-09, since the application doesn't address those visitors. Depends on: access to an iPhone or a Mac. Noted on 2026-11-09.
 
 - A Windows installer or a bare `.exe` instead of a `.zip`, if players stumble on the archive. Depends on: the feedback on v0.1 and the application's release workflow. Noted on 2026-11-06.
