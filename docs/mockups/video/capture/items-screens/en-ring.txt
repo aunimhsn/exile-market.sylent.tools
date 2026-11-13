@@ -1,0 +1,12 @@
+Item Class: Rings
+Rarity: Unique
+Kalandra's Touch
+Ring
+--------
+Item Level: 80
+--------
+Reflects opposite Ring
+--------
+Flavour text.
+--------
+Mirrored

@@ -1,14 +1,16 @@
 #!/bin/bash
+# The card of the video: Headhunter and its price, in English and in French. It needs the release binary
+# in target/release/; out-deck/s-headhunter-<lang>.png goes to outputs/2026-11-06-video/assets/<lang>/
+# as s-headhunter.png before the render (docs/technical-choices.md, Video of the first screen).
 W=$(dirname "$(readlink -f "$0")")
-c(){ echo "$1" > $W/cmd.fifo; }; p(){ python3 -c "import time;time.sleep($1)"; }
-rm -f $W/capture.log $W/cmd.fifo; mkdir -p $W/out-deck
-flatpak-spawn --host bash -c "cd $W; CAPTURE_OUT=$W/out-deck nohup ./session-isolated.sh > $W/session-deck.log 2>&1 &"
-for i in $(seq 1 25); do p 1; [ -p $W/cmd.fifo ] && grep -q READY $W/capture.log 2>/dev/null && break; done
-grep READY $W/capture.log || { echo NO-SESSION; exit 1; }
+. "$W/common.sh"
+open_session out-deck
 for L in en fr; do
+  # A text that isn't an item: the application would otherwise start on the item left in the clipboard.
+  c "item $W/items-screens/none.txt"; p 3
   c "start $L 2"; p 45
   c "item $W/items-deck/$L.txt"; p 6
-  c "shot s-headhunter-$L"; p 1.5
+  settle; c "shot s-headhunter-$L"; p 1.5
   c "stop"; p 2
 done
-c "exit"; p 2; echo DECK-DONE
+check_run 2

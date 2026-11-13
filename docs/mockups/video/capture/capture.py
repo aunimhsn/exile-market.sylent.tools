@@ -7,7 +7,7 @@ from Xlib.protocol import event as xevent
 
 W = os.path.dirname(os.path.abspath(__file__))
 OUT = os.environ.get("CAPTURE_OUT", f"{W}/out")
-APP = f"{W}/target/release/rust-exile-market"
+APP = f"{W}/target/release/exile-market"
 os.makedirs(OUT, exist_ok=True)
 DISPLAY = os.environ["DISPLAY"]
 

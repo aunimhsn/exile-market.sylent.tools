@@ -13,7 +13,7 @@ What the owner provides (process.md, Specifications), where it is kept, and what
 | Preview card of the links (1200 × 630 px) | HTML drawn to PNG, converted to JPEG by the build | `src/assets/brand/social-card.html` | In place |
 | Colors | Tokens of the application | `../rust-exile-market/specs.md`, Visual style | Reference for one of the two styles of the mock-up |
 | Font | Manrope, SIL Open Font License, self-hosting allowed | `../rust-exile-market/assets/fonts/` | Given |
-| Video and screenshots | Silent video, images | `docs/mockups/video/`, renders in `outputs/` | The video is made, to capture again just before the launch; the screens of the cards and the still image are provisional in `src/assets/screens/` and `src/assets/video/`; the final screenshots of the application are asked of the owner at the launch |
+| Video and screenshots | Silent video, images | `docs/mockups/video/`, renders in `outputs/` | The video, the screens of the cards and the still image captured from the application after its audit (2026-11-13), in `src/assets/screens/` and `src/assets/video/`; the small screens of the fan in the video stay those of 2026-11-08 |
 | Public contact details and legal information | Text | `src/content/<lang>/legal.json`, from sylent.art | At step 4b |
 
 ## Principles
@@ -110,7 +110,7 @@ The grid of the first screen holds the upper half and fades out towards the midd
 
 A blood line of 2 px with a glow draws itself around a download button under the pointer or the keyboard focus, clockwise from the top left corner, fast then slower in 0.7 s, so that it answers the pointer at once, and goes back in 0.25 s (owner, 2026-11-06). With reduced motion, it appears at once.
 
-The video, « The deck » reworked (owner, 2026-11-08), 10.9 s, silent, tells the headline in order. One item: a card with a real unique, Headhunter, sober like the application, without frame or image of the game (clause 8), its lines appearing one by one so that its modifiers can be read. One shortcut: Ctrl + D in 3D in front of the dimmed card, with a shock wave. Its price: the card turns over and its back is the real window of the application, with the name of the item readable under the word and the prices of poe2scout. Then the fan of real screens, and the name, which closes it. The three words have no final period, unlike the headline, since they appear one at a time; each stands out of a black fade over the card, long and eased so that no edge shows on it (owner, 2026-11-08), then keeps growing slowly (3 % per second) and sinks a little (6 px per second). The prices and the league are those of the capture of 2026-11-08: capture it again just before the launch.
+The video, « The deck » reworked (owner, 2026-11-08), 10.9 s, silent, tells the headline in order. One item: a card with a real unique, Headhunter, sober like the application, without frame or image of the game (clause 8), its lines appearing one by one so that its modifiers can be read. One shortcut: Ctrl + D in 3D in front of the dimmed card, with a shock wave. Its price: the card turns over and its back is the real window of the application, with the name of the item readable under the word and the prices of poe2scout. Then the fan of real screens, and the name, which closes it. The three words have no final period, unlike the headline, since they appear one at a time; each stands out of a black fade over the card, long and eased so that no edge shows on it (owner, 2026-11-08), then keeps growing slowly (3 % per second) and sinks a little (6 px per second). The card and its prices come from the capture of 2026-11-13, after the audit of the application; the small screens of the fan stay those of 2026-11-08.
 
 The video tilts slightly under a mouse (4.5° around the vertical axis and 3.5° around the horizontal one at the edges of the window), never with reduced motion. A small pause button sits in its bottom right corner while it plays; stopped, a large play button stands in its middle. The pause stops the video only, not the rest of the page, and isn't kept for the next visit (2026-11-09: storing it would add something in the browser of the visitor, for a small gain). With reduced motion, the still image shows with the play button, and the video is downloaded only if the visitor presses it.
 
@@ -121,6 +121,8 @@ French addresses the visitor with « vous », like the application. Short, factu
 ## Icons and images
 
 <!-- Where they come from, their license, their format and sizes. -->
+
+The screens and the video keep the status line of the application, with the name of poe2scout: they show the real window, and poe2scout is the source of the prices, already named in the texts of the page, not a tool it is compared with (owner, 2026-11-09).
 
 ## Accessibility
 
