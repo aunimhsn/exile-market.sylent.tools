@@ -83,7 +83,7 @@ An idea that needs trying before deciding (a 3D scene, a video for the launch, a
 
 ## Start a project
 
-1. Create the repository from the template (see the README of [the template](https://github.com/sylent-dev/astro-static-website-template), **Start a new project**).
+1. Create the repository from the template (see the README of [the template](https://github.com/sylent-dev/ts-astro-static-website-template), **Start a new project**).
 2. Apply the pull request settings: squash merging only, branches deleted once merged.
 3. Protect `main` with a ruleset. On a free GitHub account, rulesets only apply to **public** repositories.
 4. Size the project with the owner ([Size the project](#size-the-project)), and write the tools kept at the top of `roadmap.md`, with the steps of the first cycle.
