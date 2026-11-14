@@ -16,13 +16,17 @@ import {
 } from "node:fs";
 import { createServer } from "node:http";
 import { extname, join, relative, sep } from "node:path";
-import { chromium } from "playwright";
+import { chromium, devices } from "playwright";
 
 const [dist = "dist"] = process.argv.slice(2);
 
 // The narrowest screen still met, the narrowest common Android one and a wider one; then a small
 // and a large computer screen.
 const phones = [320, 360, 412];
+
+// The phones call themselves an iPhone, as a real phone tells the page what it is: the download
+// area shows a phone its own sentence instead of the buttons (download-area.astro).
+const phoneAgent = devices["iPhone 13 Mini"].userAgent;
 const desktops = [1024, 1440];
 
 const types = {
@@ -133,6 +137,7 @@ try {
       deviceScaleFactor: phone ? 3 : 1,
       isMobile: phone,
       hasTouch: phone,
+      ...(phone && { userAgent: phoneAgent }),
     });
     // Only the local server is reached: a slow third-party script would fail the check.
     await context.route(

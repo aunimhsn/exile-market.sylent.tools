@@ -13,4 +13,4 @@ export const downloads = {
 
 // The single setting of the download area: « Coming soon » as long as it is false, the buttons once
 // the tag v0.1.0 is out and its archives answer at the addresses above (specs.md, Main action).
-export const downloadsOpen: boolean = false;
+export const downloadsOpen: boolean = true;
