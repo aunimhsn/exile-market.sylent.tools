@@ -2,6 +2,12 @@
 
 The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is merged, the most recent first. `roadmap.md` keeps one line per step done.
 
+## 5b3. The new username
+
+Pull request: [#24](https://github.com/sylent-dev/exile-market.sylent.tools/pull/24).
+
+The GitHub account renamed from `aunimhsn` to `sylent-dev`, shown as « Sylent », for a little more discretion (owner, 2026-11-14), before the tag, since a released binary keeps the addresses it was built with. The owner pointed the `CNAME` record to `sylent-dev.github.io`; every address of the site and of the documentation changed, since GitHub's redirects from the former name last only until someone claims it. Commits are now signed « Sylent » with GitHub's private address. Tools: build, code review.
+
 ## 5b2. The legal notice without personal details
 
 Pull request: [#23](https://github.com/sylent-dev/exile-market.sylent.tools/pull/23).
