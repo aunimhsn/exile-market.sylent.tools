@@ -2,6 +2,12 @@
 
 The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is merged, the most recent first. `roadmap.md` keeps one line per step done.
 
+## 5b2. The legal notice without personal details
+
+Pull request: [#23](https://github.com/aunimhsn/exile-market.sylent.tools/pull/23).
+
+The publisher shown as « Sylent », on a non-professional basis (LCEN, article 1-1, II), without name, SIRET, phone number or email address, since the SIRET led to the owner's address in the public register of companies (owner, 2026-11-14). `src/content/<lang>/legal.json`, `specs.md` and `docs/external-services.md`, with the limits of the choice. Tools: specifications, build.
+
 ## 5b. The site on its domain
 
 Pull request: [#22](https://github.com/aunimhsn/exile-market.sylent.tools/pull/22).
