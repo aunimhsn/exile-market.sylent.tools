@@ -31,7 +31,7 @@ The page shows what the tool does; it never compares it with another tool and ne
 
 ## Main action
 
-Download the application. The buttons link straight to the file (`releases/latest/download/<stable name>` of `aunimhsn/rust-exile-market`), never through the release page; the browser downloads it and the visitor stays on the page, where the steps after the download are written.
+Download the application. The buttons link straight to the file (`releases/latest/download/<stable name>` of `sylent-dev/rust-exile-market`), never through the release page; the browser downloads it and the visitor stays on the page, where the steps after the download are written.
 
 | Visitor | Download area |
 |---|---|

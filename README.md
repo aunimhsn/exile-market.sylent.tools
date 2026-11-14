@@ -1,6 +1,6 @@
 # exile-market.sylent.tools
 
-The official download page of [Exile Market](https://github.com/aunimhsn/rust-exile-market), a desktop price checker for Path of Exile 2 items. A static site built with [Astro](https://astro.build/) and hosted on GitHub Pages.
+The official download page of [Exile Market](https://github.com/sylent-dev/rust-exile-market), a desktop price checker for Path of Exile 2 items. A static site built with [Astro](https://astro.build/) and hosted on GitHub Pages.
 
 The expected behavior is in [specs.md](specs.md), the progress in [roadmap.md](roadmap.md) and the way of working in [process.md](process.md).
 

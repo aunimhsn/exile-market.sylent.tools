@@ -10,7 +10,7 @@
 
 ## Project
 
-- `exile-market.sylent.tools` is the official download page of **Exile Market**, a desktop price checker for Path of Exile 2 items, by Sylent. The application lives in its own repository, `aunimhsn/rust-exile-market` (local: `../rust-exile-market`).
+- `exile-market.sylent.tools` is the official download page of **Exile Market**, a desktop price checker for Path of Exile 2 items, by Sylent. The application lives in its own repository, `sylent-dev/rust-exile-market` (local: `../rust-exile-market`).
 - Visitors: first of all the players who arrive at Path of Exile 2 1.0 (2026-12-11) without a price tool, French speakers among them. The page shows what the tool does; it never compares it with another tool.
 - Languages: English at the root, French under `/fr/`, with a link between them and no automatic redirect. The French content addresses the visitor with « vous », like the application.
 - Never name another application in any text a visitor sees. Never say or imply that Grinding Gear Games approves the tool or that it follows their terms: the application uses the trade site API, a risk the owner accepted on 2026-10-23 (`../rust-exile-market/docs/trade-site-usage.md`).

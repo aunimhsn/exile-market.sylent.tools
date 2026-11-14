@@ -4,90 +4,90 @@ The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is mer
 
 ## 5b2. The legal notice without personal details
 
-Pull request: [#23](https://github.com/aunimhsn/exile-market.sylent.tools/pull/23).
+Pull request: [#23](https://github.com/sylent-dev/exile-market.sylent.tools/pull/23).
 
 The publisher shown as « Sylent », on a non-professional basis (LCEN, article 1-1, II), without name, SIRET, phone number or email address, since the SIRET led to the owner's address in the public register of companies (owner, 2026-11-14). `src/content/<lang>/legal.json`, `specs.md` and `docs/external-services.md`, with the limits of the choice. Tools: specifications, build.
 
 ## 5b. The site on its domain
 
-Pull request: [#22](https://github.com/aunimhsn/exile-market.sylent.tools/pull/22).
+Pull request: [#22](https://github.com/sylent-dev/exile-market.sylent.tools/pull/22).
 
-The site put on https://exile-market.sylent.tools/ before the tag, with « Coming soon » in place of the buttons (owner, 2026-11-13: go as far as possible). The address is a subdomain: one `CNAME` record `exile-market` to `aunimhsn.github.io`, with the proxy of Cloudflare off, « DNS only », or GitHub can't issue its certificate; no `A` record and no `www`, unlike the case of `process.md`. Order: the custom domain set in the Pages settings first, as GitHub's documentation asks (the domain is verified, so the order matters little), the repository variables `SITE_URL` and `BASE_PATH` removed and the site deployed again at the root, then at once the placeholder removed and the `CNAME` created by the owner at Cloudflare; then HTTPS enforced, `github.io` checked to redirect, the live site checked, and a first visit read on the GoatCounter dashboard. Tool: launch. Done on 2026-11-13: the certificate started once the domain was removed and set again; HTTPS is enforced, and the owner read a first visit on GoatCounter.
+The site put on https://exile-market.sylent.tools/ before the tag, with « Coming soon » in place of the buttons (owner, 2026-11-13: go as far as possible). The address is a subdomain: one `CNAME` record `exile-market` to `sylent-dev.github.io`, with the proxy of Cloudflare off, « DNS only », or GitHub can't issue its certificate; no `A` record and no `www`, unlike the case of `process.md`. Order: the custom domain set in the Pages settings first, as GitHub's documentation asks (the domain is verified, so the order matters little), the repository variables `SITE_URL` and `BASE_PATH` removed and the site deployed again at the root, then at once the placeholder removed and the `CNAME` created by the owner at Cloudflare; then HTTPS enforced, `github.io` checked to redirect, the live site checked, and a first visit read on the GoatCounter dashboard. Tool: launch. Done on 2026-11-13: the certificate started once the domain was removed and set again; HTTPS is enforced, and the owner read a first visit on GoatCounter.
 
 ## 5a. The final images
 
-Pull request: [#21](https://github.com/aunimhsn/exile-market.sylent.tools/pull/21).
+Pull request: [#21](https://github.com/sylent-dev/exile-market.sylent.tools/pull/21).
 
 The video and the screenshots captured again in both languages from a release build of the application made after its audit (2026-11-13), with the prices of the day; nothing was left for the owner to capture. `run-screens.sh` and `common.sh` added next to `run-deck.sh`, which fail a run without the binary, with an error or with missing images; the French `alt` of the price names a « bague », as the game does. Tools: launch, code review.
 
 ## 4g. The icon
 
-Pull request: [#16](https://github.com/aunimhsn/exile-market.sylent.tools/pull/16).
+Pull request: [#16](https://github.com/sylent-dev/exile-market.sylent.tools/pull/16).
 
 The bronze of the icon didn't match the black, white and red of the site (owner, 2026-11-09). Same shape, new treatment, compared at its real sizes: the emblem in flat colors, one red per mode of the system. `src/assets/brand/icon.svg`, the images of `npm run brand:images`, and `docs/branding.md`, whose decision of 2026-11-08 on the bronze it replaces. Tools: mock-up (the comparison), build.
 
 ## 4f. The burst and the statistics
 
-Pull request: [#15](https://github.com/aunimhsn/exile-market.sylent.tools/pull/15).
+Pull request: [#15](https://github.com/sylent-dev/exile-market.sylent.tools/pull/15).
 
 The burst of shards (Three.js from npm, loaded after the page is shown); the GoatCounter script, on the real domain only, with the code of the site created on goatcounter.com. Tools: build, code review.
 
 ## 4e. The video
 
-Pull request: [#14](https://github.com/aunimhsn/exile-market.sylent.tools/pull/14).
+Pull request: [#14](https://github.com/sylent-dev/exile-market.sylent.tools/pull/14).
 
 The video in each language, its pause and play buttons, its slight tilt under the pointer, the still image when the visitor asked to reduce motion. Tools: build, code review.
 
 ## 4d. The light motion
 
-Pull request: [#13](https://github.com/aunimhsn/exile-market.sylent.tools/pull/13).
+Pull request: [#13](https://github.com/sylent-dev/exile-market.sylent.tools/pull/13).
 
 The red grid under the pointer on every page that has the grid, the grid of the first screen and that of the block « What it does » becoming one shared rule (code review of 4c); the entrance of the large sentences. No dependency. Tools: build, code review.
 
 ## 4c. The home page, still
 
-Pull request: [#12](https://github.com/aunimhsn/exile-market.sylent.tools/pull/12).
+Pull request: [#12](https://github.com/sylent-dev/exile-market.sylent.tools/pull/12).
 
 Every block and text in both languages, the download area with its states behind a single setting (« Coming soon » until the tag) and the detection of the system, the three cards, the still image in place of the video. Complete and usable without JavaScript. Tools: build, code review.
 
 ## 4b. The simple pages
 
-Pull request: [#11](https://github.com/aunimhsn/exile-market.sylent.tools/pull/11).
+Pull request: [#11](https://github.com/sylent-dev/exile-market.sylent.tools/pull/11).
 
 The legal notice with the real details (those public on sylent.art) and the not-found page, from the mock-up; the outlined button and the grid shared with the home page; the address of the application repository in one place. Tools: build, code review.
 
 ## 4a. Skeleton and deployment
 
-Pull request: [#10](https://github.com/aunimhsn/exile-market.sylent.tools/pull/10).
+Pull request: [#10](https://github.com/sylent-dev/exile-market.sylent.tools/pull/10).
 
 The tokens and fonts of the mock-up in `src/styles/` (its `:root` becomes `tokens.css`, the components its CSS), the brand assets (`npm run brand:images`), the header and footer, the deployment to the `github.io` preview. Tools: build, code review.
 
 ## 3. Mock-up
 
-Pull requests: [#8](https://github.com/aunimhsn/exile-market.sylent.tools/pull/8), [#9](https://github.com/aunimhsn/exile-market.sylent.tools/pull/9).
+Pull requests: [#8](https://github.com/sylent-dev/exile-market.sylent.tools/pull/8), [#9](https://github.com/sylent-dev/exile-market.sylent.tools/pull/9).
 
 The home page, the legal notice and the not-found page in the chosen style, the video of the first screen; checked on the owner's phone; decisions in `docs/branding.md`, tokens in the `:root` of the mock-up. Tools: mock-up, design system.
 
 ## 2. Wireframe
 
-Pull request: [#7](https://github.com/aunimhsn/exile-market.sylent.tools/pull/7).
+Pull request: [#7](https://github.com/sylent-dev/exile-market.sylent.tools/pull/7).
 
 One Excalidraw wireframe of the page, phone first, with grey frames for the video and the screenshots. It is removed by the pull request of the mock-up: the history keeps it.
 
 ## 1. Specifications
 
-Pull request: [#6](https://github.com/aunimhsn/exile-market.sylent.tools/pull/6).
+Pull request: [#6](https://github.com/sylent-dev/exile-market.sylent.tools/pull/6).
 
 `specs.md` from what the owner decided on 2026-11-06, the terms of GoatCounter (chosen by the owner on 2026-11-06) and the French legal notice (LCEN article 1-1, read on Légifrance) checked and written in `docs/external-services.md`. Tool: specifications.
 
 ## 0b. Languages
 
-Pull request: [#5](https://github.com/aunimhsn/exile-market.sylent.tools/pull/5).
+Pull request: [#5](https://github.com/sylent-dev/exile-market.sylent.tools/pull/5).
 
 English at the root and French under `/fr/`: the texts in `src/i18n/` and `src/content/` for each language, `lang` per page, the link between the languages and `hreflang` (the tag that tells search engines the page exists in the other language), the rules and descriptions that assume one French site adapted (the Language and Development sections of `CLAUDE.md`, `.claude/agents/code-reviewer.md`, the Content section of `docs/technical-choices.md`, the `$comment` of `src/i18n/fr.json`).
 
 ## 0a. Project setup
 
-Pull request: [#4](https://github.com/aunimhsn/exile-market.sylent.tools/pull/4).
+Pull request: [#4](https://github.com/sylent-dev/exile-market.sylent.tools/pull/4).
 
 the size of the project, the Project section of `CLAUDE.md`, the name of the site, the port of the mock-up server, the README, the backlog, the repository settings checked.

@@ -24,21 +24,22 @@ Read only by the steps that need them:
 
 ### Cycle 1: the site online
 
-- [x] **0a. Project setup** ([#4](https://github.com/aunimhsn/exile-market.sylent.tools/pull/4)).
-- [x] **0b. Languages** ([#5](https://github.com/aunimhsn/exile-market.sylent.tools/pull/5)).
-- [x] **1. Specifications** ([#6](https://github.com/aunimhsn/exile-market.sylent.tools/pull/6)).
-- [x] **2. Wireframe** ([#7](https://github.com/aunimhsn/exile-market.sylent.tools/pull/7)).
-- [x] **3. Mock-up** ([#8](https://github.com/aunimhsn/exile-market.sylent.tools/pull/8), [#9](https://github.com/aunimhsn/exile-market.sylent.tools/pull/9)).
-- [x] **4a. Skeleton and deployment** ([#10](https://github.com/aunimhsn/exile-market.sylent.tools/pull/10)).
-- [x] **4b. The simple pages** ([#11](https://github.com/aunimhsn/exile-market.sylent.tools/pull/11)).
-- [x] **4c. The home page, still** ([#12](https://github.com/aunimhsn/exile-market.sylent.tools/pull/12)).
-- [x] **4d. The light motion** ([#13](https://github.com/aunimhsn/exile-market.sylent.tools/pull/13)).
-- [x] **4e. The video** ([#14](https://github.com/aunimhsn/exile-market.sylent.tools/pull/14)).
-- [x] **4f. The burst and the statistics** ([#15](https://github.com/aunimhsn/exile-market.sylent.tools/pull/15)).
-- [x] **4g. The icon** ([#16](https://github.com/aunimhsn/exile-market.sylent.tools/pull/16)).
-- [x] **5a. The final images** ([#21](https://github.com/aunimhsn/exile-market.sylent.tools/pull/21)).
-- [x] **5b. The site on its domain** ([#22](https://github.com/aunimhsn/exile-market.sylent.tools/pull/22)).
-- [x] **5b2. The legal notice without personal details** ([#23](https://github.com/aunimhsn/exile-market.sylent.tools/pull/23)).
+- [x] **0a. Project setup** ([#4](https://github.com/sylent-dev/exile-market.sylent.tools/pull/4)).
+- [x] **0b. Languages** ([#5](https://github.com/sylent-dev/exile-market.sylent.tools/pull/5)).
+- [x] **1. Specifications** ([#6](https://github.com/sylent-dev/exile-market.sylent.tools/pull/6)).
+- [x] **2. Wireframe** ([#7](https://github.com/sylent-dev/exile-market.sylent.tools/pull/7)).
+- [x] **3. Mock-up** ([#8](https://github.com/sylent-dev/exile-market.sylent.tools/pull/8), [#9](https://github.com/sylent-dev/exile-market.sylent.tools/pull/9)).
+- [x] **4a. Skeleton and deployment** ([#10](https://github.com/sylent-dev/exile-market.sylent.tools/pull/10)).
+- [x] **4b. The simple pages** ([#11](https://github.com/sylent-dev/exile-market.sylent.tools/pull/11)).
+- [x] **4c. The home page, still** ([#12](https://github.com/sylent-dev/exile-market.sylent.tools/pull/12)).
+- [x] **4d. The light motion** ([#13](https://github.com/sylent-dev/exile-market.sylent.tools/pull/13)).
+- [x] **4e. The video** ([#14](https://github.com/sylent-dev/exile-market.sylent.tools/pull/14)).
+- [x] **4f. The burst and the statistics** ([#15](https://github.com/sylent-dev/exile-market.sylent.tools/pull/15)).
+- [x] **4g. The icon** ([#16](https://github.com/sylent-dev/exile-market.sylent.tools/pull/16)).
+- [x] **5a. The final images** ([#21](https://github.com/sylent-dev/exile-market.sylent.tools/pull/21)).
+- [x] **5b. The site on its domain** ([#22](https://github.com/sylent-dev/exile-market.sylent.tools/pull/22)).
+- [x] **5b2. The legal notice without personal details** ([#23](https://github.com/sylent-dev/exile-market.sylent.tools/pull/23)).
+- [x] **5b3. The new username**: the GitHub account renamed from `aunimhsn` to `sylent-dev`, shown as « Sylent », for a little more discretion (owner, 2026-11-14), before the tag, since a released binary keeps the addresses it was built with. The owner pointed the `CNAME` record to `sylent-dev.github.io`; every address of the site and of the documentation changed, since GitHub's redirects from the former name last only until someone claims it. Commits are now signed « Sylent » with GitHub's private address. Tools: build, code review.
 - [ ] **5c. The downloads open**: once the tag is out and its archives answer, `downloadsOpen` turned on, with a pass of `scripts/check-overflow.mjs` under the identity of an iPhone at 320 px on the home pages, since only that shows the sentence for a phone and measures its address. Tools: launch, code review.
 - [ ] **6. Retrospective**: the lessons in `process.md` (and in the template when they apply to every website), the backlog sorted, the memory moved to the files. To talk over with the owner: the table of a code review summary and its priority column (`CLAUDE.md`, Code review), found missing on 2026-11-09, and carrying that rule to the template; making the capture and the render of the videos a skill, to refine then (owner, 2026-11-09); the Launch of `process.md`, written for an apex domain: a subdomain takes one `CNAME` without the proxy of Cloudflare, GitHub asks for the custom domain before the DNS record, and a certificate that doesn't start after several minutes starts once the domain is removed and set again (2026-11-13). Tool: retrospective.
 
@@ -52,6 +53,7 @@ Done in the application's repository, before its tag, and not by a pull request 
 - The icon chosen at step 4g of this page, before the tag: its step 17a2 (`roadmap.md` of the application), so that a player finds the same icon in the taskbar.
 - The Windows alert test, on a fresh download of the release archive, reading the state of Smart App Control: on 2026-11-06, the first launch showed a dialog with only an OK button (blocked because the publisher couldn't be verified, Microsoft will review the application), and the second launch ran normally. The cause is unknown; the page says only what is observed (`specs.md`, Why does Windows show an alert?). Done by the owner on 2026-11-08: the alert shows about one time in two; to refine with the feedback of players.
 - Two improvements decided by the owner on 2026-11-06, not blockers, to write in its roadmap: the name of the orb under the pointer in the price block (step 21, with a wireframe and a mock-up first); a setting to close Exile Market when Path of Exile 2 closes (step 19, off by default, acting only once the game has been seen running, written to the log, the case of a crash or of a restart for a patch decided then).
+- **A blocker of the tag**: every `aunimhsn` replaced by `sylent-dev` (`Cargo.toml`, `src/update.rs`, `src/http.rs`, `src/bug_report/`, `src/window_error.rs`, the documentation), since a binary keeps the addresses it was built with and the redirects from the former name end once someone claims it.
 - Archives with a stable name, `exile-market-windows-x64.zip` and `exile-market-linux-x64.tar.gz`, so that the buttons of the page link to `releases/latest/download/<name>` (`src/lib/application.ts`): done by its pull request 230, merged on 2026-11-13.
 - Step 17b of its roadmap still says a VPS with Coolify: the page is on GitHub Pages.
 - Its specifications say the owner has no Windows: the owner now tests on a Windows laptop.

@@ -1,6 +1,6 @@
 # Process
 
-How a static website goes from an idea to a site online, then keeps growing, with Claude Code. It follows the process of [rust-cli-template](https://github.com/aunimhsn/rust-cli-template/blob/main/process.md), adapted to a website: the release becomes the launch on GitHub Pages.
+How a static website goes from an idea to a site online, then keeps growing, with Claude Code. It follows the process of [rust-cli-template](https://github.com/sylent-dev/rust-cli-template/blob/main/process.md), adapted to a website: the release becomes the launch on GitHub Pages.
 
 The process is not a straight line. Its phases are **tools**, picked for each change according to what it needs: a text goes straight to the build, a new page type goes through its wireframe and mock-up first. What is not being done lives in a **backlog**; what is chosen goes to the **roadmap**, one pull request per step. Each tool ends with something the owner validates, from the cheapest to the most expensive: changing a sentence in the specifications costs less than changing a wireframe, which costs less than changing code.
 
@@ -83,7 +83,7 @@ An idea that needs trying before deciding (a 3D scene, a video for the launch, a
 
 ## Start a project
 
-1. Create the repository from the template (see the README of [the template](https://github.com/aunimhsn/astro-static-website-template), **Start a new project**).
+1. Create the repository from the template (see the README of [the template](https://github.com/sylent-dev/astro-static-website-template), **Start a new project**).
 2. Apply the pull request settings: squash merging only, branches deleted once merged.
 3. Protect `main` with a ruleset. On a free GitHub account, rulesets only apply to **public** repositories.
 4. Size the project with the owner ([Size the project](#size-the-project)), and write the tools kept at the top of `roadmap.md`, with the steps of the first cycle.
