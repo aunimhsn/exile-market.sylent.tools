@@ -7,12 +7,9 @@
     {
       "heading": "Publisher",
       "lines": [
-        "Aunim Hassan",
-        "Individual entrepreneur",
-        "SIRET 894 104 132 00010",
-        "aunim.hassan@gmail.com",
-        "+33 6 13 44 94 24",
-        "Director of publication: the same person"
+        "Sylent, a natural person, publishes this site on a non-professional basis.",
+        "As article 1-1, II of the law of 21 June 2004 (LCEN) allows, the publisher doesn’t show their identity here: the host named below holds it, through the publisher’s account.",
+        "To contact the publisher: <a href=\"https://github.com/aunimhsn/rust-exile-market/issues\">open an issue on GitHub</a>."
       ]
     },
     {

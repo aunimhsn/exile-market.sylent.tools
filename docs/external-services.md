@@ -30,14 +30,14 @@ What article 1-1, I asks of « les personnes dont l'activité est d'éditer un s
 
 | Item | Asked | On this site |
 |---|---|---|
-| 1° A natural person | « nom, prénoms, domicile et numéro de téléphone », and the registration number if subject to registration | Name, phone, SIRET, status, email address. **No home address.** |
-| 3° Director of publication | The name | The same person |
+| 1° A natural person | « nom, prénoms, domicile et numéro de téléphone », and the registration number if subject to registration | Not shown: the site follows II, below |
+| 3° Director of publication | The name | None: asked of a professional publisher only |
 | 4° Host | Name, address and phone number | GitHub, Inc., its address, and the phone number below |
 | 5° Storage of the data processed directly by the publisher | Name and address, if any | None |
 
-- Article 1-1, II lets a publisher « à titre non professionnel » stay anonymous and name only the host, having given their identity to the host. Not taken: the owner is a registered individual entrepreneur who shows their details, and the donations planned later would weaken it.
+- **Chosen (owner, 2026-11-14): article 1-1, II**, which lets a publisher « à titre non professionnel » stay anonymous and name only the host, having given their identity to the host. The notice names « Sylent », says the host holds the publisher's identity through their account, and links to the issues of the project. Why: the SIRET, the name and the phone number shown until then led to the owner's address in the public register of companies, while the site sells nothing, shows no advertising, and the donations planned are free gifts without a counterpart. Limits: GitHub holds the data of the owner's account (name, email address), not a postal address, which is the usual practice of a site on GitHub Pages but less than a strict reading of the article; and the choice holds only while the site stays non-professional: if the donations become revenue of the owner's individual business, the notice goes back to I, with a domiciliation address.
 - Article 1-2: failing to comply with I and II is punishable by one year of imprisonment and a fine of 75,000 €.
-- **Accepted risk (2026-11-06): no home address**, confirmed by the owner once the text above was read. This remains a gap against article 1-1: the address being findable elsewhere, for example from the SIRET, isn't what the article asks, and sylent.art doesn't show it either. A domiciliation address would remove the risk.
+- **Replaced on 2026-11-14**: the risk accepted on 2026-11-06 (a professional notice without the home address) no longer applies. The former details stay in the history of the public repository; rewriting it isn't worth the trouble, since the same details were public elsewhere.
 - **Accepted (2026-11-06): the phone number of the host**. GitHub's own pages publish none. The notice uses +1 877 448 4820, the number given for GitHub by third-party records ([datarequests.org](https://www.datarequests.org/db/github.json)), public but without an official source, as on sylent.art.
 
 ## Grinding Gear Games: terms and position

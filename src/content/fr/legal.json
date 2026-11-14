@@ -7,12 +7,9 @@
     {
       "heading": "Éditeur",
       "lines": [
-        "Aunim Hassan",
-        "Entrepreneur individuel",
-        "SIRET 894 104 132 00010",
-        "aunim.hassan@gmail.com",
-        "+33 6 13 44 94 24",
-        "Direction de la publication : la même personne"
+        "Sylent, personne physique, édite ce site à titre non professionnel.",
+        "Comme le permet l’article 1-1, II de la loi du 21 juin 2004 (LCEN), l’éditeur n’affiche pas ici son identité : l’hébergeur indiqué ci-dessous la détient, par le compte de l’éditeur.",
+        "Pour contacter l’éditeur : <a href=\"https://github.com/aunimhsn/rust-exile-market/issues\">ouvrez une issue sur GitHub</a>."
       ]
     },
     {

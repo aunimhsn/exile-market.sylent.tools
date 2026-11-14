@@ -106,7 +106,7 @@ The mock-up (`docs/mockups/home-page.html`, approved by the owner on 2026-11-08)
 
 ### Legal notice
 
-One column: the publisher, the director of publication, the host, the statistics of the site, the credits, then a button back to the home page. See [Contact details and legal information](#contact-details-and-legal-information).
+One column: the publisher, the host, the statistics of the site, the credits, then a button back to the home page. See [Contact details and legal information](#contact-details-and-legal-information).
 
 ### Not-found page
 
@@ -140,11 +140,11 @@ From the application (`docs/branding.md`, Brand assets): the emblem, Manrope (SI
 
 ## Contact details and legal information
 
-- **Identity**: the page says « Sylent »; the legal notice gives the details already public on sylent.art.
-- **Publisher**: name, status (individual entrepreneur), SIRET, email address, phone number. The director of publication is the same person. The home address isn't shown ([accepted risk](docs/external-services.md#legal-notice)).
+- **Identity**: the page and the legal notice say « Sylent » only (owner, 2026-11-14): no name, SIRET, address, phone number or email address, since the SIRET leads to the owner's address in the public register of companies.
+- **Publisher**: « Sylent », a natural person publishing on a non-professional basis, whose identity the host holds (LCEN, article 1-1, II; [external services](docs/external-services.md#legal-notice)), and the issues of the project on GitHub to contact them. No director of publication: the article asks for one only of a professional publisher.
 - **Host**: GitHub, Inc. (GitHub Pages), its address and phone number.
 - **Statistics**: the site counts its visits with GoatCounter, without a cookie, without storing anything in the browser and without a banner. The notice says what is counted (pages, source of the visit, browser, system, screen size, country), that the counts are anonymous, who hosts them, and where to read GoatCounter's privacy policy. The site has no form and collects nothing else.
-- **Contact for players**: GitHub Issues and the bug report button of the application. The email address and the phone number are in the legal notice only.
+- **Contact for players**: GitHub Issues and the bug report button of the application; the site shows no email address or phone number.
 - **Credits**: Manrope and Cormorant Garamond, under the SIL Open Font License. Three.js, with its copyright, under the MIT License, linked to its text. Path of Exile and its images belong to Grinding Gear Games.
 
 ## Constraints
