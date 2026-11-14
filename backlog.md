@@ -14,6 +14,8 @@ What is noted and not being done: an evolving list, read when the next work is c
 
 ## Edge cases
 
+- A domiciliation address, and the partial diffusion of the owner's record in the public register of companies (INSEE), before the notice goes back to a professional publisher: needed if the donations become revenue of the owner's individual business (`docs/external-services.md`, Legal notice). Depends on: the answer of the tax office on the donations (step 18 of the application). Noted on 2026-11-14.
+
 - The sources of the video out of Git: its card and the ten small screens of its fan are read from `outputs/2026-11-06-video/assets/` (`docs/mockups/video/lib.js`), so the video can't be made again if `outputs/` is emptied. Depends on: the skill for the videos, at the retrospective (step 6). Noted on 2026-11-13.
 
 - The video of the page on a real iPhone and in Safari: it starts, no black flash before its first image, Low Power Mode (if iOS draws its own play triangle, hide it with `::-webkit-media-controls-start-playback-button`). Left out of the launch by the owner on 2026-11-09, since the application doesn't address those visitors. Depends on: access to an iPhone or a Mac. Noted on 2026-11-09.

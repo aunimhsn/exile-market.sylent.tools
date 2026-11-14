@@ -2,6 +2,12 @@
 
 The detail of the steps of [roadmap.md](../roadmap.md) whose pull request is merged, the most recent first. `roadmap.md` keeps one line per step done.
 
+## 5b. The site on its domain
+
+Pull request: [#22](https://github.com/aunimhsn/exile-market.sylent.tools/pull/22).
+
+The site put on https://exile-market.sylent.tools/ before the tag, with « Coming soon » in place of the buttons (owner, 2026-11-13: go as far as possible). The address is a subdomain: one `CNAME` record `exile-market` to `aunimhsn.github.io`, with the proxy of Cloudflare off, « DNS only », or GitHub can't issue its certificate; no `A` record and no `www`, unlike the case of `process.md`. Order: the custom domain set in the Pages settings first, as GitHub's documentation asks (the domain is verified, so the order matters little), the repository variables `SITE_URL` and `BASE_PATH` removed and the site deployed again at the root, then at once the placeholder removed and the `CNAME` created by the owner at Cloudflare; then HTTPS enforced, `github.io` checked to redirect, the live site checked, and a first visit read on the GoatCounter dashboard. Tool: launch. Done on 2026-11-13: the certificate started once the domain was removed and set again; HTTPS is enforced, and the owner read a first visit on GoatCounter.
+
 ## 5a. The final images
 
 Pull request: [#21](https://github.com/aunimhsn/exile-market.sylent.tools/pull/21).
