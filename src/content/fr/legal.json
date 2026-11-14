@@ -9,7 +9,7 @@
       "lines": [
         "Sylent, personne physique, édite ce site à titre non professionnel.",
         "Comme le permet l’article 1-1, II de la loi du 21 juin 2004 (LCEN), l’éditeur n’affiche pas ici son identité : l’hébergeur indiqué ci-dessous la détient, par le compte de l’éditeur.",
-        "Pour contacter l’éditeur : <a href=\"https://github.com/aunimhsn/rust-exile-market/issues\">ouvrez une issue sur GitHub</a>."
+        "Pour contacter l’éditeur : <a href=\"{issues}\">ouvrez une issue sur GitHub</a>."
       ]
     },
     {

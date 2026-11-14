@@ -1,10 +1,12 @@
 ---
 // The legal notice, in the language of its route (src/pages/legal.astro,
 // src/pages/fr/mentions-legales.astro). Its texts are in src/content/<lang>/legal.json; a line
-// may hold a link, hence set:html, on texts that come only from those files.
+// may hold a link, hence set:html, on texts that come only from those files. `{issues}` stands for
+// the address of the issues of the application, kept in src/lib/application.ts only.
 import en from "../content/en/legal.json";
 import fr from "../content/fr/legal.json";
 import SiteLayout from "../layouts/site-layout.astro";
+import { issues } from "../lib/application";
 import { type Lang, routes } from "../lib/i18n";
 import { href } from "../lib/url";
 import OutlineButton from "./outline-button.astro";
@@ -36,7 +38,7 @@ const page = pages[lang];
           <section>
             <h2>{heading}</h2>
             {lines.map((line) => (
-              <p set:html={line} />
+              <p set:html={line.replaceAll("{issues}", issues)} />
             ))}
           </section>
         ))}

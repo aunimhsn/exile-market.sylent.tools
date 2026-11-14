@@ -9,7 +9,10 @@
 //   in the site;
 // - every page holds the statistics script on the real domain, and none in the preview;
 // - every page says the language of its address, gives the address of both languages to the search
-//   engines (hreflang), and links to the other language, each page pointing back to the other.
+//   engines (hreflang), and links to the other language, each page pointing back to the other;
+// - every GitHub link leads to the repository of src/lib/application.ts, or to an address of
+//   `otherGithubLinks`: linkinator skips the external links, so an account renamed and claimed
+//   by someone else would go unnoticed.
 // Run after `npm run build`, or on a build under a base: `node scripts/check-urls.mjs <folder> <base>`.
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
@@ -18,6 +21,16 @@ import notFoundFr from "../src/content/fr/not-found.json" with { type: "json" };
 import urls from "../src/data/urls.json" with { type: "json" };
 
 const [dist = "dist", base = ""] = process.argv.slice(2);
+
+/** The repository of the application, read from the one place that holds it. */
+const repository = readFileSync("src/lib/application.ts", "utf8").match(
+  /export const repository = "([^"]+)"/,
+)?.[1];
+if (!repository) throw new Error("no repository in src/lib/application.ts");
+/** The GitHub links of the site that don't lead to the application (the credits). */
+const otherGithubLinks = [
+  "https://github.com/mrdoob/three.js/blob/dev/LICENSE",
+];
 
 /** The file that GitHub Pages serves for a URL path, as written by Astro. */
 const fileOf = (path) => join(dist, path, "index.html");
@@ -181,6 +194,13 @@ for (const file of htmlFiles) {
     !existsSync(join(dist, imagePath.slice(base.length)))
   ) {
     errors.push(`${file}: og:image ${image} is not built`);
+  }
+  for (const [, link] of html.matchAll(
+    /href="(https:\/\/github\.com\/[^"]*)"/g,
+  )) {
+    if (!link.startsWith(repository) && !otherGithubLinks.includes(link)) {
+      errors.push(`${file}: ${link} leads outside ${repository}`);
+    }
   }
   if (file === "404.html") notFoundErrors(file, html);
   else languageErrors(file, html, canonical);
